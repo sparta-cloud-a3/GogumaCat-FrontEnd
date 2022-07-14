@@ -316,7 +316,7 @@
     //     transformAnimation(objs.descImg_2);
     // }
 
-    // 첫 GOGUMAKET 로딩 함수
+    // 첫 GOGUMACAT 로딩 함수
     function loding() {
         const box = document.querySelector('#box')
         box.style.width = `${lodingBox}px`
