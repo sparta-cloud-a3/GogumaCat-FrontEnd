@@ -1,5 +1,5 @@
-(() => {
-    
+let domain = "http://localhost:8080"
+
 function sign_in() {
     let username = $("#input-username").val()
     let password = $("#input-password").val()
@@ -19,9 +19,10 @@ function sign_in() {
     } else {
         $("#help-password-login").text("")
     }
+
     $.ajax({
         type: "POST",
-        url: "/user/login1",
+        url: `${domain}/user/login1`,
         data: JSON.stringify ({
             'username': username,
             'password': password
@@ -36,10 +37,11 @@ function sign_in() {
             $("#input-username").focus()
             $("#input-username").val("")
             $("#input-password").val("")
-
         }
     });
 }
+
+(() => {
 
 let url = 'https://389rjyao80.execute-api.us-east-1.amazonaws.com/default/project-lambda';
 function sign_up() {
