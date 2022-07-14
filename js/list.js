@@ -1,4 +1,4 @@
-(() => {
+
     $(document).ready(function () {
         listing("latest");
     });
@@ -190,5 +190,3 @@
             }
         });
     }
-    
-})();

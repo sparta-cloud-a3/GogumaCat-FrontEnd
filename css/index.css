@@ -92,6 +92,7 @@
     outline: none;
     height: 24px;
     padding-left: 4px;
+    background-color: transparent;
 }
 .search-bar button {
     width: 40px;

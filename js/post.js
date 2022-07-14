@@ -1,4 +1,4 @@
-(() => {
+
     $(document).ready(function () {
         map('[[${post.address}]]');
         var floatPosition = parseInt($(".sideBanner").css('top'))
@@ -100,4 +100,3 @@
             })
         }
     }
-})()

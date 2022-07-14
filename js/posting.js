@@ -1,9 +1,3 @@
-(() => {
-    $(document).ready(function () {
-        fileupload()
-        calendar_select()
-    })
-    
     //파일 업로드 시 제목 띄우기
     function fileupload() {
         const fileInput = document.querySelector('#file-js-example input[type=file]');
@@ -15,7 +9,7 @@
             }
         }
     }
-    
+
     // 이미지 업로드 및 업로드한 이미지 미리보기
     function img_up() {
         $('#img').on('change', function () {
@@ -208,4 +202,8 @@
             $("#price_warning").addClass("is-hidden")
         }
     }
-})();
+    window.addEventListener('load',() => {
+        fileupload()
+        calendar_select()
+    })
+

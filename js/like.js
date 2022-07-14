@@ -1,4 +1,3 @@
-(() => {
     function toggle_like(postId) {
         if ($("#heart").hasClass("fa-solid")) {
             $.ajax({
@@ -59,4 +58,3 @@
             }
         }
     }
-})();

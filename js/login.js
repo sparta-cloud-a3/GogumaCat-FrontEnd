@@ -1,4 +1,4 @@
-(() => {
+
     
 function sign_in() {
     let username = $("#input-username").val()
@@ -208,4 +208,3 @@ function kakao_login(){
     alert("원할한 진행을 위해 꼭 카카오 이메일도 동의 부탁드려요 ㅠㅠ")
     window.location.href='https://kauth.kakao.com/oauth/authorize?client_id=1cc8b1fcd1283d896e04d323749f5c38&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code'
 }
-}) ();
