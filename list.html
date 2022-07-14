@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>고구마캣</title>
+        <!-- 구글 폰트-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+        <!-- 폰트어썸아이콘 -->
+        <script src="https://kit.fontawesome.com/ceef4dd32d.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/b8cc3ce1fa.js" crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+            <!--css연결-->
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/list.css">    
+
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <nav class="logo-nav">
+                <a href="/" id="logo"><img src="./image/logo.png"></a>
+                <div class="search-bar">
+                    <input type="text" class="search" placeholder="물품이나 동네를 검색해보세요">
+                    <button class="search-bt" type="submit" ><i class="fa fa-duotone fa-magnifying-glass"></i></button>
+                </div>
+                <div class=" login-btn" onclick="profileinfo()">
+                    <i class="fa-solid fa-cat fa-lg"></i>
+                    <p id="loginName">다섯글자만님 환영합니다</p>
+                </div>
+            </nav>            
+        </div>
+        <div class="list-container">
+            <div class="menu-container">
+                
+                <button class="posting-btn">
+                    <span class="icon">
+                        <i class="fa-solid fa-pencil fab"></i>
+                    </span>
+                    <span>상품 등록하러 가기</span>
+                </button>
+
+            </div>
+            <div class="list">
+                <div class="list-order">
+                    <a onclick="click_sort_btn('latest')"><span  id="latest-tag">최신순</span></a>
+                    <a onclick="click_sort_btn('like')"><span  id="like-tag">관심순</span></a>
+                    <a onclick="find_location()"><span  id="address-tag">현재 위치!</span></a>
+                </div>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card">
+                    <a href="#" class="crad-link">
+                        <div class="card-img">
+                            <img src="./image/backgrond.png" alt="title">
+                        </div>
+                        <div class="card-desc">
+                            <p class="card-title">고구마캣</p>
+                            <p class="card-price">3,000원</p>
+                            <p class="card-address">서울</p>
+                        </div>
+                    </a>
+                </article>
+
+
+            </div>
+        </div>
+        <footer class="footer"><!--마지막 바닥글(정적,저작권이나 연락처 등 적게되는 요소) -->
+            <div class="footer-container">
+                <div class="footer-logo">
+                 <img src="/image/logo.png" class="end-logo">
+                </div>
+                    <ul>
+                     <li><a href="#">신뢰있는 대여 사이트</a></li>
+                     <li><a href="#">신고하기</a></li>
+                    </ul>
+                    <ul>
+                     <li><a href="#">고객센터</a></li>
+                     <li><a href="#">이용약관</a></li>
+                    </ul>
+                    
+                     <p>내일배움캠프 A-3팀 MSG<br>
+                     손홍서(팀장),황승호,이호인</p> 
+                    
+            </div>
+         </footer>      
+    </div>
+</body>
+</html>

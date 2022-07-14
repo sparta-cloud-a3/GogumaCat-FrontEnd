@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>고구마캣</title>
+
+    <!-- og태그 favicon -->
+    <meta property="og:title" content="고구마캣"/>
+    <meta property="og:description" content="뭐든지 빌려드립니다."/>
+    <meta property="og:image" content="{{ url_for('static', filename='gogumacat.png') }}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/b8cc3ce1fa.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ceef4dd32d.js" crossorigin="anonymous"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <!-- 구글 폰트-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    
+
+    <!--지도 api-->
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9600c7eddf2d8ec432aa9d8791d1e471&libraries=services,clusterer,drawing"></script>
+    <script src="/js/like.js"></script>
+
+    <!--css연결-->
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/post.css">
+    
+</head>
+<body>
+<div class="container">
+    <div class="logo-container">
+        <nav class="logo-nav">
+            <a href="/" id="logo"><img src="./image/logo.png"></a>
+            <div class="search-bar">
+                <input type="text" class="search" placeholder="물품이나 동네를 검색해보세요">
+                <button class="search-bt" type="submit" ><i class="fa fa-duotone fa-magnifying-glass"></i></button>
+            </div>
+            <div class=" login-btn" onclick="profileinfo()">
+                <i class="fa-solid fa-cat fa-lg"></i>
+                <p id="loginName">다섯글자만님 환영합니다</p>
+            </div>
+        </nav>            
+    </div>
+    <div class="post-container">
+        <div class="post-img-container">
+            <div class="post-img">
+                <img id="postImage" src="/image/backgrond.png">
+            </div>
+        </div>
+        <div class="post-title-container">
+            <div class="post-title">
+                <p id="postTitle">고구마 고양이 빌려드립니다.</p>
+                <p id="postAddress">서울시 서울구 서울동</p>
+                <p id="postPrice">20000원</p>
+                <div class="fix-dropdown">
+                    <ul class="dropdown">
+                        <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
+                        <li class="post-fix"><a href="#">수정하기</a></li>
+                        <li class="post-delete"><a href="#">삭제하기</a></li>
+                    </ul>
+                </div>
+                <div class="post-like">
+                    <a class="heart-icon" id="heart_a" aria-label="like" th:onclick="|javascript:toggle_like('${post.postId}')|">
+                    <span class="icon is-small">
+                        <i id="heart" class="fa-solid fa-heart fa-3x" aria-hidden="true"></i>
+                        <i id="heart" class="fa-regular fa-heart fa-3x" aria-hidden="true"></i>
+                    </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="profile-container">
+            <div class="profile">
+                <img id="profileImage" src="/image/section3-1.jpg">
+                <p id="profileName">다섯글자만</p>
+                <p id="postDate">작성일자 22.07.13</p>
+            </div>
+        </div>
+        <div class="post-content-container">
+            <div class="post-content">
+                <p id="postContent">고구마인데 고양이이고 고양이인데 고구마레요
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui, reiciendis at iusto fuga optio necessitatibus, tenetur ratione voluptatem sed velit aliquid laboriosam. Et nobis culpa illum alias sint. Repellendus molestias, nulla ipsum rem ratione ducimus rerum, accusamus, corrupti accusantium doloribus aliquam eaque pariatur odio repellat numquam incidunt perspiciatis neque voluptatem quidem assumenda. Nulla saepe dolorum tempora illo aperiam qui vel officiis eum expedita? Odio saepe dignissimos sed totam hic sit, numquam repudiandae, velit, ea ipsum sunt aliquid voluptates provident qui! Amet porro unde perspiciatis hic quas in sint tempora fugiat eum doloremque ratione voluptatum reprehenderit eaque cumque, soluta corporis?
+                </p>
+            </div>
+            <div class="map-container">
+                <div class="map" id="mapping">
+                    <!-- 지도를 표시할 div 입니다 -->
+                    <div id="map" class="local"></div>
+                    <!-- 로드뷰를 표시할 div 입니다 -->
+                    <div id="roadview" class="road"></div>
+                    <button id="map_btn" class="button is-dark"  onclick="roadview()">
+                        로드뷰 보기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer"><!--마지막 바닥글(정적,저작권이나 연락처 등 적게되는 요소) -->
+        <div class="footer-container">
+            <div class="footer-logo">
+             <img src="/image/logo.png" class="end-logo">
+            </div>
+                <ul>
+                 <li><a href="#">신뢰있는 대여 사이트</a></li>
+                 <li><a href="#">신고하기</a></li>
+                </ul>
+                <ul>
+                 <li><a href="#">고객센터</a></li>
+                 <li><a href="#">이용약관</a></li>
+                </ul>
+                
+                 <p>내일배움캠프 A-3팀 MSG<br>
+                 손홍서(팀장),황승호,이호인</p> 
+                
+        </div>
+     </footer>  
+</div>
+
+<script src=""></script>
+
+</body>
+</html>

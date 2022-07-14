@@ -1,0 +1,167 @@
+.logo-container {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    width : 100%;
+    background-color: rgba(255,255,255,0.9);
+    backdrop-filter: saturate(180%) blur(15px);
+    z-index: 10;
+    padding-top: 2px;
+    padding-left: 2px;
+}
+.logo-nav {
+    /* position: fixed;
+    top: -51px; */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    
+    /* border-bottom: 1px solid rgb(228, 173, 199); */
+}
+#logo {
+    margin-right: 2rem;
+    height: 45px;
+    width: 110px;
+}
+#logo img {
+    /* margin: auto; */
+    height: 100%;
+    width: 100%;
+}
+.main-nav {
+    margin-right: auto;
+    
+}
+.main-nav-list a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+.search-bar{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border: 2px solid #c786a4;
+    border-radius: 0.2rem;
+}
+.search-bar .search {
+    font-size: 1.2rem;
+    width: 500px;
+    outline: none;
+    height: 24px;
+    padding-left: 4px;
+}
+.search-bar button {
+    width: 40px;
+    height: 28px;
+    background-color: #c786a4;
+}
+.login-btn {
+    cursor: pointer;
+    width: 200px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+.login-btn p {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.posting-container {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgb(220 220 220 / 8%);
+
+}
+.wrap {
+    width: 800px;
+    margin: auto;
+}
+
+.wrap input {
+    margin-top: 20px;
+}
+
+input::placeholder {
+    color: black;
+    font-weight: bold;
+}
+
+textarea::placeholder {
+    color: black;
+    font-weight: bold;
+}
+
+.posting {
+    margin-right: 20px;
+    float: right;
+}
+
+/*지도 커스텀 오버레이 CSS*/
+.overlay_info {
+    border-radius: 6px;
+    margin-bottom: 10px;
+    float: left;
+    position: relative;
+    border: 1px solid #ccc;
+    border-bottom: 2px solid #ddd;
+    background-color: #fff;
+}
+
+.overlay_info:nth-of-type(n) {
+    border: 0;
+    box-shadow: 0px 1px 2px #888;
+}
+
+.overlay_info a {
+    display: block;
+    background: #c886a4;
+    /*background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;*/
+    /*text-decoration: none;*/
+    color: #fff;
+    padding: 12px 25px 5px 20px;
+    font-size: 15px;
+    border-radius: 6px 6px 0 0
+}
+
+.overlay_info a strong {
+    /*background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_icon.png) no-repeat;*/
+    padding-left: 27px;
+}
+
+.overlay_info .desc {
+    padding: 8px 15px 15px;
+    position: relative;
+    min-width: 190px;
+    height: 60px
+}
+
+.overlay_info img {
+    vertical-align: top;
+}
+
+.overlay_info .address {
+    font-size: 12px;
+    color: #333;
+    position: absolute;
+    left: 80px;
+    right: 14px;
+    top: 5px;
+    white-space: normal
+}
+
+.overlay_info:after {
+    content: '';
+    position: absolute;
+    margin-left: -11px;
+    left: 50%;
+    bottom: -12px;
+    width: 22px;
+    height: 12px;
+    background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png) no-repeat 0 bottom;
+}
