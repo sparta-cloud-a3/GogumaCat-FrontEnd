@@ -119,10 +119,9 @@
     position: absolute;
     color: rgb(29 29 31 /90%);
     z-index: 5;
-    bottom: 40%;
+    bottom: 32%;
     left : 4%;
-    opacity: 0;
-    
+    opacity: 0;    
 }
 #section-0 p {
     font-size: 2.7rem;
@@ -131,6 +130,19 @@
 #section-0 h1 {
     font-size: 4rem;
     font-weight: bold;
+    margin-bottom: 30px;
+}
+#section-0 .list-link {
+    margin: 0 0 0 30px;
+}
+#section-0 .list-link button {
+    width: 300px;
+    height: 50px;
+    background-color: rgb(29 29 31 /90%);
+    font-size: 2.3rem;
+    font-weight: 600;
+    color: whitesmoke;
+    border-radius: 5px;
 }
 
 #section-1 {
