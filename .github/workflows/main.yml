@@ -1,4 +1,4 @@
-name: my-front
+name: gogumacat-front
 on:
   push:
     branches:
@@ -17,8 +17,6 @@ jobs:
 
       - name: Upload binary to S3 bucket
         uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --exclude '*' --include 'index.html'
         env:
           AWS_S3_BUCKET: ${{ secrets.BUCKET_NAME }}
 
