@@ -374,7 +374,6 @@ function listing() {
         dataType : "json",
         beforeSend: function(xhr) {
                 xhr.setRequestHeader("token", token);
-                xhr.setRequestHeader("Access-Control-Allow-Origin", "*")
         },
         success: function (response) {
             $("#post-card-box").empty()
