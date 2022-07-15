@@ -377,9 +377,10 @@ function listing() {
         data: {},
         dataType : "json",
         beforeSend: function(xhr) {
-                xhr.setRequestHeader("token", $.cookie("mytoken"));
+                xhr.setRequestHeader("token", token);
         },
         success: function (response) {
+            $("#post-card-box").empty()
             let posts = response["data"]
             for (let i = 0; i<posts.length; i++) {
                 makeCard(posts[i])
