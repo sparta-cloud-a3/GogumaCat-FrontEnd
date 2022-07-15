@@ -1,3 +1,10 @@
+let domain = "http://hongseos.shop"
+let token = $.cookie("mytoken")
+
+$(document).ready(function () {
+    listing()
+})
+
 (() => {
     let yOffset = 0; //window.pageYOffset 변수
     let prevScrollHeight = 0; //현재 스크롤 보다 이전에 스크롤 섹션들의 높이 합
@@ -362,3 +369,38 @@
         scroll()    
     })
 }) ();
+
+function listing() {
+    $.ajax({
+        type: "GET",
+        url: `${domain}/post/top4`,
+        data: {},
+        dataType : "json",
+        beforeSend: function(xhr) {
+                xhr.setRequestHeader("token", $.cookie("mytoken"));
+        },
+        success: function (response) {
+            let posts = response["data"]
+            for (let i = 0; i<posts.length; i++) {
+                makeCard(posts[i])
+            }
+        }
+    })
+}
+
+function makeCard(post) {
+    let tempHtml =  `<article class="card">
+                <a href="${post["postId"]}" class="crad-link">
+                    <div class="card-img">
+                        <img src="${post[postImgs][0]["imgUrl"]}" alt="title">
+                    </div>
+                    <div class="card-desc">
+                        <p class="card-title">${post["title"]}</p>
+                        <p class="card-price">${post["price"]}</p>
+                        <p class="card-address">${post["address"]}</p>
+                    </div>
+                </a>
+            </article>`
+
+    $("#post-card-box").append(tempHtml)
+}
