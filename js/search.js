@@ -1,5 +1,6 @@
 let domain = "http://hongseos.shop"
 let token = $.cookie("mytoken")
+
 function search() {
       let query = $("#search-text").val();
 
@@ -14,7 +15,7 @@ function search() {
             data: {},
             dataType : "json",
             beforeSend: function(xhr) {
-                  xhr.setRequestHeader("token", $.cookie("mytoken"));
+                  xhr.setRequestHeader("token", token);
             },
             success: function (response) {
                   console.log("success")
