@@ -1,4 +1,4 @@
-let domain = "http://localhost:8080"
+let domain = "http://hongseos.shop"
 
 function sign_in() {
     let username = $("#input-username").val()
