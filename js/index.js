@@ -1,10 +1,3 @@
-let domain = "http://hongseos.shop"
-let token = $.cookie("mytoken")
-
-$(document).ready(function () {
-    listing()
-})
-
 (() => {
     let yOffset = 0; //window.pageYOffset 변수
     let prevScrollHeight = 0; //현재 스크롤 보다 이전에 스크롤 섹션들의 높이 합
@@ -369,6 +362,9 @@ $(document).ready(function () {
         scroll()    
     })
 }) ();
+const domain = "http://hongseos.shop"
+const token = $.cookie("mytoken")
+
 
 function listing() {
     $.ajax({
@@ -378,9 +374,12 @@ function listing() {
         dataType : "json",
         beforeSend: function(xhr) {
                 xhr.setRequestHeader("token", token);
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*")
         },
         success: function (response) {
             $("#post-card-box").empty()
+
+            console.log(response)
             let posts = response["data"]
             for (let i = 0; i<posts.length; i++) {
                 makeCard(posts[i])
@@ -405,3 +404,5 @@ function makeCard(post) {
 
     $("#post-card-box").append(tempHtml)
 }
+
+window.addEventListener('load', listing)
