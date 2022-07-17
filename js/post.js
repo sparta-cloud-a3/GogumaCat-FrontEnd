@@ -1,86 +1,50 @@
+let domain = "http://hongseos.shop"
+let token = $.cookie("mytoken")
 
 $(document).ready(function () {
-    map('[[${post.address}]]');
-    var floatPosition = parseInt($(".sideBanner").css('top'))
+    var splitLink = document.location.href.split("?")
+    var postId = splitLink[1]
+    getDetail(postId)
+//     map('[[${post.address}]]');
+//     var floatPosition = parseInt($(".sideBanner").css('top'))
 
-    $(window).scroll(function () {
+//     $(window).scroll(function () {
 
-        // 현재 스크롤 위치
-        var currentTop = $(window).scrollTop();
-        var bannerTop = currentTop + floatPosition + "px";
+//         // 현재 스크롤 위치
+//         var currentTop = $(window).scrollTop();
+//         var bannerTop = currentTop + floatPosition + "px";
 
-        //이동 애니메이션
-        $(".sideBanner").stop().animate({
-            "top": bannerTop
-        }, 500);
+//         //이동 애니메이션
+//         $(".sideBanner").stop().animate({
+//             "top": bannerTop
+//         }, 500);
 
-    }).scroll();
+//     }).scroll();
 
-    $(".sideBanner").click(function () {
-        document.getElementById("frame").style.visibility = "hidden"
-        window.location.href = "/chat/room/enter/[[${post.postId}]]"
-    });
+//     $(".sideBanner").click(function () {
+//         document.getElementById("frame").style.visibility = "hidden"
+//         window.location.href = "/chat/room/enter/[[${post.postId}]]"
+//     });
+// })
 })
 
-function show() {
-    $("#post-box").empty()
-    
+function getDetail(postId) { 
+    $.ajax({
+        type: "GET",
+        url: `${domain}/post/${postId}`,
+        data: {},
+        dataType : "json",
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("token", token);
+        },
+        success: function (response) {
+            makeDetail(response)
+        }
+    });
 }
 
-function makeBody(post) {
-    let tempHtml = `<div class="post-img-container">
-                        <div class="post-img">
-                            <img id="postImage" src="/image/backgrond.png">
-                        </div>
-                    </div>
-                    <div class="post-title-container">
-                        <div class="post-title">
-                            <p id="postTitle">고구마 고양이 빌려드립니다.</p>
-                            <p id="postAddress">서울시 서울구 서울동</p>
-                            <p id="postPrice">20000원</p>
-                            <div class="fix-dropdown">
-                                <ul class="dropdown">
-                                    <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
-                                    <li class="post-fix"><a href="#">수정하기</a></li>
-                                    <li class="post-delete"><a href="#">삭제하기</a></li>
-                                </ul>
-                            </div>
-                            <div class="post-like">
-                                <a class="heart-icon" id="heart_a" aria-label="like" th:onclick="|javascript:toggle_like('${post.postId}')|">
-                                <span class="icon is-small">
-                                    <i id="heart" class="fa-solid fa-heart fa-3x" aria-hidden="true"></i>
-                                    <i id="heart" class="fa-regular fa-heart fa-3x" aria-hidden="true"></i>
-                                </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="profile-container">
-                        <div class="profile">
-                            <img id="profileImage" src="/image/section3-1.jpg">
-                            <p id="profileName">다섯글자만</p>
-                            <p id="postDate">작성일자 22.07.13</p>
-                        </div>
-                    </div>
-                    <div class="post-content-container">
-                        <div class="post-content">
-                            <p id="postContent">고구마인데 고양이이고 고양이인데 고구마레요
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui, reiciendis at iusto fuga optio necessitatibus, tenetur ratione voluptatem sed velit aliquid laboriosam. Et nobis culpa illum alias sint. Repellendus molestias, nulla ipsum rem ratione ducimus rerum, accusamus, corrupti accusantium doloribus aliquam eaque pariatur odio repellat numquam incidunt perspiciatis neque voluptatem quidem assumenda. Nulla saepe dolorum tempora illo aperiam qui vel officiis eum expedita? Odio saepe dignissimos sed totam hic sit, numquam repudiandae, velit, ea ipsum sunt aliquid voluptates provident qui! Amet porro unde perspiciatis hic quas in sint tempora fugiat eum doloremque ratione voluptatum reprehenderit eaque cumque, soluta corporis?
-                            </p>
-                        </div>
-                        <div class="map-container">
-                            <div class="map" id="mapping">
-                                <!-- 지도를 표시할 div 입니다 -->
-                                <div id="map" class="local"></div>
-                                <!-- 로드뷰를 표시할 div 입니다 -->
-                                <div id="roadview" class="road"></div>
-                                <button id="map_btn" class="button is-dark"  onclick="roadview()">
-                                    로드뷰 보기
-                                </button>
-                            </div>
-                        </div>
-                    </div>`
-    $("#post-box").append(tempHtml)
+function makeDetail(post) {
+    
 }
 //맵 생성하기
 function map(address) {
@@ -151,7 +115,7 @@ function deletePost(postId) {
     if (result) {
         $.ajax({
             type: "DELETE",
-            url: `/post/delete/${postId}`,
+            url: `${domain}/post/delete/${postId}`,
             data: {},
             success: function (response) {
                 alert('삭제에 성공하였습니다.');

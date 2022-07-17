@@ -26,7 +26,7 @@ function listing(orderType) {
 
 function make_post(post) {
     let tempHtml =  `<article class="card">
-                        <a href="${post["postId"]}" class="crad-link">
+                        <a href="post.html/${post["postId"]}" class="crad-link">
                             <div class="card-img">
                                 <img src="${post[postImgs][0]["imgUrl"]}" alt="title">
                             </div>
