@@ -352,16 +352,17 @@
         loding()
         setLayout()
        // canvas() 
-    } )
+    })
     window.addEventListener('resize', () => {
         //nav_info[0].objs.contain.transform = translateY(-nav_info[0].height)
         canvas()
         setLayout()
     })
     window.addEventListener('scroll', () => {
-        scroll()    
+        scroll()
     })
 }) ();
+
 const domain = "http://hongseos.shop"
 const token = $.cookie("mytoken")
 
@@ -377,9 +378,8 @@ function listing() {
         },
         success: function (response) {
             $("#post-card-box").empty()
-
-            console.log(response)
             let posts = response["data"]
+            console.log(posts[0]["postImgs"])
             for (let i = 0; i<posts.length; i++) {
                 makeCard(posts[i])
             }
@@ -389,19 +389,17 @@ function listing() {
 
 function makeCard(post) {
     let tempHtml =  `<article class="card">
-                <a href="${post["postId"]}" class="crad-link">
-                    <div class="card-img">
-                        <img src="${post[postImgs][0]["imgUrl"]}" alt="title">
-                    </div>
-                    <div class="card-desc">
-                        <p class="card-title">${post["title"]}</p>
-                        <p class="card-price">${post["price"]}</p>
-                        <p class="card-address">${post["address"]}</p>
-                    </div>
-                </a>
-            </article>`
-
+                        <a href="/post.html?id=${post["postId"]}" class="crad-link">
+                            <div class="card-img">
+                                <img src="${post["postImgs"][0]["imgUrl"]}" alt="title">
+                            </div>
+                            <div class="card-desc">
+                                <p class="card-title">${post["title"]}</p>
+                                <p class="card-price">${post["price"]}</p>
+                                <p class="card-address">${post["address"]}</p>
+                            </div>
+                        </a>
+                    </article>`
     $("#post-card-box").append(tempHtml)
 }
-
 window.addEventListener('load', listing)

@@ -116,6 +116,13 @@
     padding: 2px 8px 2px 8px;
     border-radius: 3px;
 }
+#card-box {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
 .posting-btn {
     width: 180px;

@@ -3,7 +3,8 @@ let token = $.cookie("mytoken")
 
 $(document).ready(function () {
     var splitLink = document.location.href.split("?")
-    var postId = splitLink[1]
+    var idLink = splitLink[1].split("=")
+    var postId =idLink[1]
     getDetail(postId)
 //     var floatPosition = parseInt($(".sideBanner").css('top'))
 
