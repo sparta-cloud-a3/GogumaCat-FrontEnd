@@ -44,16 +44,17 @@ function getDetail(postId) {
 }
 
 function makeDetail(response) {
+    console.log(response)
     let post = response["post"]
     $("#postTitle").text(post["title"])
     $("#postAddress").text(post["address"])
     $("#postPrice").text(post["price"])
-    $("#fix-dropdown").empty()
-    if(response["nickname"] == post["writer"]) {
-        $("#fix-dropdown").append(
+    $("#fix-box").empty()
+    if(response["userId"] == post["writerUserId"]) {
+        $("#fix-box").append(
             `<i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
-            <li class="post-fix"><a href="#">수정하기</a></li>
-            <li class="post-delete"><a href="#">삭제하기</a></li>`
+            <li class="post-fix"><a href="updatePost('${post["postId"]}')">수정하기</a></li>
+            <li class="post-delete"><a href="deletePost('${post["postId"]}')">삭제하기</a></li>`
         )
     }
     if(response["likeByMe"]) {
@@ -130,6 +131,10 @@ function map(address) {
 
 }
 
+function updatePost(postId) {
+
+}
+
 function deletePost(postId) {
     let result = confirm("정말로 삭제하시겠습니까?");
     if (result) {
@@ -137,10 +142,25 @@ function deletePost(postId) {
             type: "DELETE",
             url: `${domain}/post/delete/${postId}`,
             data: {},
+            dataType : "json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             success: function (response) {
                 alert('삭제에 성공하였습니다.');
-                window.location.replace("/")
+                window.location.replace("/list.html")
             }
         })
     }
+}
+
+function search() {
+    let query = $("#search-text").val();
+
+    if (query == "") {
+        alert("검색어를 입력하세요");
+        return;
+    }
+    console.log(query)
+    window.location.replace(`/list.html?query=${query}`)
 }

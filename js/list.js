@@ -99,6 +99,10 @@ function search() {
     window.location.replace(`/list.html?query=${query}`)
 }
 
+function initUserInfo() {
+    
+}
+
 // function get_gu(si) {
 //     $("#gu-box").addClass("is-hidden")
 //     $("#dong-box").addClass("is-hidden")
