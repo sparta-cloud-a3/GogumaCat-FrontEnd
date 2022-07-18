@@ -25,7 +25,7 @@ function listing(orderType) {
             $("#post-card-box").empty();
             let posts = response["data"]
             for (let i = 0; i < response["count"]; i++) {
-                make_post(posts[i]);
+                makePost(posts[i]);
             }
         }
     });
@@ -48,7 +48,7 @@ function searchListing(query) {
                 `<h3 class="menu-container"><span style="color: red;">"${query}"</span>의 검색 결과 입니다.</h3>`
             )
             for (let i = 0; i < response["count"]; i++) {
-                make_post(posts[i]);
+                makePost(posts[i]);
             }
         },
         error : function () {
@@ -57,7 +57,7 @@ function searchListing(query) {
     })
 }
 
-function make_post(post) {
+function makePost(post) {
     let tempHtml =  `<article class="card">
                         <a href="/post.html?id=${post["postId"]}" class="crad-link">
                             <div class="card-img">
@@ -91,6 +91,17 @@ function click_sort_btn(order_type) {
         $('#latest-tag').removeClass("is-dark")
         $('#address-tag').removeClass("is-dark")
     }
+}
+
+function search() {
+    let query = $("#search-text").val();
+
+    if (query == "") {
+        alert("검색어를 입력하세요");
+        return;
+    }
+    console.log(query)
+    window.location.replace(`/list.html?query=${query}`)
 }
 
 // function get_gu(si) {
@@ -151,7 +162,7 @@ function click_sort_btn(order_type) {
 //             let posts = response["posts"];
 //             pagination(parseInt(response["last_page_num"]), page, "address")
 //             for (let i = 0; i < posts.length; i++) {
-//                 make_post(posts[i], i);
+//                 makePost(posts[i], i);
 //             }
 //         }
 //     });
