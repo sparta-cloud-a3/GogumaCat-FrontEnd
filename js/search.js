@@ -8,21 +8,6 @@ function search() {
             alert("검색어를 입력하세요");
             return;
       }
-
-      $.ajax({
-            type: "GET",
-            url: `${domain}/post/search?query=${query}`,
-            data: {},
-            dataType : "json",
-            beforeSend: function(xhr) {
-                  xhr.setRequestHeader("token", token);
-            },
-            success: function (response) {
-                  console.log("success")
-                  console.log(response)
-            },
-            error : function () {
-                  alert("fail")
-            }
-      })
+      console.log(query)
+      window.location.replace(`/list.html?query=${query}`)
 }

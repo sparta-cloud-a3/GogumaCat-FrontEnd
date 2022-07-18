@@ -379,7 +379,6 @@ function listing() {
         success: function (response) {
             $("#post-card-box").empty()
             let posts = response["data"]
-            console.log(posts[0]["postImgs"])
             for (let i = 0; i<posts.length; i++) {
                 makeCard(posts[i])
             }
@@ -402,4 +401,15 @@ function makeCard(post) {
                     </article>`
     $("#post-card-box").append(tempHtml)
 }
+
+function search() {
+    let query = $("#search-text").val();
+
+    if (query == "") {
+        alert("검색어를 입력하세요");
+        return;
+    }
+    window.location.replace(`/list.html?query=${query}`)
+}
+
 window.addEventListener('load', listing)

@@ -2,7 +2,14 @@ let domain = "http://hongseos.shop"
 let token = $.cookie("mytoken")
 
 $(document).ready(function () {
-    listing("latest");
+    var splitLink = document.location.href.split("?")
+    if(splitLink[1]) { //검색어 있음
+        var queryLink = splitLink[1].split("=")
+        searchListing(queryLink[1])
+    } else {
+        listing("latest");
+    }
+    
 });
 
 function listing(orderType) {
@@ -15,7 +22,7 @@ function listing(orderType) {
                 xhr.setRequestHeader("token", token);
         },
         success: function (response) {
-            $("#card-box").empty();
+            $("#post-card-box").empty();
             let posts = response["data"]
             for (let i = 0; i < response["count"]; i++) {
                 make_post(posts[i]);
@@ -24,11 +31,37 @@ function listing(orderType) {
     });
 }
 
+function searchListing(query) {
+    $.ajax({
+        type: "GET",
+        url: `${domain}/post/search?query=${query}`,
+        data: {},
+        dataType : "json",
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("token", token);
+        },
+        success: function (response) {
+            $("#post-card-box").empty();
+            let posts = response["data"]
+            //검색어 보여주는 칸
+            $("#search-query-box").append(
+                `<h3 class="menu-container"><span style="color: red;">"${query}"</span>의 검색 결과 입니다.</h3>`
+            )
+            for (let i = 0; i < response["count"]; i++) {
+                make_post(posts[i]);
+            }
+        },
+        error : function () {
+            alert("fail")
+        }
+    })
+}
+
 function make_post(post) {
     let tempHtml =  `<article class="card">
                         <a href="/post.html?id=${post["postId"]}" class="crad-link">
                             <div class="card-img">
-                                <img src="${post["postImgs"][0]["imgUrl"]}" alt="title">
+                                <img src='${post["postImgs"][0]["imgUrl"]}' alt="title">
                             </div>
                             <div class="card-desc">
                                 <p class="card-title">${post["title"]}</p>
@@ -38,37 +71,6 @@ function make_post(post) {
                         </a>
                     </article>`
     $("#post-card-box").append(tempHtml)
-}
-
-function searching(new_order, new_page) {
-    order = new_order
-    page = new_page
-    let query = $('#search-box').val();
-    if (query == "") {
-        query = $("#query-text-box").val().split[" "][0];
-    }
-    if (query == "") {
-        alert("검색어를 입력하세요");
-        return;
-    } else {
-        $.ajax({
-            type: "GET",
-            url: `/search?query=${query}&order=${order}&page=${page}`,
-            data: {},
-            success: function (response) {
-                $("#card-box").empty();
-                let posts = response;
-
-                for (let i = 0; i < posts.length; i++) {
-                    make_post(posts[i], i);
-                }
-
-                $("#query-text-box").empty()
-                $("#query-text-box").append(`"${query}" 검색내역 입니다.`)
-                $("#query-text-box").removeClass("is-hidden")
-            }
-        })
-    }
 }
 
 function click_sort_btn(order_type) {
