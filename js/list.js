@@ -65,7 +65,7 @@ function makePost(post) {
                             </div>
                             <div class="card-desc">
                                 <p class="card-title">${post["title"]}</p>
-                                <p class="card-price">${post["price"]}</p>
+                                <p class="card-price">${post["price"]}원</p>
                                 <p class="card-address">${post["address"]}</p>
                             </div>
                         </a>

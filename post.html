@@ -43,6 +43,7 @@
     <!--css연결-->
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/map.css">
     
 </head>
 <body>
@@ -62,7 +63,7 @@
     </div>
     <div class="post-container">
         <div class="post-img-container">
-            <div class="post-img">
+            <div class="post-img" id="post-img-box">
                 <img id="postImage" src="/image/backgrond.png">
             </div>
         </div>
@@ -78,8 +79,8 @@
                         <li class="post-delete"><a href="#">삭제하기</a></li>
                     </ul>
                 </div>
-                <div class="post-like">
-                    <a class="heart-icon" id="heart_a" aria-label="like" th:onclick="|javascript:toggle_like('${post.postId}')|">
+                <div class="post-like" id="post-like-box">
+                    <a class="heart-icon" id="heart_a" aria-label="like" onclick="toggle_like()">
                     <span class="icon is-small">
                         <i id="heart" class="fa-solid fa-heart fa-3x" aria-hidden="true"></i>
                     </span>
@@ -135,6 +136,7 @@
 </div>
 
 <script src="/js/post.js"></script>
+<script src="/js/like.js"></script>
 
 </body>
 </html>

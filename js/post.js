@@ -44,11 +44,21 @@ function getDetail(postId) {
 }
 
 function makeDetail(response) {
-    console.log(response)
     let post = response["post"]
+    //사진
+    $("#post-img-box").empty()
+    for(var i=0; i<post["postImgs"].length; i++) {
+        $("#post-img-box").append(
+            `<img id="postImage-${i}" src="${post["postImgs"][i]["imgUrl"]}">`
+        )
+    }
+    //제목
     $("#postTitle").text(post["title"])
+    //주소
     $("#postAddress").text(post["address"])
-    $("#postPrice").text(post["price"])
+    //가격
+    $("#postPrice").text(post["price"]+"원")
+    //수정, 삭제 메뉴
     $("#fix-box").empty()
     if(response["userId"] == post["writerUserId"]) {
         $("#fix-box").append(
@@ -57,12 +67,34 @@ function makeDetail(response) {
             <li class="post-delete"><a href="deletePost('${post["postId"]}')">삭제하기</a></li>`
         )
     }
-    if(response["likeByMe"]) {
-        $("#heart").removeClass("fa-regular")
-        $("#heart").addClass("fa-solid")
+    //작성자 프로필 사진
+    if(post["writerProfile"] == undefined) {
+        $("#profileImage").attr("src", "/image/profile_image.png")
     } else {
-        $("#heart").removeClass("fa-solid")
-        $("#heart").addClass("fa-regular")
+        $("#profileImage").attr("src", post["writerProfile"])
+    }
+    //작성자 닉네임
+    $("#profileName").text(post["writerNickname"])
+    //빌려주는 날짜
+    $("#postDate").text(post["date"])
+    //좋아요
+    $("#post-like-box").empty()
+    if(response["likeByMe"]) {
+        $("#post-like-box").append(
+            `<a class="heart-icon" id="heart_a" aria-label="like" onclick="toggle_like('${post["postId"]}')">
+            <span class="icon is-small">
+                <i id="heart" class="fa-solid fa-heart fa-3x" aria-hidden="true"></i>
+            </span>
+            </a>`
+        )
+    } else {
+        $("#post-like-box").append(
+            `<a class="heart-icon" id="heart_a" aria-label="like" onclick="toggle_like('${post["postId"]}')">
+            <span class="icon is-small">
+                <i id="heart" class="fa-regular fa-heart fa-3x" aria-hidden="true"></i>
+            </span>
+            </a>`
+        )
     }
     $("#postContent").text(post["content"])
     map(post["address"])
@@ -86,7 +118,7 @@ function map(address) {
     var content = '<div class="overlay_info">';
     content += '    <a><strong>여기서 만나요!</strong></a>';
     content += '    <div class="desc">';
-    content += '        <img src="/img/info_image.png" style="object-fit: fill" >';
+    content += '        <img src="/image/info_image.png" style="object-fit: fill" >';
     content += `        <span class="address">${address}</span>`;
     content += '    </div>';
     content += '</div>';
@@ -161,6 +193,5 @@ function search() {
         alert("검색어를 입력하세요");
         return;
     }
-    console.log(query)
     window.location.replace(`/list.html?query=${query}`)
 }
