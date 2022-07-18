@@ -5,7 +5,6 @@ $(document).ready(function () {
     var splitLink = document.location.href.split("?")
     var postId = splitLink[1]
     getDetail(postId)
-//     map('[[${post.address}]]');
 //     var floatPosition = parseInt($(".sideBanner").css('top'))
 
 //     $(window).scroll(function () {
@@ -43,8 +42,28 @@ function getDetail(postId) {
     });
 }
 
-function makeDetail(post) {
-    
+function makeDetail(response) {
+    let post = response["post"]
+    $("#postTitle").text(post["title"])
+    $("#postAddress").text(post["address"])
+    $("#postPrice").text(post["price"])
+    $("#fix-dropdown").empty()
+    if(response["nickname"] == post["writer"]) {
+        $("#fix-dropdown").append(
+            `<i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
+            <li class="post-fix"><a href="#">수정하기</a></li>
+            <li class="post-delete"><a href="#">삭제하기</a></li>`
+        )
+    }
+    if(response["likeByMe"]) {
+        $("#heart").removeClass("fa-regular")
+        $("#heart").addClass("fa-solid")
+    } else {
+        $("#heart").removeClass("fa-solid")
+        $("#heart").addClass("fa-regular")
+    }
+    $("#postContent").text(post["content"])
+    map(post["address"])
 }
 //맵 생성하기
 function map(address) {
