@@ -74,13 +74,8 @@ function makePost(post) {
 }
 
 function click_sort_btn(order_type) {
-    if ($("#query-text-box").hasClass("is-hidden") && $("#juso-search-btn").hasClass("is-hidden")) {
-        listing(order_type)
-    } else if ($("#query-text-box").hasClass("is-hidden")) {
-        search_by_address(order_type)
-    } else {
-        searching(order_type)
-        }
+    
+    listing(order_type)
 
     if (order_type == "latest") {
         $('#latest-tag').addClass("is-dark")
