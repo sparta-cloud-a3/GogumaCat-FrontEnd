@@ -44,6 +44,7 @@ function getDetail(postId) {
 }
 
 function makeDetail(response) {
+    console.log(response)
     let post = response["post"]
     //사진
     $("#post-img-box").empty()
@@ -60,11 +61,31 @@ function makeDetail(response) {
     $("#postPrice").text(post["price"]+"원")
     //수정, 삭제 메뉴
     $("#fix-box").empty()
-    if(response["userId"] == post["writerUserId"]) {
+    $("#chat-box").empty()
+    if(response["userId"] == post["writeUserId"]) {
         $("#fix-box").append(
-            `<i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
-            <li class="post-fix"><a href="updatePost('${post["postId"]}')">수정하기</a></li>
-            <li class="post-delete"><a href="deletePost('${post["postId"]}')">삭제하기</a></li>`
+            `<ul class="dropdown">
+                <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
+                <li class="post-fix"><a href="#">수정하기</a></li>
+                <li class="post-delete"><a href="#">삭제하기</a></li>
+            </ul>`
+        )
+        $("#chat-box").append(
+            `<button class="chat-btn" onclick="window.location.href ='/room.html?id=${post["postId"]}'">
+                <span class="icon">
+                    <i class="fa-solid fa-message-dots"></i>
+                </span>
+                <span>채팅방</span>
+            </button>`
+        )
+    } else {
+        $("#chat-box").append(
+            `<button class="chat-btn" onclick="window.location.href ='/roomdetail.html?id=${post["postId"]}'">
+                <span class="icon">
+                    <i class="fa-solid fa-message-dots"></i>
+                </span>
+                <span>채팅보내기</span>
+            </button>`
         )
     }
     //작성자 프로필 사진
