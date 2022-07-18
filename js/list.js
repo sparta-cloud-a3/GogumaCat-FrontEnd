@@ -8,17 +8,17 @@ $(document).ready(function () {
 function listing(orderType) {
     $.ajax({
         type: "GET",
-        url: `${domain}/all?orderType=${orderType}`,
+        url: `${domain}/post/all?orderType=${orderType}`,
         data: {},
         dataType : "json",
         beforeSend: function(xhr) {
                 xhr.setRequestHeader("token", token);
         },
         success: function (response) {
-            $("#post-card-box").empty();
+            $("#card-box").empty();
             let posts = response["data"]
             for (let i = 0; i < response["count"]; i++) {
-                makeCard(posts[i]);
+                make_post(posts[i]);
             }
         }
     });
@@ -26,19 +26,17 @@ function listing(orderType) {
 
 function make_post(post) {
     let tempHtml =  `<article class="card">
-                        <a href="${post["postId"]}" class="crad-link">
+                        <a href="/post.html?id=${post["postId"]}" class="crad-link">
                             <div class="card-img">
-                                <img src="${post[postImgs][0]["imgUrl"]}" alt="title">
+                                <img src="${post["postImgs"][0]["imgUrl"]}" alt="title">
                             </div>
                             <div class="card-desc">
                                 <p class="card-title">${post["title"]}</p>
                                 <p class="card-price">${post["price"]}</p>
                                 <p class="card-address">${post["address"]}</p>
-                                <p class="card-likeCount">${post["likeCount"]}</p>
                             </div>
                         </a>
                     </article>`
-
     $("#post-card-box").append(tempHtml)
 }
 
