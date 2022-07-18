@@ -116,7 +116,7 @@
     padding: 2px 8px 2px 8px;
     border-radius: 3px;
 }
-#card-box {
+#post-card-box {
     width: 100%;
     max-width: 1000px;
     display: flex;

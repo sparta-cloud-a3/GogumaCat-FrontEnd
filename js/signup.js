@@ -7,8 +7,6 @@ function sign_up() {
       let password = $("#input-password").val()
       let password2 = $("#input-password2").val()
       let address = $("#input-address").val()
-      console.log(username, nickname, password, password2, address)
-
 
       if ($("#help-id").hasClass("is-danger")) {
             alert("아이디를 다시 확인해주세요.")
@@ -58,18 +56,18 @@ function sign_up() {
             type: "POST",
             url: `${domain}/user/signup`,
             data: JSON.stringify ({
-            "username": username,
-            "password": password,
-            "nickname": nickname,
-            "address": address
+                  "username": username,
+                  "password": password,
+                  "nickname": nickname,
+                  "address": address
             }),
             contentType: "application/json",
-            success: function () {
-            alert("회원가입을 축하드립니다!")
-            window.location.replace("/login")
+            success: function (response) {
+                  alert("회원가입을 축하드립니다!")
+                  window.location.replace("/login.html")
             },
             error : function (){
-            alert("fail")
+                  alert("fail")
             }
       })
 }
@@ -117,7 +115,7 @@ function check_dup() {
             $("#help-id").removeClass("is-loading")
             },
             error : function (){
-            alert("fail")
+                  alert("fail")
             }
       })
 }
@@ -136,7 +134,7 @@ function check_dup_nick() {
             type: "POST",
             url: `${domain}/user/sign_up/check_dup_nick`,
             data: JSON.stringify ({
-            "nickname": nickname
+                  "nickname": nickname
             }),
             contentType: "application/json",
             success: function (data) {
@@ -149,26 +147,9 @@ function check_dup_nick() {
             $("#help-nickname").removeClass("is-loading")
             },
             error : function (){
-            alert("fail")
+                  alert("fail")
             }
       });
-
-      $.ajax({
-            type: "POST",
-            url: "/user/sign_up/check_dup_nick",
-            data: {
-            'nickname': nickname
-            },
-            success: function (data) {
-            if (data >= 1) {
-                  $("#help-nickname").text("이미 존재하는 닉네임입니다.").removeClass("is-safe").addClass("is-danger")
-                  $("#input-nickname").focus()
-            } else {
-                  $("#help-nickname").text("사용할 수 있는 닉네임입니다.").removeClass("is-danger").addClass("is-success")
-            }
-            $("#help-nickname").removeClass("is-loading")
-            }
-      })
 }
 
 function juso() {
