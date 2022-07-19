@@ -11,15 +11,7 @@
       <style>
             @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
             [v-cloak] {
-                  /* display: none; */
-            }
-
-            body{
-                  /* background-color: #ffdead;
-                  height: auto;
-                  width: auto;
-                  background-size: cover;
-                  background-repeat: no-repeat; */
+                  display: none;
             }
 
             ul{
@@ -61,7 +53,7 @@
       <button v-if = "isSeller == true" onclick="order()" style="background-color: #c786a4">이 사람과 거래하기</button>
       <div>
             <ul class="list-group"  v-for="message in messages.slice().reverse()">
-                  <li v-if = "message.sender != nickname" class="list-group-item" style="background-color: #f5e1c3">
+                  <li v-if = "message.sender != nickname" class="list-group-item" style="background-color: antiquewhite">
                   {{message.sender}} : {{message.message}}
                   </li>
                   <li v-else class="list-group-item" style="text-align: right; background-color: #c786a4">
