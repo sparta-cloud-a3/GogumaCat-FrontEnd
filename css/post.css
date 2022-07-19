@@ -128,7 +128,7 @@
     cursor: pointer;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 45px;
     text-align: center;
     width: 50px;
 }
@@ -144,8 +144,8 @@
 }
 .post-title-container .post-like {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 8px;
+    right: 50px;
     margin-bottom: 5px;
 }
 #heart {
