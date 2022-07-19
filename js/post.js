@@ -2,9 +2,9 @@ let domain = "http://hongseos.shop"
 let token = $.cookie("mytoken")
 
 $(document).ready(function () {
-    var splitLink = document.location.href.split("?")
-    var idLink = splitLink[1].split("=")
-    var postId =idLink[1]
+    let splitLink = document.location.href.split("?")
+    let idLink = splitLink[1].split("=")
+    let postId =idLink[1]
     getDetail(postId)
 //     var floatPosition = parseInt($(".sideBanner").css('top'))
 
@@ -66,7 +66,7 @@ function makeDetail(response) {
         $("#fix-box").append(
             `<ul class="dropdown">
                 <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
-                <li class="post-fix"><a href="#">수정하기</a></li>
+                <li class="post-fix"><a href="/posting-update.html?id=${post["postId"]}">수정하기</a></li>
                 <li class="post-delete"><a href="#">삭제하기</a></li>
             </ul>`
         )
@@ -181,7 +181,15 @@ function map(address) {
             }
         }
     )
-
+}
+function roadview() {
+    $('#map').toggleClass('is-hidden')
+    $('#roadview').toggleClass('is-hidden')
+    if ($('#map').hasClass('is-hidden')) {
+        $('#map_btn').text("지도 보기")
+    } else {
+        $('#map_btn').text("로드뷰 보기")
+    }
 }
 
 function updatePost(postId) {

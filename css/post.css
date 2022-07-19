@@ -90,13 +90,15 @@
 .post-img {
     width: 100%;
     max-width: 650px;
-    height: 450px;
+    height: 420px;
     margin: auto;
     border-radius: 10px;
     overflow: hidden;
 }
 .post-img img {
     object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
 .post-title-container {
     width: 100%;
@@ -147,6 +149,7 @@
     margin-bottom: 5px;
 }
 #heart {
+    cursor: pointer;
     color: #c786a4;
 }
 .profile-container {
@@ -257,11 +260,6 @@
     line-height: 3.5rem;
 }
 
-#chat-box {
-    margin: auto;
-    text-align: right;
-}
-
 .chat-btn {
     width: 180px;
     font-size: 1.2rem;
@@ -269,4 +267,6 @@
     background-color: #c786a4;
     border-radius: 3px;
     padding: 3px 5px 3px 5px;
+    display: block;
+    margin: auto;
 }
