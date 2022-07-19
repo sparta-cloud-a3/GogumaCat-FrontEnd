@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
       <title>고구마캣 | 채팅</title>
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-       <!-- JS -->
+      <!-- JS -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
       <!-- Popper.js, then Bootstrap JS -->
@@ -30,12 +30,14 @@
             }
 
             .input-group {
-                  position: fixed; bottom: 0;
-                  width: 1000px;
+                  position: fixed; 
+                  bottom: 0;
+                  margin-bottom: 5px;
+
             }
 
             .content{
-                  margin-bottom: 100px;
+                  
             }
 
             .list-group-item{
@@ -46,17 +48,22 @@
                   font-family: 'Nanum Pen Script', cursive;
             }
 
+            ul{
+                  list-style:none;
+                  padding-left:0px;
+            }
+
       </style>
 </head>
 <body>
       <div class="container" id="app" v-cloak>
-      <button v-if = "isSeller == 'true'" onclick="order()" style="background-color: #ba55d3">이 사람과 거래하기</button>
+      <button v-if = "isSeller == true" onclick="order()" style="background-color: #ba55d3">이 사람과 거래하기</button>
       <div class="content">
             <ul class="list-group"  v-for="message in messages.slice().reverse()">
                   <li v-if = "message.sender != nickname" class="list-group-item" style="background-color: #ba55d3">
                   {{message.sender}} : {{message.message}}
                   </li>
-                  <li v-else class="list-group-item" style="text-align: right; float: right; background-color: #ffec42">
+                  <li v-else class="list-group-item" style="text-align: right; background-color: #ffec42">
                   {{message.sender}} : {{message.message}}
                   </li>
             </ul>
@@ -73,7 +80,6 @@
                   <button class="btn btn-primary" type="button" @click="sendMessage">보내기</button>
             </div>
       </div>
-      <div></div>
 </div>
 <!-- JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
@@ -83,16 +89,22 @@
       integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" 
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-      // let domain = "http://hongseos.shop"
-      let domain = "http://localhost:8080"
+      let domain = "http://hongseos.shop"
       let token = $.cookie("mytoken")
 
       var splitLink = document.location.href.split("?")
       var idLink = splitLink[1].split("=")
       var postId = -1
-      var roomId = ""
-      var nickname = ""
-      var isSeller = ""
+
+      var sock = new SockJS(domain + "/ws/chat");
+      var ws = Stomp.over(sock);
+      var reconnect = 0;
+
+      var roomId
+      var nickname
+      var isSeller
+
+      var vm
 
       if(idLink[0] == "id"){
             postId = idLink[1]
@@ -100,96 +112,119 @@
             roomId = idLink[1]
       }
 
-      $(document).ready(function () {
-            if(roomId != ""){
-                  $.ajax({
-                        type: "GET",
-                        url: `${domain}/chat/mypostroom/enter/${roomId}`,
-                        data: {},
-                        dataType : "json",
-                        beforeSend: function(xhr) {
-                              xhr.setRequestHeader("token", token);
+      if(roomId != undefined) {
+            $.ajax({
+                  type: "GET",
+                  url: `${domain}/chat/mypostroom/enter/${roomId}`,
+                  data: {},
+                  dataType : "json",
+                  beforeSend: function(xhr) {
+                        xhr.setRequestHeader("token", token);
+                  },
+                  success: function (response) {
+                        isSeller = response["isSeller"]
+                        nickname = response["nickname"]
+                        connect(roomId, nickname)
+                        createVue(roomId, nickname, isSeller)
+                  }
+            })
+      }
+
+      if(postId != -1) {
+            $.ajax({
+                  type: "GET",
+                  url: `${domain}/chat/room/enter/${postId}`,
+                  data: {},
+                  dataType : "json",
+                  beforeSend: function(xhr) {
+                        xhr.setRequestHeader("token", token);
+                  },
+                  success: function (response) {
+                        isSeller = response["isSeller"]
+                        nickname = response["nickname"]
+                        roomId = response["roomId"]
+                        connect(roomId, nickname)
+                        createVue(roomId, nickname, isSeller)
+                  }
+            })
+      }
+
+      function createVue(roomId, nickname, isSeller) {
+            vm = new Vue({
+                  el: '#app',
+                  data: {
+                        roomId: roomId,
+                        room: {},
+                        sender: '',
+                        message: '',
+                        messages: [],
+                        nickname: nickname,
+                        isSeller: isSeller
+                  },
+                  created() {
+                        this.roomId = roomId;
+                        this.sender = nickname
+                        this.findRoom();
+                  },
+                  methods: {
+                        findRoom: function() {
+                              axios.get( domain + '/chat/room/'+ this.roomId, 
+                                    {
+                                          headers : {
+                                                token : token
+                                          }
+                                    }
+                              ).then(response => { this.room = response.data;});
                         },
-                        success: function (response) {
-                              isSeller = response["isSeller"]
-                              nickname = response["nickname"]
-                        }
-                  })
-            }
-      });
-      
-
-      var sock = new SockJS(domain + "/ws/chat");
-      var ws = Stomp.over(sock);
-      var reconnect = 0;
-      
-      var vm = new Vue({
-            el: '#app',
-            data: {
-                  roomId: roomId,
-                  room: {},
-                  sender: '',
-                  message: '',
-                  messages: [],
-                  nickname: nickname,
-                  isSeller: isSeller
-            },
-            created() {
-                  this.roomId = roomId;
-                  this.sender = localStorage.getItem('wschat.sender');
-                  this.findRoom();
-            },
-            methods: {
-                  findRoom: function() {
-                  axios.get( domain + '/chat/room/'+ this.roomId, 
-                        {
-                              headers : {
-                                    token : token
+                        sendMessage: function() {
+                              if(this.message==''){
+                                    return;
                               }
+                              ws.send("/app/chat/message", {}, JSON.stringify({type:'TALK', roomId:this.roomId, sender:this.sender, message:this.message}));
+                              this.message = '';
+                              window.scrollTo(0, document.body.scrollHeight);
+                        },
+                        recvMessage: function(recv) {
+                              this.messages.unshift({"type":recv.type,"sender":recv.type=='ENTER'?'[알림]':recv.sender,"message":recv.message})
+                              window.scrollTo(0,document.body.scrollHeight);
                         }
-                  ).then(response => { this.room = response.data; console.log(response.data);});
-                  },
-                  sendMessage: function() {
-                  if(this.message==''){
-                        return;
                   }
-                  ws.send(domain + "/app/chat/message", {}, JSON.stringify({type:'TALK', roomId:this.roomId, sender:this.sender, message:this.message}));
-                  this.message = '';
-                  window.scrollTo(0,document.body.scrollHeight);
-                  },
-                  recvMessage: function(recv) {
-                  this.messages.unshift({"type":recv.type,"sender":recv.type=='ENTER'?'[알림]':recv.sender,"message":recv.message})
-                  window.scrollTo(0,document.body.scrollHeight);
-                  }
-            }
-      });
+            });
+      }
 
-      function connect() {
-            // pub/sub event
+      function connect(roomId, nickname) {
             ws.connect({}, function(frame) {
-                  ws.subscribe(domain + "/topic/chat/room/"+vm.$data.roomId, function(message) {
-                  var recv = JSON.parse(message.body);
-                  vm.recvMessage(recv);
+                  ws.subscribe("/topic/chat/room/" + roomId, function(message) {
+                        console.log("!!subscribe!!");
+                        var recv = JSON.parse(message.body);
+                        vm.recvMessage(recv);
                   });
-                  ws.send(domain + "/app/chat/message", {}, JSON.stringify({type:'ENTER', roomId:vm.$data.roomId, sender:vm.$data.sender}));
+                  ws.send("/app/chat/message", {}, 
+                        JSON.stringify({type:'ENTER', roomId: roomId, sender: nickname})
+                  );
             }, function(error) {
                   if(reconnect++ <= 5) {
                   setTimeout(function() {
                         console.log("connection reconnect");
                         sock = new SockJS(domain + "/ws/chat");
                         ws = Stomp.over(sock);
-                        connect();
+                        connect(roomId, nickname);
                   },10*1000);
                   }
             });
       }
-      connect();
 
       function order() {
             roomId = String(vm.$data.roomId)
-            console.log(roomId)
-            axios.post(domain + '/order?roomId='+roomId).then(function(response) {
-                  alert(response.data);
+            axios.post(domain + '/order?roomId='+roomId, {}, 
+                  {
+                        headers : {
+                              token : token
+                        }
+                  }
+            ).then(function(response) {
+                  alert(response.data["msg"]);
+                  window.location.reload("/list.html")
             })
       }
 </script>

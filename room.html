@@ -46,8 +46,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-      // let domain = "http://hongseos.shop"
-      let domain = "http://localhost:8080"
+      let domain = "http://hongseos.shop"
+      // let domain = "http://localhost:8080"
       let token = $.cookie("mytoken")
 
       var splitLink = document.location.href.split("?")
@@ -75,31 +75,8 @@
                               this.chatrooms = response.data["data"];
                         });
                   },
-                  // createRoom: function() {
-                  //       if("" === this.room_name) {
-                  //             alert("방 제목을 입력해 주십시요.");
-                  //             return;
-                  //       } else {
-                  //             var params = new URLSearchParams();
-                  //             params.append("name",this.room_name);
-                  //             axios.post('/chat/room/', params)
-                  //             .then(
-                  //                   response => {
-                  //                         alert(response.data.roomName+"방 개설에 성공하였습니다.")
-                  //                         this.room_name = '';
-                  //                         this.findAllRoom();
-                  //                   }
-                  //             )
-                  //             .catch( response => { alert("채팅방 개설에 실패하였습니다."); } );
-                  //       }
-                  // },
                   enterRoom: function(roomId) {
                         window.location.href="roomdetail.html?roomId="+roomId;
-                        // if(sender !== "") {
-                        //       localStorage.setItem('wschat.sender',sender);
-                        //       localStorage.setItem('wschat.roomId',roomId);
-                        //       window.location.href="/chat/mypostroom/enter/"+roomId;
-                        // }
                   }
             }
       });
