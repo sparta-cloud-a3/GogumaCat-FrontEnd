@@ -396,6 +396,7 @@ function makeCard(post) {
                                 <p class="card-title">${post["title"]}</p>
                                 <p class="card-price">${post["price"]}</p>
                                 <p class="card-address">${post["address"]}</p>
+                                <p class="card-like">관심 ${post["likeCount"]}</p>
                             </div>
                         </a>
                     </article>`
