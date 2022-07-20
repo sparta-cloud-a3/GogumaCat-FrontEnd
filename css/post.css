@@ -1,4 +1,8 @@
-
+.container {
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 156px;
+}
 .logo-container {
     position: fixed;
     top: 0;
@@ -233,8 +237,11 @@
     margin:auto ;
 }
 
+
 .footer {
     background-color: whitesmoke;
+    position: relative;
+    transform: translateY(-100%);
 }
 .footer .footer-container {
     border-top: 3px solid #dcdcdc;
@@ -258,6 +265,17 @@
 .footer p {
     font-size: 1.2rem;
     line-height: 3.5rem;
+}
+
+.chat-btn {
+    width: 180px;
+    font-size: 1.2rem;
+    color: rgb(29 29 31 / 80%);
+    background-color: #c786a4;
+    border-radius: 3px;
+    padding: 3px 5px 3px 5px;
+    display: block;
+    margin: auto;
 }
 
 .chat-btn {
