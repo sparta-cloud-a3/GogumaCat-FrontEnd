@@ -156,6 +156,12 @@
 .card-address {
     margin-top: 0.3rem;
 }
+
+.card-like {
+    margin-top: 0.3rem;
+    font-size: small;
+    color: gray;
+}
 .card-title {
     font-size : 1.5rem;
     font-weight: bold;
