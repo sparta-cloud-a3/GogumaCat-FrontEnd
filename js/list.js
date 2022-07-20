@@ -45,7 +45,7 @@ function searchListing(query) {
             let posts = response["data"]
             //검색어 보여주는 칸
             $("#search-query-box").append(
-                `<h3 class="menu-container"><span style="color: red;">"${query}"</span>의 검색 결과 입니다.</h3>`
+                `<h3 class="menu-container"><span style="color: red;">"${decodeURI(query)}"</span>의 검색 결과 입니다.</h3>`
             )
             for (let i = 0; i < response["count"]; i++) {
                 makePost(posts[i]);
