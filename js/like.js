@@ -31,16 +31,6 @@ function toggle_like(postId) {
     }
 }
 
-function roadview() {
-    $('#map').toggleClass('is-hidden')
-    $('#roadview').toggleClass('is-hidden')
-    if ($('#map').hasClass('is-hidden')) {
-        $('#map_btn').text("지도 보기")
-    } else {
-        $('#map_btn').text("로드뷰 보기")
-    }
-}
-
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }

@@ -41,7 +41,6 @@
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9600c7eddf2d8ec432aa9d8791d1e471&libraries=services,clusterer,drawing"></script>
 
     <!--달력-->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
@@ -92,8 +91,8 @@
                     <span class="file-name">업로드하기</span>
                 </label>
             </div>
-            <div id="image_preview" class="is-hidden">
-                <img>
+            <div id="image_preview" class="">
+                <img src="#" id="img_pre">
             </div>
             <textarea id="content" class="textarea"  placeholder="상세 내용을 적어주세요" rows="7"></textarea>
             <div class="field">
@@ -104,7 +103,7 @@
             <p id="local_warning" class="is-hidden" style="font-weight: bold; color: red">※주소 창에 주소를 먼저 입력해 주세요.</p>
             <div id="map" class="is-hidden" ></div>
         </div>
-        <button class="button posting-btn" onclick="posting_update()">등록하기</button>
+        <button class="button posting-btn" onclick="posting_update()">수정하기</button>
     </div>
     <footer class="footer"><!--마지막 바닥글(정적,저작권이나 연락처 등 적게되는 요소) -->
         <div class="footer-container">
