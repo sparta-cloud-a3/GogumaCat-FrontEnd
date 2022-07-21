@@ -54,7 +54,7 @@
                   <li v-if = "message.sender != nickname" class="list-group-item" style="background-color: antiquewhite">
                   {{message.sender}} : {{message.message}}
                   </li>
-                  <li v-else class="list-group-item" style="text-align: right; background-color: #c786a4">
+                  <li v-else class="list-group-item" style="text-align: right; background-color: #cba5b7">
                   {{message.sender}} : {{message.message}}
                   </li>
             </ul>
@@ -74,7 +74,7 @@
       integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" 
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-      let domain = "http://hongseos.shop"
+      let domain = "https://www.hongseos.shop"
       let token = $.cookie("mytoken")
 
       var splitLink = document.location.href.split("?")

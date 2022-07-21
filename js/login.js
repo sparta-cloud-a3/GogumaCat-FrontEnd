@@ -1,6 +1,5 @@
 const domain = "https://www.hongseos.shop"
 
-
 function sign_in() {
     let username = $("#input-username").val()
     let password = $("#input-password").val()
