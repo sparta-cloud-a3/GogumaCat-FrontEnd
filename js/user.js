@@ -45,6 +45,12 @@ const objs = elementInfo[0].objs
 const modalInfo = elementInfo[1].objs
 const profile = elementInfo[2].objs
 const updateProfile = elementInfo[3].objs
+//로그아웃
+function sign_out() {
+    alert('다음에 또 뵙겠습니다. ^^')
+    $.removeCookie('mytoken',{path:'/'})
+    window.location.href = "/"
+}
 
 //파라미터 값 가져오기
 function parameter(){
