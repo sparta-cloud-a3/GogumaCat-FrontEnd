@@ -2,6 +2,7 @@ const domain = "https://www.hongseos.shop"
 const token = $.cookie("mytoken")
 //파라미터 값 변수
 const paramArray = [];
+let profile_nickname ;
 let id = 0;
 
 const elementInfo = [{
@@ -16,11 +17,34 @@ const elementInfo = [{
     type : 'modal',
     objs : {
         updateModal : document.querySelector('#modal-profile'),
-        deleteModal : document.querySelector('#modal-delete')
+        updatePw : document.querySelector('#modal-profile .modal-password'),
+        updateWindow : document.querySelector('#modal-profile .modal-window'),
+        deleteModal : document.querySelector('#modal-delete'),
+        deletePw : document.querySelector('#modal-delete .modal-password'),
+        deleteWindow : document.querySelector('#modal-delete .modal-delete-check')
+    }
+},{//프로필
+    type : 'text,image',
+    objs : {
+        nickmame : document.querySelector('.profile-container #name'),
+        introduce : document.querySelector('.profile-container #introduce'),
+        profileImage : document.querySelector('.profile-container #profile-image')
+    }
+},{//프로필 업데이트(modal)
+    type : 'input',
+    objs : {
+        nameUpdate : document.querySelector('.modal-window #input-nickname'),
+        addressUpdate : document.querySelector('.modal-window #input-address'),
+        file : document.querySelector('#img-file-box #img'),
+        imgfileName : document.querySelector('#img-file-box .file-name'),
+        filePreview : document.querySelector('#image_preview #img_pre'),
+        introduce : document.querySelector('.modal-window #profile-introduce')
     }
 }]
 const objs = elementInfo[0].objs
 const modalInfo = elementInfo[1].objs
+const profile = elementInfo[2].objs
+const updateProfile = elementInfo[3].objs
 //로그아웃
 function sign_out() {
     alert('다음에 또 뵙겠습니다. ^^')
@@ -173,10 +197,11 @@ function juso() {
 function kakao_pw_check(){
     alert("카카오 로그인 시 초기 비밀번호는 카카오 이메일의 \"@\"앞 부분 입니다!\nEx) 이메일 : goguma@naver.com -> 비밀번호 : goguma")
 }
-
+//로드시 시작 함수(맨 마지막으로 옮길 예정)
 window.addEventListener('load',() => {
     parameter()
     get_write_posts(id)
+    user_profile()
 })
 //관심순, 최신순 클릭 반응
 objs.likePost.addEventListener('click', ()=>{
@@ -195,14 +220,18 @@ function modal_on(element) {
     }
 }
 //modal 끄기(바깥쪽 클릭시)
-function modal_off(element) {
-    console.log(element)
-    if(element.classList.contains('modal-overlay-0')) {
-        modalInfo.updateModal.style.display = 'none'
-    } else if(element.classList.contains('modal-overlay-1')){
+modalInfo.updateModal.addEventListener('click', e => {
+    const eTarget = e.target
+    if(eTarget.classList.contains("modal-overlay-0")) {
+        modalInfo.updateModal.style.display ='none'
+    }
+})
+modalInfo.deleteModal.addEventListener('click' , e => {
+    const eTarget = e.target
+    if(eTarget.classList.contains("modal-overlay-1")){
         modalInfo.deleteModal.style.display = 'none'
     }
-}
+})
 //modal 끄기(esc 누를시)
 window.addEventListener("keyup", e => {
     if(modalInfo.updateModal.style.display === 'flex' && e.key === 'Escape') {
@@ -214,3 +243,117 @@ window.addEventListener("keyup", e => {
         return;
     }
 })
+
+//프로필 데이터 가져오기
+function user_profile() {
+    $.ajax({
+        type: "GET",
+        url: `${domain}/profileinfo/${id}`,
+        data: {},
+        dataType: "json",
+        beforeSend: function(xhr) {
+              xhr.setRequestHeader("token", token);
+        },
+        success: function (response) {
+            
+            profile_make(response)
+            update_make(response)
+            profile_nickname = response['nickname']
+        }
+  })
+}
+//프로필데이터 넣기
+function profile_make(data) {
+    profile.nickmame.textContent = data['nickname']
+    if(data['profileInfo'] === null) {
+        profile.introduce.textContent = '아직 소개글이 없습니다.'
+        profile.introduce.style.color = '#aaaaaa'
+    } else{
+        profile.introduce.textContent = data['profileInfo']
+    }
+    if(data['profilePic'] === null) {
+        profile.profileImage.src = '/image/gogumaket.png'
+    } else {
+        profile.profileImage.src = data['profilePic']
+    }
+}
+//프로필 업데이트 modal에 데이터 넣기
+function update_make(data) {
+    updateProfile.nameUpdate.value = data['nickname']
+    updateProfile.addressUpdate.value = data['address']
+    updateProfile.imgfileName.textContent = data['profilePic']
+    updateProfile.introduce.value = data['profileInfo']
+    if(data['profilePic'] != null){
+    updateProfile.filePreview.src = data['profilePic']
+    }
+}
+function check_pw(value){
+    let pw_input = value.childNodes[3].childNodes[1]
+    let pw = pw_input.value
+    console.log(pw)
+    let checkHelp = value.childNodes[5]
+    if(pw == "") {
+        checkHelp.textContent = '비밀번호를 입력해주세요.'
+        pw_input.focus()
+    } else{
+        $.ajax({
+            type: "POST",
+            url: `${domain}/profileinfo/check`,
+            data: JSON.stringify ({
+                'password': pw,
+                'nickname': `${profile_nickname}`
+            }),
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+                  xhr.setRequestHeader("token", token);
+            },
+            success: function (result) {
+                console.log(result)
+                if(result) {
+                    if(pw_input.id === 'input-check-pw'){
+                        modalInfo.updatePw.style.display = 'none'
+                        modalInfo.updateWindow.style.display = 'block'
+                    } else if(pw_input.id === 'delete-check-pw') {
+                        modalInfo.deletePw.style.display = 'none'
+                    modalInfo.deleteWindow.style.display = 'block'
+                    }
+                } else {
+                    updatePw = ""
+                    checkHelp.textContent = '비밀번호가 틀렸습니다.'
+                }
+            }
+        });
+    }
+}
+
+// function delete_pw() {
+//     let deletePw = document.querySelector('#modal-delete #input-check-pw').value
+//     let checkHelp = document.querySelector('#modal-delete #help-check-password')
+//     if(deletePw == "") {
+//         checkHelp.textContent = '비밀번호를 입력해주세요.'
+//         document.querySelector('#modal-delete #input-check-pw').focus()
+//     } else{
+//         $.ajax({
+//             type: "POST",
+//             url: `${domain}/profileinfo/check`,
+//             data: JSON.stringify ({
+//                 'password': deletePw,
+//                 'nickname': `${profile_nickname}`
+//             }),
+//             contentType: 'application/json',
+//             beforeSend: function(xhr) {
+//                   xhr.setRequestHeader("token", token);
+//             },
+//             success: function (result) {
+//                 console.log(result)
+//                 if(result) {
+//                     modalInfo.deletePw.style.display = 'none'
+//                     modalInfo.deleteWindow.style.display = 'block'
+//                 } else {
+//                     updatePw = ""
+//                     checkHelp.textContent = '비밀번호가 틀렸습니다.'
+//                 }
+//             }
+//         });
+//     }
+// }
