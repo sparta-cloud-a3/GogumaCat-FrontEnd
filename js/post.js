@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+let domain = "https://www.hongseos.shop"
+let token = $.cookie("mytoken")
+=======
 const domain = "https://www.hongseos.shop"
 const token = $.cookie("mytoken")
+>>>>>>> 01267ca2b50bfe3cb9fe89571eba41bbc3eb9c12
 
 $(document).ready(function () {
     let splitLink = document.location.href.split("?")
@@ -213,14 +218,4 @@ function deletePost(postId) {
             }
         })
     }
-}
-
-function search() {
-    let query = $("#search-text").val();
-
-    if (query == "") {
-        alert("검색어를 입력하세요");
-        return;
-    }
-    window.location.replace(`/list.html?query=${query}`)
 }
