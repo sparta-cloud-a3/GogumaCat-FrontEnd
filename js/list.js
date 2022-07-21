@@ -1,4 +1,4 @@
-let domain = "http://hongseos.shop"
+let domain = "https://www.hongseos.shop"
 let token = $.cookie("mytoken")
 
 $(document).ready(function () {
@@ -9,7 +9,6 @@ $(document).ready(function () {
     } else {
         listing("latest");
     }
-    
 });
 
 function listing(orderType) {
@@ -89,20 +88,6 @@ function click_sort_btn(order_type) {
     }
 }
 
-function search() {
-    let query = $("#search-text").val();
-
-    if (query == "") {
-        alert("검색어를 입력하세요");
-        return;
-    }
-    console.log(query)
-    window.location.replace(`/list.html?query=${query}`)
-}
-
-function initUserInfo() {
-    
-}
 
 // function get_gu(si) {
 //     $("#gu-box").addClass("is-hidden")

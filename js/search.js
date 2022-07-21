@@ -1,6 +1,3 @@
-let domain = "http://hongseos.shop"
-let token = $.cookie("mytoken")
-
 function search() {
       let query = $("#search-text").val();
 
