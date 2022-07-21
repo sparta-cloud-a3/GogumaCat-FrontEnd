@@ -1,5 +1,5 @@
-let domain = "http://hongseos.shop"
-let token = $.cookie("mytoken")
+const domain = "https://www.hongseos.shop"
+const token = $.cookie("mytoken")
 
 function search() {
       let query = $("#search-text").val();

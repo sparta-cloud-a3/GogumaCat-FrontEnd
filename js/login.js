@@ -1,4 +1,4 @@
-let domain = "http://hongseos.shop"
+const domain = "https://www.hongseos.shop"
 
 function sign_in() {
     let username = $("#input-username").val()

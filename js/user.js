@@ -1,3 +1,5 @@
+
+
 function sign_out() {
     alert('다음에 또 뵙겠습니다. ^^')
     $.removeCookie('mytoken',{path:'/'})
@@ -124,3 +126,4 @@ function juso() {
 function kakao_pw_check(){
     alert("카카오 로그인 시 초기 비밀번호는 카카오 이메일의 \"@\"앞 부분 입니다!\nEx) 이메일 : goguma@naver.com -> 비밀번호 : goguma")
 }
+

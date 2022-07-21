@@ -1,5 +1,5 @@
-let domain = "http://hongseos.shop"
-let token = $.cookie("mytoken")
+const domain = "https://www.hongseos.shop"
+const token = $.cookie("mytoken")
 
 $(document).ready(function () {
     let splitLink = document.location.href.split("?")

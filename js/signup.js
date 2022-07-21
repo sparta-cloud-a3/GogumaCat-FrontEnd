@@ -1,4 +1,4 @@
-let domain = "http://hongseos.shop"
+const domain = "https://www.hongseos.shop"
 let url = 'https://389rjyao80.execute-api.us-east-1.amazonaws.com/default/project-lambda';
 
 function sign_up() {
