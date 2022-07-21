@@ -14,7 +14,7 @@ function initUserInfo() {
                   $("#loginName").text(`${response["nickname"]}님 환영합니다.`)
                   if(response["orders"]){
                         console.log(response["orders"])
-                        $("#alarm-box").append(`<i class="fa-solid fa-bell"></i>`)
+                        $("#alarm-box").append(`<i id="alarm-btn" onclick="openOrderModal()" class="fa-solid fa-bell"></i>`)
                   }
             }
       })
@@ -23,4 +23,13 @@ initUserInfo()
 
 function userPage() {
       window.location.href = `/user.html?userId=${userId}`
+}
+
+function openOrderModal() {
+      console.log("click")
+      $(".modal").fadeIn();
+}
+
+function closeOrderModal() {
+      $(".modal").fadeOut();
 }
