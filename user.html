@@ -3,7 +3,7 @@
 <head>
 
     <!-- Webpage Title -->
-    <title>[[${nickname}]] | 고구마캣</title>
+    <title>고구마캣</title>
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/b8cc3ce1fa.js" crossorigin="anonymous"></script>
     <!-- Required meta tags -->
@@ -30,22 +30,22 @@
 <body>
     <div class="container">
     <!-- 모달 html -->
-    <div id="modal-profile" class="modal-overlay-0" onclick="modal_off(this)">
+    <div id="modal-profile" class="modal-overlay-0">
         <div class="modal-password">
                 <div class="media-content">
                         <label class="label" for="input-check-pw">비밀번호</label>
                         <div class="pw-input">
-                            <input id="input-check-pw" class="input" type="password"
-                                   >
-                            <button class="pw-check"  onclick="check_pw()">확인
+                            <input id="input-check-pw" class="input" type="password">
+                            <button class="pw-check" 
+                             onclick="check_pw(document.querySelector('#modal-profile .media-content'))">확인
                             </button>
                         </div>
-                        <p id="help-check-password" class="help-pw">비밀번호를 입력해주세요.</p>
+                        <p id="help-check-password" class="help-pw"></p>
                 </div>
         </div>
         <div class="modal-window">
             <div class="profile-box">
-                <label>이름</label>
+                <label>닉네임</label>
                 <div class="name">
                     <input id="input-nickname"class="modal-nickname">
                     <button class="nickname_dup" onclick="check_dup_nick()">중복확인</button>
@@ -74,7 +74,7 @@
                             <span class="file-name">업로드하기</span>
                         </label>
                         <div id="image_preview" class="is-hidden">
-                            <img>
+                            <img id="img_pre">
                         </div>
                     </div>
                 </div>
@@ -85,16 +85,17 @@
             </div>
         </div>
     </div>
-    <div id="modal-delete" class="modal-overlay-1" onclick="modal_off(this)">
+    <div id="modal-delete" class="modal-overlay-1">
         <div class="modal-password">
                 <div class="media-content">
                         <label class="label" for="input-check-pw">비밀번호</label>
                         <div class="pw-input">
-                            <input id="input-check-pw" class="input" type="password">
-                            <button class="pw-check"  onclick="check_pw()">확인
+                            <input id="delete-check-pw" class="input" type="password">
+                            <button class="pw-check"  
+                            onclick="check_pw(document.querySelector('#modal-delete .media-content'))">확인
                             </button>
                         </div>
-                        <p id="help-check-password" class="help">비밀번호를 입력해주세요.</p>
+                        <p id="help-check-password" class="help"></p>
                 </div>
         </div>
             <div class="modal-delete-check">
@@ -107,7 +108,7 @@
     <!-- 페이지 html -->
     <div class="logo-container">
         <nav class="logo-nav">
-            <a href="/" id="logo"><img src="./image/logo.png"></a>
+            <a href="/list.html" id="logo"><img src="./image/logo.png"></a>
             <div class="search-bar">
                 <input type="text" class="search" id="search-text" placeholder="물품이나 동네를 검색해보세요">
                 <button class="search-bt" type="submit" onclick="search()"><i class="fa fa-duotone fa-magnifying-glass"></i></button>
@@ -117,10 +118,10 @@
     <div class="profile-container">
         <div class="profile">
             <div class="img-container">
-                <img src="/image/gogumaket.png" id="profile-image">
+                <img id="profile-image">
             </div>
             <div class="nickname">
-                <p id="name">고구마캣</p>
+                <p id="name"></p>
             </div>
             <div class="btn-container">
                 <button id="profile-update" onclick="modal_on(this)">
@@ -131,7 +132,7 @@
                     로그아웃</button>
             </div>
             <div class="introduce-box">
-                <p id="introduce">안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안</p>
+                <p id="introduce"></p>
             </div>
             <div class="delete-box">
                 <button id="user-delete" onclick="modal_on(this)">회원탈퇴</button>
