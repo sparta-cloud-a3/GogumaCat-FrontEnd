@@ -128,6 +128,12 @@ function check_dup_nick() {
             $("#input-nickname").focus()
             return;
       }
+
+      if (nickname.length > 5) {
+            $("#help-nickname").text("닉네임은 5글자 이하만 가능합니다.").removeClass("is-safe").addClass("is-danger")
+            $("#input-nickname").focus()
+            return;
+      }
       $("#help-nickname").addClass("is-loading")
 
       $.ajax({
