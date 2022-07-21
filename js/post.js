@@ -67,7 +67,7 @@ function makeDetail(response) {
             `<ul class="dropdown">
                 <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
                 <li class="post-fix"><a href="/posting-update.html?id=${post["postId"]}">수정하기</a></li>
-                <li class="post-delete"><a href="#">삭제하기</a></li>
+                <li class="post-delete" onclick="deletePost(${post["postId"]})">삭제하기</li>
             </ul>`
         )
         $("#chat-box").append(
