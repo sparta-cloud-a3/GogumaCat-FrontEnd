@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 let domain = "https://www.hongseos.shop"
+=======
+const domain = "https://www.hongseos.shop"
+>>>>>>> 01267ca2b50bfe3cb9fe89571eba41bbc3eb9c12
 
 function sign_in() {
     let username = $("#input-username").val()

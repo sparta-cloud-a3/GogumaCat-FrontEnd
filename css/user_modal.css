@@ -1,0 +1,105 @@
+#modal-profile input {
+    outline: none;
+}
+#modal-profile.modal-overlay-0 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#modal-profile .modal-password {
+    background: rgb(199 134 164 / 90%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 600px;
+    height: 100px;
+    position: relative;
+    top: 20%;
+    padding: 10px;
+    display: none;
+}
+#modal-profile .modal-password label {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+#modal-profile .pw-input {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+#modal-profile #input-check-pw {
+    width: 520px;
+    font-size: 1.3rem;
+    border-radius: 3px;
+    letter-spacing: 0.1rem;
+}
+#modal-profile .pw-check {
+    background-color: #d2d2d2;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    padding: 3px 5px;
+}
+#modal-profile #help-check-password {
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+#modal-profile .modal-window {
+    background: rgb(199 134 164 / 90%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 600px;
+    height: 800px;
+    position: relative;
+    top: 100px;
+    padding: 10px;
+}
+.profile-box {
+    width: 100%;
+    height: 100%;
+    padding: 5px 5px;
+}
+.profile-box label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    margin: 5px 0;
+}
+.modal-window #input-nickname,
+.modal-window #input-password,
+.modal-window #input-password2,
+.modal-window #input-address{
+    font-size: 1.2rem;
+    width: 480px;
+    padding: 5px 6px;
+}
+.modal-window #input-password,
+.modal-window #input-password2 {
+    letter-spacing: 0.1rem;
+}
+.modal-window .nickname_dup,
+.modal-window .address_button {
+    font-size: 1.1rem;
+    font-weight: 600;
+
+}
+.modal-window .help {
+    font-size: 0.85rem;
+    margin-top: 3px;
+}
