@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-let domain = "https://www.hongseos.shop"
-let token = $.cookie("mytoken")
-=======
 const domain = "https://www.hongseos.shop"
 const token = $.cookie("mytoken")
->>>>>>> 01267ca2b50bfe3cb9fe89571eba41bbc3eb9c12
+
 
 $(document).ready(function () {
     let splitLink = document.location.href.split("?")

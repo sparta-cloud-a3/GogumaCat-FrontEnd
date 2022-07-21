@@ -100,7 +100,6 @@ function check_dup_nick() {
 }
 
 
-
 function juso() {
     new daum.Postcode({
         oncomplete: function (data) {

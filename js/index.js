@@ -363,7 +363,7 @@
     })
 }) ();
 
-const domain = "http://hongseos.shop"
+const domain = "https://www.hongseos.shop"
 const token = $.cookie("mytoken")
 
 
