@@ -90,7 +90,6 @@ body {
 .profile .img-container {
     height: 200px;
     width: 200px;
-    background-color: #c786a4;
     border-radius: 50%;
     margin: 20px auto 0 auto ;
 }
@@ -224,6 +223,7 @@ body {
     background-color: whitesmoke;
     position: relative;
     transform: translateY(-100%);
+    z-index: -5;
 }
 .footer .footer-container {
     width: 100%;
