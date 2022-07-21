@@ -12,6 +12,10 @@ function initUserInfo() {
             success: function (response) {
                   userId = response["id"]
                   $("#loginName").text(`${response["nickname"]}님 환영합니다.`)
+                  if(response["orders"]){
+                        console.log(response["orders"])
+                        $("#alarm-box").append(`<i class="fa-solid fa-bell"></i>`)
+                  }
             }
       })
 }
