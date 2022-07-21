@@ -1,8 +1,8 @@
-#modal-profile input {
+#modal-profile input,
+#modal-delete input {
     outline: none;
 }
 #modal-profile.modal-overlay-0 {
-    display: flex;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -31,7 +31,6 @@
     position: relative;
     top: 20%;
     padding: 10px;
-    display: none;
 }
 #modal-profile .modal-password label,
 #modal-delete .modal-password label {
@@ -172,7 +171,6 @@ textarea::placeholder {
 
 
 #modal-delete.modal-overlay-1 {
-    display: flex;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -201,7 +199,6 @@ textarea::placeholder {
     position: relative;
     top: 20%;
     padding: 10px;
-    display: none;
 }
 #modal-delete .modal-delete-check {
     background: rgb(199 134 164 / 90%);
