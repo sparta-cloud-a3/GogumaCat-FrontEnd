@@ -56,10 +56,19 @@
     font-size: 1.2rem;
     padding: 3px 5px;
 }
+#modal-profile .kakao_help,
+#modal-delete .kakao_help{
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+}
 #modal-profile #help-check-password,
 #modal-delete #help-check-password {
     font-size: 0.85rem;
     margin-top: 5px;
+    margin-right: 10px;
+    display: inline-block;
 }
 #modal-profile .modal-window {
     background: rgb(199 134 164 / 90%);
@@ -69,7 +78,7 @@
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     width: 600px;
-    height: 650px;
+    height: auto;
     position: relative;
     top: 100px;
     padding: 10px;
@@ -117,7 +126,7 @@
 }
 
 .profile-img .file-label {
-    width: 180px;
+    width: 100%;
     height: 30px;
     align-items: stretch;
     display: flex;
@@ -138,12 +147,24 @@
     padding: 6px 8px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    max-width: 120px;
 }
 #img-file-box .file-name {
+    max-width: 100px;
     background-color: whitesmoke;
     padding: 6px 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+#img-file-box #image_preview {
+    height: 150px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+#img-file-box #img_pre {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
 }
 .modal-window #profile-introduce {
     width: 550px;
