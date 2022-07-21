@@ -30,7 +30,7 @@
 <body>
     <div class="container">
     <!-- 모달 html -->
-    <div id="modal-profile" class="modal-overlay-0">
+    <div id="modal-profile" class="modal-overlay-0" onclick="modal_off(this)">
         <div class="modal-password">
                 <div class="media-content">
                         <label class="label" for="input-check-pw">비밀번호</label>
@@ -85,13 +85,12 @@
             </div>
         </div>
     </div>
-    <div id="modal-delete" class="modal-overlay-1">
+    <div id="modal-delete" class="modal-overlay-1" onclick="modal_off(this)">
         <div class="modal-password">
                 <div class="media-content">
                         <label class="label" for="input-check-pw">비밀번호</label>
                         <div class="pw-input">
-                            <input id="input-check-pw" class="input" type="password"
-                                   value="" style="width: 520px">
+                            <input id="input-check-pw" class="input" type="password">
                             <button class="pw-check"  onclick="check_pw()">확인
                             </button>
                         </div>
@@ -124,10 +123,10 @@
                 <p id="name">고구마캣</p>
             </div>
             <div class="btn-container">
-                <button id="profile-update">
+                <button id="profile-update" onclick="modal_on(this)">
                     <span class="icon is-small"><i class="fa fa-pencil" aria-hidden="true"></i></span>
                     프로필 수정</button>
-                <button id="profile-delete">
+                <button id="profile-delete" onclick="sign_out()">
                     <span class="icon is-small"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
                     로그아웃</button>
             </div>
@@ -135,7 +134,7 @@
                 <p id="introduce">안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안</p>
             </div>
             <div class="delete-box">
-                <button id="user-delete">회원탈퇴</button>
+                <button id="user-delete" onclick="modal_on(this)">회원탈퇴</button>
             </div>
         </div>
     </div>
@@ -144,8 +143,8 @@
         </div>
         <div class="list">
             <div class="list-order">
-                <a onclick="click_sort_btn('latest')"><span id="latest-tag">최신순</span></a>
-                <a onclick="click_sort_btn('like')"><span id="like-tag">관심순</span></a>
+                <a onclick="click_sort_btn('latest')" id="latest-tag"><span >최신순</span></a>
+                    <a onclick="click_sort_btn('like')" id="like-tag"><span>관심순</span></a>
                 <!-- <a onclick="find_location()"><span id="address-tag">현재 위치!</span></a> -->
             </div>
             <h2>내가 작성한 글</h2>
@@ -156,98 +155,6 @@
                 <span>상품 등록하러 가기</span>
             </button>
             <div id="post-card-box">
-                <article class="card">
-                    <a href="#" class="crad-link">
-                        <div class="card-img">
-                            <img src="./image/backgrond.png" alt="title">
-                        </div>
-                        <div class="card-desc">
-                            <p class="card-title">고구마캣</p>
-                            <p class="card-price">3,000원</p>
-                            <p class="card-address">서울</p>
-                            <p class="card-text">관심 5</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="card">
-                    <a href="#" class="crad-link">
-                        <div class="card-img">
-                            <img src="./image/backgrond.png" alt="title">
-                        </div>
-                        <div class="card-desc">
-                            <p class="card-title">고구마캣</p>
-                            <p class="card-price">3,000원</p>
-                            <p class="card-address">서울</p>
-                            <p class="card-text">관심 5</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="card">
-                    <a href="#" class="crad-link">
-                        <div class="card-img">
-                            <img src="./image/backgrond.png" alt="title">
-                        </div>
-                        <div class="card-desc">
-                            <p class="card-title">고구마캣</p>
-                            <p class="card-price">3,000원</p>
-                            <p class="card-address">서울</p>
-                            <p class="card-text">관심 5</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="card">
-                    <a href="#" class="crad-link">
-                        <div class="card-img">
-                            <img src="./image/backgrond.png" alt="title">
-                        </div>
-                        <div class="card-desc">
-                            <p class="card-title">고구마캣</p>
-                            <p class="card-price">3,000원</p>
-                            <p class="card-address">서울</p>
-                            <p class="card-text">관심 5</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="card">
-                    <a href="#" class="crad-link">
-                        <div class="card-img">
-                            <img src="./image/backgrond.png" alt="title">
-                        </div>
-                        <div class="card-desc">
-                            <p class="card-title">고구마캣</p>
-                            <p class="card-price">3,000원</p>
-                            <p class="card-address">서울</p>
-                            <p class="card-text">관심 5</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="card">
-                    <a href="#" class="crad-link">
-                        <div class="card-img">
-                            <img src="./image/backgrond.png" alt="title">
-                        </div>
-                        <div class="card-desc">
-                            <p class="card-title">고구마캣</p>
-                            <p class="card-price">3,000원</p>
-                            <p class="card-address">서울</p>
-                            <p class="card-text">관심 5</p>
-                        </div>
-                    </a>
-                </article>
-                <article class="card">
-                    <a href="#" class="crad-link">
-                        <div class="card-img">
-                            <img src="./image/backgrond.png" alt="title">
-                        </div>
-                        <div class="card-desc">
-                            <p class="card-title">고구마캣</p>
-                            <p class="card-price">3,000원</p>
-                            <p class="card-address">서울</p>
-                            <p class="card-text">관심 5</p>
-                        </div>
-                    </a>
-                </article>
-
             </div>
         </div>
     </div>
@@ -271,5 +178,6 @@
  </footer>    
  <!--javascript 분리-->
  <script src="/js/user.js"></script>  
+ <script src="/js/search.js"></script>
 </body>
 </html>

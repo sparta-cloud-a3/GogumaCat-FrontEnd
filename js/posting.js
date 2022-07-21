@@ -60,7 +60,7 @@ const token = $.cookie("mytoken")
                 success: function (response) {
                     alert("등록되었습니다")
                     console.log(response)
-                    window.location.href = '/'
+                    window.location.href = '/list.html'
                 },
                 error: function (xhr, status, error){
                     alert("내용을 다시 확인해 주세요")
