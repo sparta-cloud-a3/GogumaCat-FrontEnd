@@ -45,12 +45,6 @@ const objs = elementInfo[0].objs
 const modalInfo = elementInfo[1].objs
 const profile = elementInfo[2].objs
 const updateProfile = elementInfo[3].objs
-//로그아웃
-function sign_out() {
-    alert('다음에 또 뵙겠습니다. ^^')
-    $.removeCookie('mytoken',{path:'/'})
-    window.location.href = "/user/logout"
-}
 
 //파라미터 값 가져오기
 function parameter(){
@@ -71,6 +65,26 @@ function fileupload() {
             fileName.textContent = fileInput.files[0].name;
         }
     }
+}
+// 이미지 업로드 및 업로드한 이미지 미리보기
+function img_up() {
+    $('#img').on('change', function () {
+        ext = $(this).val().split('.').pop().toLowerCase(); //확장자
+        //배열에 추출한 확장자가 존재하는지 체크
+        if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {
+            alert("jpg,jpeg,png 이미지만 사용 가능합니다.")
+            const fileName = document.querySelector('#file-js-example .file-name');
+            fileName.textContent = "";//스팬 값 초기화
+            $("#image_preview").toggleClass("is-hidden")
+        } else {
+            file = $('#img').prop("files")[0];
+            blobURL = window.URL.createObjectURL(file);
+            $('#image_preview img').attr('src', blobURL);
+            $('#image_preview').slideDown(); //업로드한 이미지 미리보기
+            $(this).slideUp(); //파일 양식 감춤
+            $("#image_preview").removeClass("is-hidden")
+        }
+    });
 }
 //내가 작성한 게시물 가져오기
 function get_write_posts(user_id) {
@@ -126,37 +140,6 @@ function makePost(post) {
     $("#post-card-box").append(tempHtml)
 }
 
-function is_password(asValue) {
-    var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
-    return regExp.test(asValue);
-}
-
-function check_dup_nick() {
-    let nickname = $("#input-nickname").val()
-
-    if (nickname == "") {
-        $("#help-nickname").text("닉네임을 입력해주세요.").removeClass("is-safe").addClass("is-danger")
-        $("#input-nickname").focus()
-        return;
-    }
-    $("#help-nickname").addClass("is-loading")
-    $.ajax({
-        type: "POST",
-        url: "/user/sign_up/check_dup_nick",
-        data: {
-            'nickname': nickname
-        },
-        success: function (data) {
-            if (data >= 1) {
-                $("#help-nickname").text("이미 존재하는 닉네임입니다.").removeClass("is-safe").addClass("is-danger")
-                $("#input-nickname").focus()
-            } else {
-                $("#help-nickname").text("사용할 수 있는 닉네임입니다.").removeClass("is-danger").addClass("is-success")
-            }
-            $("#help-nickname").removeClass("is-loading")
-        }
-    });
-}
 //최신순, 관심글 버튼 색상 변경
 function click_sort_btn(order_type) {
     if (order_type == "latest") {
@@ -170,39 +153,6 @@ function click_sort_btn(order_type) {
     }
 }
 
-
-function juso() {
-    new daum.Postcode({
-        oncomplete: function (data) {
-            var roadAddr = data.roadAddress; // 도로명 주소 변수
-            var extraRoadAddr = ''; // 참고 항목 변수
-
-            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-                extraRoadAddr += data.bname;
-            }
-            if (data.buildingName !== '' && data.apartment === 'Y') {
-                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-            }
-            if (extraRoadAddr !== '') {
-                extraRoadAddr = ' (' + extraRoadAddr + ')';
-            }
-
-            newjuso = data.jibunAddress.split(' ').slice(0, -1).join(' ')
-            document.getElementById("input-address").value = newjuso // 지번주소
-        }
-    }).open();
-}
-
-//카카오 초기 비밀번호 알려주기
-function kakao_pw_check(){
-    alert("카카오 로그인 시 초기 비밀번호는 카카오 이메일의 \"@\"앞 부분 입니다!\nEx) 이메일 : goguma@naver.com -> 비밀번호 : goguma")
-}
-//로드시 시작 함수(맨 마지막으로 옮길 예정)
-window.addEventListener('load',() => {
-    parameter()
-    get_write_posts(id)
-    user_profile()
-})
 //관심순, 최신순 클릭 반응
 objs.likePost.addEventListener('click', ()=>{
     get_like_posts(id)
@@ -287,10 +237,10 @@ function update_make(data) {
     updateProfile.filePreview.src = data['profilePic']
     }
 }
+//프로필 수정, 회원 탈퇴시 비밀번호 확인
 function check_pw(value){
     let pw_input = value.childNodes[3].childNodes[1]
     let pw = pw_input.value
-    console.log(pw)
     let checkHelp = value.childNodes[5]
     if(pw == "") {
         checkHelp.textContent = '비밀번호를 입력해주세요.'
@@ -326,34 +276,80 @@ function check_pw(value){
     }
 }
 
-// function delete_pw() {
-//     let deletePw = document.querySelector('#modal-delete #input-check-pw').value
-//     let checkHelp = document.querySelector('#modal-delete #help-check-password')
-//     if(deletePw == "") {
-//         checkHelp.textContent = '비밀번호를 입력해주세요.'
-//         document.querySelector('#modal-delete #input-check-pw').focus()
-//     } else{
-//         $.ajax({
-//             type: "POST",
-//             url: `${domain}/profileinfo/check`,
-//             data: JSON.stringify ({
-//                 'password': deletePw,
-//                 'nickname': `${profile_nickname}`
-//             }),
-//             contentType: 'application/json',
-//             beforeSend: function(xhr) {
-//                   xhr.setRequestHeader("token", token);
-//             },
-//             success: function (result) {
-//                 console.log(result)
-//                 if(result) {
-//                     modalInfo.deletePw.style.display = 'none'
-//                     modalInfo.deleteWindow.style.display = 'block'
-//                 } else {
-//                     updatePw = ""
-//                     checkHelp.textContent = '비밀번호가 틀렸습니다.'
-//                 }
-//             }
-//         });
-//     }
-// }
+
+function is_password(asValue) {
+    var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+    return regExp.test(asValue);
+}
+
+function check_dup_nick() {
+    let nickname = updateProfile.nameUpdate.value
+
+    if (nickname == "") {
+        updateProfile.nameUpdate.placeholder = '닉네임을 입력해주세요'
+        updateProfile.nameUpdate.focus()
+        return;
+    }else {
+        $.ajax({
+            type: "POST",
+            url: `${domain}/user/sign_up/check_dup_nick`,
+            data: JSON.stringify ({
+                'nickname': nickname
+            }),
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+                  xhr.setRequestHeader("token", token);
+            },
+            success: function (data) {
+                if (data >= 1) {
+                    alert('이미 존재하는 닉네임입니다')
+                } else {
+                    alert('사용할 수 있는 닉네임입니다')
+                }
+            }
+        });
+    }
+}
+
+//주소 검색
+function juso() {
+    new daum.Postcode({
+        oncomplete: function (data) {
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 참고 항목 변수
+
+            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                extraRoadAddr += data.bname;
+            }
+            if (data.buildingName !== '' && data.apartment === 'Y') {
+                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            if (extraRoadAddr !== '') {
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            newjuso = data.jibunAddress.split(' ').slice(0, -1).join(' ')
+            document.getElementById("input-address").value = newjuso // 지번주소
+        }
+    }).open();
+}
+
+//카카오 초기 비밀번호 알려주기
+function kakao_pw_check(){
+    alert("카카오 로그인 시 초기 비밀번호는 카카오 이메일의 \"@\"앞 부분 입니다!\nEx) 이메일 : goguma@naver.com -> 비밀번호 : goguma")
+}
+
+
+//로그아웃
+function sign_out() {
+    alert('다음에 또 뵙겠습니다. ^^')
+    $.removeCookie('mytoken',{path:'/'})
+    window.location.href = "/index.html"
+}
+
+//로드시 시작 함수
+window.addEventListener('load',() => {
+    parameter()
+    get_write_posts(id)
+    user_profile()
+})
