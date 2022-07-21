@@ -41,13 +41,14 @@
                             </button>
                         </div>
                         <p id="help-check-password" class="help-pw"></p>
+                        <p onclick="kakao_pw_check()" class="kakao_help">카카오로그인이라면?</p>
                 </div>
         </div>
         <div class="modal-window">
             <div class="profile-box">
                 <label>닉네임</label>
                 <div class="name">
-                    <input id="input-nickname"class="modal-nickname">
+                    <input id="input-nickname"class="modal-nickname" onchange="nickname_reset()">
                     <button class="nickname_dup" onclick="check_dup_nick()">중복확인</button>
                 </div>
                     <label>비밀번호</label>
@@ -69,7 +70,7 @@
                             <input class="file-input" type="file" id="img" onclick="img_up()"
                                 accept="image/jpeg, image/jpg, image/png"/>
                             <span class="file-cta">
-                                <span class="file-label-1">제품 사진</span>
+                                <span class="file-label-1">프로필 사진</span>
                             </span>
                             <span class="file-name">업로드하기</span>
                         </label>
@@ -81,7 +82,7 @@
                 <label>자신을 소개해주세요</label>
                 <textarea type="text" id="profile-introduce" rows="5"  class="introduce"
                 maxlength="100"></textarea>
-                <button id="profile-update">수정하기</button>
+                <button id="profile-update"onclick="update_check()">수정하기</button>
             </div>
         </div>
     </div>
@@ -96,12 +97,13 @@
                             </button>
                         </div>
                         <p id="help-check-password" class="help"></p>
+                        <p onclick="kakao_pw_check()" class="kakao_help">카카오로그인이라면?</p>
                 </div>
         </div>
             <div class="modal-delete-check">
                     <div class="delete-content">
                             <p class="delete-check">탈퇴하시겠습니까?</p>
-                            <button class="delete-btn">확인</button>
+                            <button class="delete-btn" onclick="userdelete()">확인</button>
                     </div>
             </div>
         </div>

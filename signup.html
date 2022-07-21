@@ -58,7 +58,7 @@
 
             <div class="field has-addons" id="nickname-div">
               <div class="control has-icons-left" style="width:100%">
-                <input id="input-nickname" class="input" type="text" placeholder="닉네임">
+                <input id="input-nickname" class="input" type="text" placeholder="닉네임" autocomplete="off">
                 <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
               </div>
               <div id="btn-check-nick" class="control">
@@ -95,11 +95,11 @@
             <div class="address" style="height: 70px">
               <div class="field has-addons" id="address-div" style="height: 30px">
                 <div class="control has-icons-left" style="width:100%">
-                  <input id="input-address" class="input" type="text" placeholder="주소입력">
+                  <input id="input-address" class="input" type="text" placeholder="주소입력"autocomplete="off" onclick="juso()">
                   <span class="icon is-small is-left"><i class="fa fa-map"></i></span>
                 </div>
                 <div id="btn-check-add" class="control">
-                  <button class="button is-sparta" onclick="juso()">주소검색</button>
+                  <button class="button is-sparta" onclick="juso()" >주소검색</button>
                 </div>
               </div>
               <p id="help-address" class="help">주소를 입력해주세요.</p>
