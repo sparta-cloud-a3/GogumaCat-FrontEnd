@@ -17,6 +17,7 @@
     -webkit-backdrop-filter: blur(1.5px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
+    display: none;
 }
 #modal-profile .modal-password {
     background: rgb(199 134 164 / 90%);
@@ -32,30 +33,34 @@
     padding: 10px;
     display: none;
 }
-#modal-profile .modal-password label {
+#modal-profile .modal-password label,
+#modal-delete .modal-password label {
     font-size: 1.3rem;
     font-weight: bold;
 }
-#modal-profile .pw-input {
+#modal-profile .pw-input,
+#modal-delete .pw-input {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
 }
-#modal-profile #input-check-pw {
+#modal-profile #input-check-pw,
+#modal-delete #input-check-pw {
     width: 520px;
-    font-size: 1.3rem;
     border-radius: 3px;
     letter-spacing: 0.1rem;
 }
-#modal-profile .pw-check {
+#modal-profile .pw-check,
+#modal-delete .pw-check {
     background-color: #d2d2d2;
     border-radius: 3px;
     font-size: 1.2rem;
     padding: 3px 5px;
 }
-#modal-profile #help-check-password {
-    font-size: 1.1rem;
-    margin-top: 10px;
+#modal-profile #help-check-password,
+#modal-delete #help-check-password {
+    font-size: 0.85rem;
+    margin-top: 5px;
 }
 #modal-profile .modal-window {
     background: rgb(199 134 164 / 90%);
@@ -65,10 +70,11 @@
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     width: 600px;
-    height: 800px;
+    height: 650px;
     position: relative;
     top: 100px;
     padding: 10px;
+    display: none;
 }
 .profile-box {
     width: 100%;
@@ -81,12 +87,16 @@
     display: block;
     margin: 5px 0;
 }
+.modal-window .name,
+.modal-window .address {
+    display: flex;
+}
 .modal-window #input-nickname,
 .modal-window #input-password,
 .modal-window #input-password2,
 .modal-window #input-address{
     font-size: 1.2rem;
-    width: 480px;
+    width: 460px;
     padding: 5px 6px;
 }
 .modal-window #input-password,
@@ -95,11 +105,134 @@
 }
 .modal-window .nickname_dup,
 .modal-window .address_button {
+    padding: 6px 8px;
+    border-radius: 5px;
     font-size: 1.1rem;
     font-weight: 600;
-
+    margin-left: 10px;
+    background-color: whitesmoke;
 }
 .modal-window .help {
     font-size: 0.85rem;
     margin-top: 3px;
+}
+
+.profile-img .file-label {
+    width: 180px;
+    height: 30px;
+    align-items: stretch;
+    display: flex;
+    cursor: pointer;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+}
+.profile-img #img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    display: none;
+}
+#img-file-box .file-cta {
+    background-color: #c8c8c8;
+    padding: 6px 8px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#img-file-box .file-name {
+    background-color: whitesmoke;
+    padding: 6px 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.modal-window #profile-introduce {
+    width: 550px;
+    height: 150px;
+    resize: none;
+    font-size: 1.2rem;
+    padding: 5px 8px;
+}
+.modal-window #profile-update {
+    background-color: whitesmoke;
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    width: 90px;
+    height: 30px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 5px;
+}
+textarea::placeholder {
+    font-size: 1.2rem;
+    color: #888;
+    font-weight: bold;
+}
+
+
+#modal-delete.modal-overlay-1 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: none;
+}
+#modal-delete .modal-password {
+    background: rgb(199 134 164 / 90%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 600px;
+    height: 100px;
+    position: relative;
+    top: 20%;
+    padding: 10px;
+    display: none;
+}
+#modal-delete .modal-delete-check {
+    background: rgb(199 134 164 / 90%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 400px;
+    height: 80px;
+    position: relative;
+    top: 100px;
+    padding: 10px;
+    display: none;
+}
+#modal-delete .delete-content {
+    width: 100%;
+    height: 100%;
+}
+#modal-delete .delete-check {
+    font-size: 1.3rem;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+#modal-delete .delete-btn {
+    display: block;
+    margin: auto;
+    background-color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 5px;
 }

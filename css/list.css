@@ -115,9 +115,9 @@
     width : 40px;
     height: 30px;
     margin-left: 5px;
-    background-color: #f8f9fa;
     padding: 2px 8px 2px 8px;
     border-radius: 3px;
+    cursor: pointer;
 }
 #post-card-box {
     width: 100%;

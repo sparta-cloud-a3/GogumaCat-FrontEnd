@@ -29,6 +29,7 @@
 </head>
 <body>
     <div class="container">
+    <!-- 모달 html -->
     <div id="modal-profile" class="modal-overlay-0">
         <div class="modal-password">
                 <div class="media-content">
@@ -39,13 +40,13 @@
                             <button class="pw-check"  onclick="check_pw()">확인
                             </button>
                         </div>
-                        <p id="help-check-password" class="help">비밀번호를 입력해주세요.</p>
+                        <p id="help-check-password" class="help-pw">비밀번호를 입력해주세요.</p>
                 </div>
         </div>
         <div class="modal-window">
             <div class="profile-box">
+                <label>이름</label>
                 <div class="name">
-                    <label>이름</label>
                     <input id="input-nickname"class="modal-nickname">
                     <button class="nickname_dup" onclick="check_dup_nick()">중복확인</button>
                 </div>
@@ -56,19 +57,19 @@
                     <label>비밀번호 확인</label>
                     <input id="input-password2" class="modify-pw-check" type="password">
                     <p id="help-password2" class="help">비밀번호를 다시 입력해주세요.</p>
-                <div class="address">
                     <label>주소</label>
-                    <input id="input-address" class="address-name">
+                <div class="address">
+                    <input id="input-address" class="address-name" onclick="juso()">
                     <button class="address_button" onclick="juso()">주소검색</button>
                 </div>
+                <label>프로필사진</label>
                 <div class="profile-img">
-                    <label>프로필사진</label>
                     <div id="img-file-box" class="img-box">
                         <label class="file-label"  >
                             <input class="file-input" type="file" id="img" onclick="img_up()"
                                 accept="image/jpeg, image/jpg, image/png"/>
                             <span class="file-cta">
-                                <span class="file-label">제품 사진</span>
+                                <span class="file-label-1">제품 사진</span>
                             </span>
                             <span class="file-name">업로드하기</span>
                         </label>
@@ -79,11 +80,12 @@
                 </div>
                 <label>자신을 소개해주세요</label>
                 <textarea type="text" id="profile-introduce" rows="5"  class="introduce"
-                placeholder="자기소개하기"></textarea>
+                maxlength="100"></textarea>
+                <button id="profile-update">수정하기</button>
             </div>
         </div>
     </div>
-    <!-- <div id="modal-delete" class="modal-overlay-1">
+    <div id="modal-delete" class="modal-overlay-1">
         <div class="modal-password">
                 <div class="media-content">
                         <label class="label" for="input-check-pw">비밀번호</label>
@@ -96,9 +98,14 @@
                         <p id="help-check-password" class="help">비밀번호를 입력해주세요.</p>
                 </div>
         </div>
-        <div class="modal-window"> 
+            <div class="modal-delete-check">
+                    <div class="delete-content">
+                            <p class="delete-check">탈퇴하시겠습니까?</p>
+                            <button class="delete-btn">확인</button>
+                    </div>
+            </div>
         </div>
-    </div> -->
+    <!-- 페이지 html -->
     <div class="logo-container">
         <nav class="logo-nav">
             <a href="/" id="logo"><img src="./image/logo.png"></a>
@@ -125,7 +132,10 @@
                     로그아웃</button>
             </div>
             <div class="introduce-box">
-                <p id="introduce">안녕하세요 접니다! 고구마인것 같은 고양이!</p>
+                <p id="introduce">안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안안</p>
+            </div>
+            <div class="delete-box">
+                <button id="user-delete">회원탈퇴</button>
             </div>
         </div>
     </div>
