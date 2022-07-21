@@ -30,7 +30,7 @@ function sign_in() {
         contentType: 'application/json',
         success: function (response) {
             $.cookie('mytoken', response, {path: '/'});
-            window.location.replace("/")
+            window.location.replace("/list.html")
         },
         error : function (response){
             alert("ID와 PW를 확인해 주세요.")

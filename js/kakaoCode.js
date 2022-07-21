@@ -11,7 +11,7 @@ function code(){
         url:`${doamin}/user/kakao/callback?code=${code}`,
         success: function (response) {
             $.cookie('mytoken', response, {path: '/'});
-            window.location.replace("/")
+            window.location.replace("/list.html")
         }
     })
 }

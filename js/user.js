@@ -25,7 +25,7 @@ const modalInfo = elementInfo[1].objs
 function sign_out() {
     alert('다음에 또 뵙겠습니다. ^^')
     $.removeCookie('mytoken',{path:'/'})
-    window.location.href = "/user/logout"
+    window.location.href = "/"
 }
 
 //파라미터 값 가져오기
