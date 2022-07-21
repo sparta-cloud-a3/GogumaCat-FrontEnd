@@ -1,4 +1,5 @@
-
+const domain = "https://www.hongseos.shop"
+const token = $.cookie("mytoken")
 
 function sign_out() {
     alert('다음에 또 뵙겠습니다. ^^')
