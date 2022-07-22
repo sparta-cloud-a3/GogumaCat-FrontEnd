@@ -6,26 +6,6 @@ $(document).ready(function () {
     let idLink = splitLink[1].split("=")
     let postId =idLink[1]
     getDetail(postId)
-//     var floatPosition = parseInt($(".sideBanner").css('top'))
-
-//     $(window).scroll(function () {
-
-//         // 현재 스크롤 위치
-//         var currentTop = $(window).scrollTop();
-//         var bannerTop = currentTop + floatPosition + "px";
-
-//         //이동 애니메이션
-//         $(".sideBanner").stop().animate({
-//             "top": bannerTop
-//         }, 500);
-
-//     }).scroll();
-
-//     $(".sideBanner").click(function () {
-//         document.getElementById("frame").style.visibility = "hidden"
-//         window.location.href = "/chat/room/enter/[[${post.postId}]]"
-//     });
-// })
 })
 
 function getDetail(postId) { 
@@ -44,7 +24,6 @@ function getDetail(postId) {
 }
 
 function makeDetail(response) {
-    console.log(response)
     let post = response["post"]
     //사진
     $("#post-img-box").empty()
