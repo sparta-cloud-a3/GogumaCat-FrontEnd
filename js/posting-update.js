@@ -67,7 +67,6 @@ function posting_update() {
         form_data.append("price", objs.price.value)
         form_data.append("content", objs.content.value)
         form_data.append("address", objs.address.value)
-        console.log("file x")
     }
     else {
         form_data.append("title", objs.title.value)
@@ -76,7 +75,6 @@ function posting_update() {
         form_data.append("price", objs.price.value)
         form_data.append("content", objs.content.value)
         form_data.append("address", objs.address.value)
-        console.log("file o")
     }
     //동작 조건 만들기
     if (objs.title.value == "") {

@@ -5,7 +5,7 @@ $(document).ready(function () {
     var splitLink = document.location.href.split("?")
     if(splitLink[1]) { //검색어 있음
         var queryLink = splitLink[1].split("=")
-        searchListing(queryLink[1])
+        searchListing(queryLink[1], "latest")
     } else {
         listing("latest");
     }
@@ -30,10 +30,10 @@ function listing(orderType) {
     });
 }
 
-function searchListing(query) {
+function searchListing(query, orderType) {
     $.ajax({
         type: "GET",
-        url: `${domain}/post/search?query=${query}`,
+        url: `${domain}/post/search?query=${query}&orderType=${orderType}`,
         data: {},
         dataType : "json",
         beforeSend: function(xhr) {
@@ -41,10 +41,11 @@ function searchListing(query) {
         },
         success: function (response) {
             $("#post-card-box").empty();
+            $("#search-query-box").empty();
             let posts = response["data"]
             //검색어 보여주는 칸
             $("#search-query-box").append(
-                `<h3 class="menu-container"><span style="color: red;">"${decodeURI(query)}"</span>의 검색 결과 입니다.</h3>`
+                `<h3 class="menu-container"><span id="search-result-text" style="color: red;">${decodeURI(query)}</span>의 검색 결과 입니다.</h3>`
             )
             for (let i = 0; i < response["count"]; i++) {
                 makePost(posts[i]);
@@ -75,8 +76,13 @@ function makePost(post) {
 }
 
 function click_sort_btn(order_type) {
-    
-    listing(order_type)
+    let query = $("#search-result-text").text()
+    if(query) {
+        searchListing(query, order_type)
+    }
+    else {
+        listing(order_type)
+    }
 
     if (order_type == "latest") {
         $('#latest-tag').addClass("is-dark")

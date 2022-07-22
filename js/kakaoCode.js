@@ -4,7 +4,6 @@ window.onload = function(){
 function code(){
     let doamin = "https://www.hongseos.shop"
     let code = new URL(window.location.href).searchParams.get('code')
-    console.log(code);
 
     $.ajax({
         type:"GET",

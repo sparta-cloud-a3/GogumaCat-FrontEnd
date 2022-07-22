@@ -59,7 +59,6 @@ const token = $.cookie("mytoken")
                 },
                 success: function (response) {
                     alert("등록되었습니다")
-                    console.log(response)
                     window.location.href = '/list.html'
                 },
                 error: function (xhr, status, error){

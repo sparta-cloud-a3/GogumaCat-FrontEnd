@@ -84,7 +84,6 @@ function is_password(asValue) {
 
 function check_dup() {
       let username = $("#input-username").val()
-      console.log(username)
       if (username == "") {
             $("#help-id").text("아이디를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
             $("#input-username").focus()
@@ -105,7 +104,6 @@ function check_dup() {
             }),
             contentType: "application/json",
             success: function (data) {
-            console.log(data);
             if (data >= 1) {
                   $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
                   $("#input-username").focus()
@@ -122,7 +120,6 @@ function check_dup() {
 
 function check_dup_nick() {
       let nickname = $("#input-nickname").val()
-      console.log(nickname)
       if (nickname == "") {
             $("#help-nickname").text("닉네임을 입력해주세요.").removeClass("is-safe").addClass("is-danger")
             $("#input-nickname").focus()

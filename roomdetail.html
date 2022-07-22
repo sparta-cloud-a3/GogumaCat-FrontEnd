@@ -180,7 +180,6 @@
       function connect(roomId, nickname) {
             ws.connect({}, function(frame) {
                   ws.subscribe("/topic/chat/room/" + roomId, function(message) {
-                        console.log("!!subscribe!!");
                         var recv = JSON.parse(message.body);
                         vm.recvMessage(recv);
                   });
