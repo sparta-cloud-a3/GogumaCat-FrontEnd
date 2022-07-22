@@ -341,9 +341,6 @@
     })
 }) ();
 
-
-//페이지 함수
-
 const domain = "https://www.hongseos.shop"
 const token = $.cookie("mytoken")
 
@@ -369,7 +366,7 @@ function listing() {
 
 function makeCard(post) {
     let tempHtml =  `<article class="card">
-                        <div class="crad-link" style="cursor : pointer;" id=${post["postId"]}>
+                        <a onclick="token_check()" href="/post.html?id=${post["postId"]}" class="crad-link" >
                             <div class="card-img">
                                 <img src="${post["postImgs"][0]["imgUrl"]}" alt="title">
                             </div>
@@ -379,19 +376,14 @@ function makeCard(post) {
                                 <p class="card-address">${post["address"]}</p>
                                 <p class="card-like">관심 ${post["likeCount"]}</p>
                             </div>
-                        </div>
+                        </a>
                     </article>`
     $("#post-card-box").append(tempHtml)
 }
 function token_check() {
-    post_id = document.querySelector('#section-4 .card-link').id
     if(!token) {
         alert('로그인이 필요합니다')
-        document.querySelector('#sec')
         window.location.href = '/login.html'
-    } else {
-        window.location.href = `'/post.html?id=${post_id}'`
     }
 }
 window.addEventListener('load', listing)
-document.querySelector('#section-4 .card').addEventListener('click',token_check)
