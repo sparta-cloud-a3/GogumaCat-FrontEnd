@@ -218,6 +218,7 @@
 #section-3 .section-3-inner {
     height: 1400px;
     width: 100%;
+    max-width: 1200px;
     position: relative;
     margin: auto;
     display: flex;
