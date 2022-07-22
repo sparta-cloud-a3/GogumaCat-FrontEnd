@@ -51,7 +51,8 @@ function searchListing(query) {
             }
         },
         error : function () {
-            alert("fail")
+            alert("로그인을 먼저 해주세요.")
+            window.location.href = "/login.html"
         }
     })
 }
