@@ -31,9 +31,8 @@ function userPage() {
 }
 
 function makeOrderContent(orders) {
-      console.log(orders)
       //알림을 볼 수 있는 버튼 생성
-      $("#alarm-box").append(`<i id="alarm-btn" class="fa-solid fa-bell" data-toggle="modal" data-target="#order-modal"></i>`)
+      $("#alarm-box").append(`<i id="alarm-btn" class="fa-solid fa-bell" onclick="openModal()"></i>`)
       let tempHtml=""
       for(let i =0; i < orders.length; i++) {
             tempHtml += `<p style="margin: 20px;">
@@ -60,4 +59,12 @@ function checkOrder(orderId) {
                   }
             })
       }
+}
+
+function openModal() {
+      document.getElementById("modal").style.display = "flex"
+}
+
+function closeModal() {
+      document.getElementById("modal").style.display = "none"
 }
