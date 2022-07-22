@@ -311,7 +311,9 @@
 }
 #section-4 .card-img {
     width: 100%;
+    max-width: 240px;
     height: 100%;
+    max-height: 276px;
     box-shadow: 0px 0px 0px 2px  rgb(0 0 0 / 15%);
     border-radius: 12px;
     overflow: hidden;
