@@ -58,12 +58,6 @@
                 descImg_1: document.querySelector('#section-2 .desc-img-2'),
                 descA : document.querySelector('#section-2 .desc-0-a')
                 
-            },
-            values :{
-                desc_OpacityIn : [0 , 0.8 , { start: 0.8, end: 1 }], //섹션 2 미리띄우기
-                desc_TranslateIn : [10 , 0, { start: 0.8, end: 1 }], 
-                descImg_0_OpacityIn : [0 , 0.8 , { start: 0.9, end: 1 }], 
-                descImg_0_TranslateIn : [10 , 0 , { start: 0.9, end: 1 }], 
             }
         },{
             //2
@@ -72,21 +66,10 @@
             scrollHeight : document.querySelector('#section-2').clientHeight,
             objs : {
                 contain : document.querySelector('#section-2'),
-                desc : document.querySelector('#section-2 .desc-0'), 
-                descImg_0 : document.querySelector('#section-2 .desc-img'),
-                descImg_1: document.querySelector('#section-2 .desc-img-2'),
-                descA : document.querySelector('#section-2 .desc-0-a')
-            },
-            values :{
-                desc_OpacityIn : [0.8 , 1 , { start: 0, end: 0.1 }], 
-                // desc_TranslateIn : [10 , 0, { start: 0, end: 0.1 }], 
-                descImg_0_OpacityIn : [0.8 , 1 , { start: 0, end: 0.1 }], 
-                // descImg_0_TranslateIn : [10 , 0 , { start: 0, end: 0.1 }], 
-
-                descImg_1_OpacityIn : [0 , 1 , { start: 0.14, end: 0.3 }],
-                descImg_1_TranslateIn : [20 , 0 , { start: 0.14, end: 0.3 }],
-                descA_OpacityIn : [0 , 1 , { start: 0.3, end: 0.4 }],
-                descA_TranslateIn : [20 , 0 , { start: 0.3, end: 0.4 }],
+                desc : document.querySelector('#section-2 #section2-desc0'), 
+                descImg_0 : document.querySelector('#section-2 #section2-desc1'),
+                descImg_1: document.querySelector('#section-2 #section2-desc2'),
+                descA : document.querySelector('#section-2 #section2-desc3')
             }
         },{
             //3
@@ -95,15 +78,12 @@
             scrollHeight : document.querySelector('#section-3').clientHeight,
             objs : {
                 contain : document.querySelector('#section-3'),
-                descA : document.querySelector('.desc-1'), 
-                descB : document.querySelector('.desc-2'),
-                descC : document.querySelector('.desc-3'),
-                descImg_0 : document.querySelector('.desc-1-img'),
-                descImg_1 : document.querySelector('.desc-2-img'),
-                descImg_2 : document.querySelector('.desc-3-img')
-            },
-            values :{
-
+                descA : document.querySelector('#section-3 #desc-1'), 
+                descB : document.querySelector('#section-3 #desc-2'),
+                descC : document.querySelector('#section-3 #desc-3'),
+                descImg_0 : document.querySelector('#section-3 #desc-1-img'),
+                descImg_1 : document.querySelector('#section-3 #desc-2-img'),
+                descImg_2 : document.querySelector('#section-3 #desc-3-img')
             }
         },{
             //4
@@ -130,7 +110,7 @@
                 cancelAnimationFrame(logoAni)
                 setTimeout(() => {
                     mainMessageOpacity()
-                }, 450 )  
+                }, 400 )  
                 
             }
         }
@@ -243,7 +223,6 @@
     for (let i = 0; i < nowSection; i++) {
         prevScrollHeight += scene_info[i].scrollHeight
     }
-
     if ( yOffset > prevScrollHeight + scene_info[nowSection].scrollHeight) {       
         nowSection ++;
     } else if(yOffset < prevScrollHeight) {
@@ -251,83 +230,70 @@
             nowSection --;
         }
     }
-    const height = yOffset - prevScrollHeight
-    const ratio = height / scene_info[2].scrollHeight
-    
+    sectionAni()
     
     }
-
-    
-
-    // function transformAnimation(target) {
-    //         target.style.translateY = sectionTransform
-    //         sectionTransform -=1
-    //     requestAnimationFrame(transformAnimation)       
-    //     if(sectionTransform ==0) {
-    //         cancelAnimationFrame(requestAnimationFrame(transformAnimation))   
-    //     }
-    // }
-
-    // function opacityAnimation(target2) {
-    //         target2.style.opacity = sectionOpacity
-    //         sectionOpacity +=0.1
-    //         requestAnimationFrame(opacityAnimation)                    
-    //     if(sectionOpacity > 1){
-    //         cancelAnimationFrame(requestAnimationFrame(opacityAnimation)) 
-    //     }
-    // }
-    // function section2_scrollPlay() {
-    //     const objs = scene_info[2].objs
-    //     const height = yOffset - prevScrollHeight
-    //     const ratio = height / scene_info[2].scrollHeight
-    //     console.log(ratio)
-    //     if (objs.contain.classList.value.includes('SuccessWaiting')) {
-    //             console.log('진행중')
-    //             opacityAnimation(objs.desc)
-    //             transformAnimation(objs.desc)
-    //             opacityAnimation(objs.descImg_0);
-    //             transformAnimation(objs.descImg_0);
-    //             opacityAnimation(objs.descImg_1);
-    //             transformAnimation(objs.descImg_1);
-    //             opacityAnimation(objs.descA);
-    //             transformAnimation(objs.descA);
-    //             objs.contain.classList.remove('SuccessWaiting')
-    //         }   
-    //     }
-    //     // 애니메이션 키 프레임이 있고 특정 섹션에 들어오기 전까지 실행하지 않고
-    //     //opacity 값이 0이 아니라 히든 상태로 둔 클래스 값을 적용시킨 다음에
-    //     //실행 할 때 클래스를 바꿔치기 하여 애니메이션 되게 한다.
-    //     //그럼 애니메이션이 실행되고 더이상 플레이 되지 않음 
-    //     // 가장 큰 div값에 이걸 적용 해놓고 하위 자식 요소에서 크기랑 결정을 다 해놓는다.
-
-    // function section3_scrollPlay() {
-    //     const objs= scene_info[nowSection].objs
-    //     opacityAnimation(objs.descA)
-    //     transformAnimation(objs.descA)
-    //     opacityAnimation(objs.descImg_0);
-    //     transformAnimation(objs.descImg_0);
-    //     opacityAnimation(objs.descImg_1);
-    //     transformAnimation(objs.descImg_1);
-    //     opacityAnimation(objs.descB);
-    //     transformAnimation(objs.descB); 
-    //     opacityAnimation(objs.descC);
-    //     transformAnimation(objs.descC); 
-    //     opacityAnimation(objs.descImg_2);
-    //     transformAnimation(objs.descImg_2);
-    // }
+    //스크롤 중 섹션 들어오면 애니메이션 실행
+    function sectionAni() {
+        const objs = scene_info[2].objs
+        const objs2 = scene_info[3].objs
+        let height = yOffset - prevScrollHeight
+        let ratio = height / scene_info[nowSection].scrollHeight
+        if(height >= scene_info[nowSection].scrollHeight) {
+            height=0;
+        }
+        switch(nowSection) {
+            case 1 :
+                if(ratio<=1 && ratio>=0.9) {
+                    if(objs.desc.classList.contains('play-none')) {
+                        objs.desc.className = 'desc-0'
+                        objs.descImg_0.className = 'desc-img'
+                    }
+                }
+                break;
+            case 2 :
+                if(ratio >= 0.45 && ratio <= 0.6) {
+                    if(objs.descImg_1.classList.contains('play-none')) {
+                        objs.descImg_1.className = 'desc-img-2'
+                        objs.descA.className = 'desc-0-a'
+                    }
+                }
+                if(ratio >= 0.9 && ratio <= 1) {
+                    if(objs2.descA.classList.contains('play-none')) {
+                        objs2.descA.className = 'desc-1'
+                        objs2.descImg_0.className = 'desc-1-img'
+                    }
+                }
+                break;
+            case 3 :
+                if(ratio >= 0.2 && ratio <=0.4) {
+                    if(objs2.descB.classList.contains('play-none')){
+                        objs2.descB.className = 'desc-2'
+                        objs2.descImg_1.className = 'desc-2-img'
+                    }
+                }
+                if(ratio >= 0.45 && ratio <=0.6) {
+                    if(objs2.descC.classList.contains('play-none')){
+                        objs2.descC.className = 'desc-3'
+                        objs2.descImg_2.className = 'desc-3-img'
+                    }
+                }
+                break;
+        }
+    }
 
     // 첫 GOGUMACAT 로딩 함수
     function loding() {
         const box = document.querySelector('#box')
         box.style.width = `${lodingBox}px`
-        lodingBox+=24
+        lodingBox+=28
         // boxWidth++
         let raf = requestAnimationFrame(loding)
         if(lodingBox>800){
             cancelAnimationFrame(raf);
             setTimeout(() => {
                 lodingMove()
-            }, 550 )           
+            }, 350 )           
         }
     }
     // 첫 로딩 함수 이후 하얗게 만드는 로딩
@@ -336,7 +302,7 @@
 
         whiteBox.style.width = `${whiteMove}px`
         
-        whiteMove +=30
+        whiteMove +=35
         let whiteBoxMove = requestAnimationFrame(lodingMove)
         if(whiteMove > 1500) {
             cancelAnimationFrame(whiteBoxMove)
