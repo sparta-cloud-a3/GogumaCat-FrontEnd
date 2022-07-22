@@ -33,11 +33,10 @@
                     <input type="text" class="search" id="search-text" placeholder="물품이나 동네를 검색해보세요">
                     <button class="search-bt" type="submit" onclick="search()" ><i class="fa fa-duotone fa-magnifying-glass"></i></button>
                 </div>
-                <div id="alarm-box">
-                </div>
-                <div class="login-btn" onclick="userPage()">
-                    <i class="fa-solid fa-cat fa-lg"></i>
-                    <p id="loginName">게스트님 환영합니다</p>
+                <div class="login-btn">
+                    <i class="fa-solid fa-cat fa-lg" onclick="userPage()"></i>
+                    <p id="loginName" onclick="userPage()">게스트님 환영합니다</p>
+                    <div id="alarm-box" style="margin-left: 10px;"></div>
                 </div>
             </nav>            
         </div>
