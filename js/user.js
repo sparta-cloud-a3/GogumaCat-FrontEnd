@@ -351,6 +351,7 @@ function nickname_reset() {
     check_dup_result = 0
 }
 function update_check() {
+    
     const old_nickname = profile.nickname.textContent
     const nickname = updateProfile.nameUpdate.value
     const password = updateProfile.password.value
@@ -367,8 +368,8 @@ function update_check() {
     if(nickname != old_nickname) {
         if(check_dup_result == 0){
             alert('닉네임 중복확인이 필요합니다')
+            return;
         }
-        return;
     }
     if(password == "") {
         updateProfile.password.placeholder = '비밀번호를 입력해주세요'
@@ -402,6 +403,7 @@ function update_check() {
         updateProfile.introduce.focus()
         return
     }
+    console.log('실행중',check_dup_result)
     let form_data = new FormData()
     if (profilePic == undefined) {
         form_data.append("nickname", nickname)
