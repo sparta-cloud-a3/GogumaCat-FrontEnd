@@ -358,6 +358,7 @@ function update_check() {
     const address = updateProfile.addressUpdate.value
     const profilePic = updateProfile.file.files[0]
     const profileInfo = updateProfile.introduce.value
+
     if(nickname == "") {
         updateProfile.nameUpdate.placeholder = '닉네임을 입력해주세요'
         updateProfile.nameUpdate.focus()
@@ -415,7 +416,6 @@ function update_check() {
         form_data.append("profileInfo", profileInfo)
         form_data.append("profilePic", profilePic)
         }
-        console.log(form_data)
         update(form_data)
     }
 //업데이트 하기

@@ -175,8 +175,7 @@
     right: -105px;
     height: 773px;
     width: 600px;
-    /* opacity: 0;
-    transform: translateY(30%); */
+    animation : box-ani 1s ease-in-out
 }
 #section-2 .desc-img-2 {
     position: absolute;
@@ -184,13 +183,11 @@
     left: -50px;
     height:  773px;
     width: 600px;
-    /* opacity: 0;
-    transform: translateY(30%); */
+    animation : box-ani 1s ease-in-out
 }
 #section-2 .desc-0 {
     font-size: 2.7rem;
-    /* opacity: 0;
-    transform: translateY(30%); */
+    animation : box-ani 1s ease-in-out
 }
 
 #section-2 .desc-0-p {
@@ -210,8 +207,7 @@
     font-size: 2.7rem;
     font-weight: 600;
     z-index: 1;
-    /* transform: translateY(30%); 
-    opacity: 0; */
+    animation : box-ani 1.5s ease-in-out
 }
 #section-3 { 
     height: 30%;
@@ -243,6 +239,7 @@
 #section-3 .desc-3-img{
     width: 600px;
     height: 500px; 
+    animation : box-ani 1s ease-in-out
 }
 #section-3 .desc-1-img,
 #section-3 .desc-2-img,
@@ -362,12 +359,19 @@
     font-size: 1.2rem;
     line-height: 3.5rem;
 }
+.play-none {
+    opacity: 0;
+    transform: translateY(30%);
+    visibility: hidden;
+}
 
 @keyframes box-ani {
-    from {
+    0% {
         transform: translate(0,30%);
+        opacity: 0;
     }
-    to{
-        transform : translate(0,0) 
+    100%{
+        transform : translate(0,0);
+        opacity: 1;
     }
 }
