@@ -366,7 +366,7 @@ function listing() {
 
 function makeCard(post) {
     let tempHtml =  `<article class="card">
-                        <a href="javascript:void(0)" class="crad-link" onclick="token_check(post)">
+                        <a class="crad-link" onclick="token_check(post)">
                             <div class="card-img">
                                 <img src="${post["postImgs"][0]["imgUrl"]}" alt="title">
                             </div>
@@ -385,6 +385,7 @@ function token_check(data) {
         alert('로그인이 필요합니다')
         window.location.href = '/login.html'
     } else {
+        console.log(data)
         window.location.href = `/post.html?id=${data["postId"]}`
     }
 }
