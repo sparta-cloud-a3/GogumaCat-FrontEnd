@@ -366,7 +366,7 @@ function listing() {
 
 function makeCard(post) {
     let tempHtml =  `<article class="card">
-                        <a href="/post.html?id=${post["postId"]}" class="crad-link" onclick="token_check()">
+                        <a href="#" class="crad-link" onclick="token_check(post)">
                             <div class="card-img">
                                 <img src="${post["postImgs"][0]["imgUrl"]}" alt="title">
                             </div>
@@ -380,10 +380,12 @@ function makeCard(post) {
                     </article>`
     $("#post-card-box").append(tempHtml)
 }
-function token_check() {
+function token_check(data) {
     if(!token) {
         alert('로그인이 필요합니다')
         window.location.href = '/login.html'
+    } else {
+        window.location.href = `/post.html?id=${data["postId"]}`
     }
 }
 window.addEventListener('load', listing)
