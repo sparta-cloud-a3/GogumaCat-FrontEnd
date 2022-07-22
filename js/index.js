@@ -366,7 +366,7 @@ function listing() {
 
 function makeCard(post) {
     let tempHtml =  `<article class="card">
-                        <a href="#" class="crad-link" onclick="token_check(post)">
+                        <a href="javascript:void(0)" class="crad-link" onclick="token_check(post)">
                             <div class="card-img">
                                 <img src="${post["postImgs"][0]["imgUrl"]}" alt="title">
                             </div>
