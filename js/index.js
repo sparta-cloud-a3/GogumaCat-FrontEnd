@@ -321,18 +321,13 @@
             document.querySelector('#loding').remove()
             canvas()
         }
-    }
-    
-
-    
-    
+    }   
+    // 윈도우 시작 이후 진행 될 함수들
     window.addEventListener('load', () => {      
         loding()
         setLayout()
-       // canvas() 
     })
     window.addEventListener('resize', () => {
-        //nav_info[0].objs.contain.transform = translateY(-nav_info[0].height)
         canvas()
         setLayout()
     })
@@ -341,6 +336,7 @@
     })
 }) ();
 
+//토큰 및 리스팅 등 api 함수
 const domain = "https://www.hongseos.shop"
 const token = $.cookie("mytoken")
 
@@ -386,7 +382,15 @@ function token_check(id) {
         alert('로그인이 필요합니다')
         window.location.href = '/login.html'
     } else {
-        window.location.href = `/post.html/id=${id}`
+        window.location.href = `/post.html?id=${id}`
+    }
+}
+function start_check() {
+    if(!token) {
+        alert('로그인이 필요합니다')
+        window.location.href = '/login.html'
+    } else {
+        window.location.href = `/list.html`
     }
 }
 window.addEventListener('load', listing)
