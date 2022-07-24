@@ -107,6 +107,9 @@
     width: 460px;
     padding: 5px 6px;
 }
+.modal-window #input-address {
+    cursor: pointer;
+}
 .modal-window #input-password,
 .modal-window #input-password2 {
     letter-spacing: 0.1rem;

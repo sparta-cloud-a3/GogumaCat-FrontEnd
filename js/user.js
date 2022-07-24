@@ -300,30 +300,34 @@ function check_dup_nick() {
         updateProfile.nameUpdate.placeholder = '닉네임을 입력해주세요'
         updateProfile.nameUpdate.focus()
         return;
-    }else {
-        $.ajax({
-            type: "POST",
-            url: `${domain}/user/sign_up/check_dup_nick`,
-            data: JSON.stringify ({
-                'nickname': nickname
-            }),
-            contentType: 'application/json',
-            beforeSend: function(xhr) {
-                  xhr.setRequestHeader("token", token);
-            },
-            success: function (data) {
-                if (data >= 1) {
-                    alert('이미 존재하는 닉네임입니다')
-                    check_dup_result = 0;
-                } else {
-                    alert('사용할 수 있는 닉네임입니다')
-                    check_dup_result = 1;
-                }
-                return check_dup_result;
-            }
-
-        });
     }
+    if (nickname.length > 5) {
+        $("#help-nickname").text("닉네임은 5글자 이하만 가능합니다.").removeClass("is-safe").addClass("is-danger")
+        $("#input-nickname").focus()
+        return;
+    }
+    $.ajax({
+        type: "POST",
+        url: `${domain}/user/sign_up/check_dup_nick`,
+        data: JSON.stringify ({
+            'nickname': nickname
+        }),
+        contentType: 'application/json',
+        beforeSend: function(xhr) {
+                xhr.setRequestHeader("token", token);
+        },
+        success: function (data) {
+            if (data >= 1) {
+                alert('이미 존재하는 닉네임입니다')
+                check_dup_result = 0;
+            } else {
+                alert('사용할 수 있는 닉네임입니다')
+                check_dup_result = 1;
+            }
+            return check_dup_result;
+        }
+
+    });
 }
 //주소 검색
 function juso() {
