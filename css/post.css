@@ -94,13 +94,13 @@
 .post-img {
     width: 100%;
     max-width: 650px;
-    height: 420px;
+    height: auto;
+    max-height: 1000px;
     margin: auto;
     border-radius: 10px;
     overflow: hidden;
 }
 .post-img img {
-    object-fit: fill;
     height: 100%;
     width: 100%;
 }

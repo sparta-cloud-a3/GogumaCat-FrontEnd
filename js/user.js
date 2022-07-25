@@ -294,17 +294,21 @@ function is_password(asValue) {
 }
 //닉네임 중복 확인
 function check_dup_nick() {
+    
     let nickname = updateProfile.nameUpdate.value
 
     if (nickname == "") {
         updateProfile.nameUpdate.placeholder = '닉네임을 입력해주세요'
         updateProfile.nameUpdate.focus()
+        console.log('검사완료2222')
         return;
     }
     if (nickname.length > 5) {
-        $("#help-nickname").text("닉네임은 5글자 이하만 가능합니다.").removeClass("is-safe").addClass("is-danger")
-        $("#input-nickname").focus()
+        updateProfile.nameUpdate.value = ""
+        updateProfile.nameUpdate.placeholder = '5글자 이하만 가능합니다'
+        updateProfile.nameUpdate.focus()
         return;
+        console.log('검사완료')
     }
     $.ajax({
         type: "POST",
@@ -351,9 +355,11 @@ function juso() {
         }
     }).open();
 }
+//닉네임 변경될 시 검사
 function nickname_reset() {
     check_dup_result = 0
 }
+// 프로필 정보 업데이트 전 체크사항
 function update_check() {
     
     const old_nickname = profile.nickname.textContent
