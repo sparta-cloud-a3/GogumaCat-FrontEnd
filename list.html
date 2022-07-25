@@ -7,6 +7,9 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>고구마캣</title>
+    <!--favicon-->
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/image/favicon.ico" type="image/x-icon">
     <!-- 구글 폰트-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +33,7 @@
             <nav class="logo-nav">
                 <a href="/list.html" id="logo"><img src="./image/logo.png"></a>
                 <div class="search-bar">
-                    <input type="text" class="search" id="search-text" placeholder="물품이나 동네를 검색해보세요">
+                    <input type="text" class="search" id="search-text" placeholder="물품이나 동네를 검색해보세요"onkeyup="if(window.event.keyCode == 13){search()}">
                     <button class="search-bt" type="submit" onclick="search()" ><i class="fa fa-duotone fa-magnifying-glass"></i></button>
                 </div>
                 <div class="login-btn">

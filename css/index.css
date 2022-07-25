@@ -131,10 +131,8 @@
     font-weight: bold;
     margin-bottom: 30px;
 }
-#section-0 .list-link {
-    margin: 0 0 0 10px;
-}
-#section-0 .list-link button {
+
+#section-0 .main-message button {
     width: 300px;
     height: 50px;
     background-color: rgb(29 29 31 /90%);
@@ -142,6 +140,7 @@
     font-weight: 600;
     color: whitesmoke;
     border-radius: 5px;
+    margin-left: 10px;
 }
 
 #section-1 {
@@ -290,7 +289,7 @@
 #section-4 .card-wrap,
 #section-4 .gift-wrap {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     flex-wrap: wrap;
     width: 100%;
     max-width: 1200px;
@@ -299,7 +298,7 @@
 
 #section-4 article {
     width: 20%;    
-    margin-right: 40px;
+    margin-left: 5%;
     margin-bottom: 40px;
     
 }
@@ -311,7 +310,9 @@
 }
 #section-4 .card-img {
     width: 100%;
+    max-width: 240px;
     height: 100%;
+    max-height: 276px;
     box-shadow: 0px 0px 0px 2px  rgb(0 0 0 / 15%);
     border-radius: 12px;
     overflow: hidden;
@@ -328,6 +329,9 @@
 #section-4 .card-title {
     font-size : 1.5rem;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 #section-4 .card-like {
     margin-top: 0.3rem;

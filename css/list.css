@@ -123,7 +123,6 @@
     width: 100%;
     max-width: 1000px;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -139,6 +138,7 @@
 .card {
     width : 200px;
     margin-bottom: 24px;
+    margin-left : 29px
 }
 .card-img {
     width: 100%;
@@ -165,6 +165,9 @@
 .card-title {
     font-size : 1.5rem;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer {

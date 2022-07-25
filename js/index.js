@@ -321,18 +321,13 @@
             document.querySelector('#loding').remove()
             canvas()
         }
-    }
-    
-
-    
-    
+    }   
+    // 윈도우 시작 이후 진행 될 함수들
     window.addEventListener('load', () => {      
         loding()
         setLayout()
-       // canvas() 
     })
     window.addEventListener('resize', () => {
-        //nav_info[0].objs.contain.transform = translateY(-nav_info[0].height)
         canvas()
         setLayout()
     })
@@ -341,6 +336,7 @@
     })
 }) ();
 
+//토큰 및 리스팅 등 api 함수
 const domain = "https://www.hongseos.shop"
 const token = $.cookie("mytoken")
 
@@ -366,7 +362,7 @@ function listing() {
 
 function makeCard(post) {
     let tempHtml =  `<article class="card">
-                        <a href="/post.html?id=${post["postId"]}" class="crad-link">
+                        <a onclick="token_check(${post["postId"]})" class="crad-link" style="cursor: pointer;" >
                             <div class="card-img">
                                 <img src="${post["postImgs"][0]["imgUrl"]}" alt="title">
                             </div>
@@ -379,5 +375,22 @@ function makeCard(post) {
                         </a>
                     </article>`
     $("#post-card-box").append(tempHtml)
+}
+function token_check(id) {
+    console.log(id)
+    if(!token) {
+        alert('로그인이 필요합니다')
+        window.location.href = '/login.html'
+    } else {
+        window.location.href = `/post.html?id=${id}`
+    }
+}
+function start_check() {
+    if(!token) {
+        alert('로그인이 필요합니다')
+        window.location.href = '/login.html'
+    } else {
+        window.location.href = `/list.html`
+    }
 }
 window.addEventListener('load', listing)
