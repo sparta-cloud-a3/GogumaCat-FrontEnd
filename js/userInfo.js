@@ -11,14 +11,14 @@ function initUserInfo() {
             },
             success: function (response) {
                   userId = response["id"]
-                  $("#loginName").text(`${response["nickname"]}님 환영합니다.`)
+                  $("#loginName-0").text(`${response["nickname"]}`)
                   if(response["orders"]){
                         makeOrderContent(response["orders"])
                   }
             }
       })
 }
-initUserInfo()
+
 
 function userPage() {
       let name = $("#loginName").text()
@@ -68,3 +68,5 @@ function openModal() {
 function closeModal() {
       document.getElementById("modal").style.display = "none"
 }
+
+window.addEventListener('load', initUserInfo)

@@ -1,5 +1,6 @@
 const domain = "https://www.hongseos.shop"
 const token = $.cookie("mytoken")
+console.log(token)
 
 $(document).ready(function () {
     let splitLink = document.location.href.split("?")
@@ -148,7 +149,8 @@ function map(address) {
                 //지도의 오버레이좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
                 rvClient.getNearestPanoId(position, 100, function (panoId) {
                     if(panoId == null) {
-                        alert(' 반경 100미터 이내 로드뷰 정보가 없는 지역입니다.')
+                        document.querySelector('#mapping .roadview-warning').style.visibility = 'visible'
+                        document.querySelector('#mapping #map_btn').remove()
                     }else {
                         rv.setPanoId(panoId, position); //panoId와 오버레이좌표를 통해 로드뷰 실행
                     }
@@ -171,9 +173,6 @@ function roadview() {
     }
 }
 
-function updatePost(postId) {
-
-}
 
 function deletePost(postId) {
     let result = confirm("정말로 삭제하시겠습니까?");

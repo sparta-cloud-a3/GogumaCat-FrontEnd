@@ -68,5 +68,14 @@ const token = $.cookie("mytoken")
             })
         }
     }
-    
+    function token_check() {
+        if(!token) {
+            alert('로그인이 필요합니다')
+            window.history.back()
+        }
+    }
+
+window.addEventListener('load' , ()=>{
+    token_check()
+})
 
