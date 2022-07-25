@@ -15,6 +15,7 @@ const elementInfo = [{
         likePost : document.querySelector('.list-container #like-tag')
     }
 },{
+    //모달
     type : 'modal',
     objs : {
         updateModal : document.querySelector('#modal-profile'),
@@ -22,7 +23,8 @@ const elementInfo = [{
         updateWindow : document.querySelector('#modal-profile .modal-window'),
         deleteModal : document.querySelector('#modal-delete'),
         deletePw : document.querySelector('#modal-delete .modal-password'),
-        deleteWindow : document.querySelector('#modal-delete .modal-delete-check')
+        deleteWindow : document.querySelector('#modal-delete .modal-delete-check'),
+        closeBtn : document.querySelector('.close-btn')
     }
 },{//프로필
     type : 'text,image',
@@ -173,18 +175,13 @@ function modal_on(element) {
     }
 }
 //modal 끄기(바깥쪽 클릭시)
-modalInfo.updateModal.addEventListener('click', e => {
-    const eTarget = e.target
-    if(eTarget.classList.contains("modal-overlay-0")) {
-        modalInfo.updateModal.style.display ='none'
-    }
-})
-modalInfo.deleteModal.addEventListener('click' , e => {
-    const eTarget = e.target
-    if(eTarget.classList.contains("modal-overlay-1")){
+function modal_off(element) {
+    if(element.id === 'profile-off-0' || element.id === 'profile-off-1') {
+        modalInfo.updateModal.style.display = 'none'
+    } else if(element.id === 'del-off-0' || element.id === 'del-off-1') {
         modalInfo.deleteModal.style.display = 'none'
     }
-})
+}
 //modal 끄기(esc 누를시)
 window.addEventListener("keyup", e => {
     if(modalInfo.updateModal.style.display === 'flex' && e.key === 'Escape') {
@@ -251,9 +248,9 @@ function kakao_pw_check(){
 
 //프로필 수정, 회원 탈퇴시 비밀번호 확인
 function check_pw(value){
-    let pw_input = value.childNodes[3].childNodes[1]
+    let pw_input = value.childNodes[1].childNodes[1]
     let pw = pw_input.value
-    let checkHelp = value.childNodes[5]
+    let checkHelp = value.childNodes[3]
     if(pw == "") {
         checkHelp.textContent = '비밀번호를 입력해주세요.'
         pw_input.focus()
@@ -300,7 +297,6 @@ function check_dup_nick() {
     if (nickname == "") {
         updateProfile.nameUpdate.placeholder = '닉네임을 입력해주세요'
         updateProfile.nameUpdate.focus()
-        console.log('검사완료2222')
         return;
     }
     if (nickname.length > 5) {
@@ -308,7 +304,6 @@ function check_dup_nick() {
         updateProfile.nameUpdate.placeholder = '5글자 이하만 가능합니다'
         updateProfile.nameUpdate.focus()
         return;
-        console.log('검사완료')
     }
     $.ajax({
         type: "POST",

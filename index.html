@@ -48,7 +48,7 @@
                         </div>
                     </nav>
                     <div class="search-bar">
-                        <input type="text" class="search" id="search-text" placeholder="물품이나 동네를 검색해보세요">
+                        <input type="text" class="search" id="search-text" placeholder="물품이나 동네를 검색해보세요"onkeyup="if(window.event.keyCode == 13){search()}">
                         <button class="search-bt" type="submit" onclick="search()" >
                             <i class="fa fa-duotone fa-magnifying-glass"></i>
                         </button>

@@ -32,8 +32,9 @@
     <!-- 모달 html -->
     <div id="modal-profile" class="modal-overlay-0">
         <div class="modal-password">
+            <button class="close-btn" id="profile-off-0" onclick="modal_off(this)">X</button>
+            <label class="label" for="input-check-pw">비밀번호</label>
                 <div class="media-content">
-                        <label class="label" for="input-check-pw">비밀번호</label>
                         <div class="pw-input">
                             <input id="input-check-pw" class="input" type="password">
                             <button class="pw-check" 
@@ -45,6 +46,7 @@
                 </div>
         </div>
         <div class="modal-window">
+            <button class="close-btn" id="profile-off-1" onclick="modal_off(this)">X</button>
             <div class="profile-box">
                 <label>닉네임</label>
                 <div class="name">
@@ -88,8 +90,9 @@
     </div>
     <div id="modal-delete" class="modal-overlay-1">
         <div class="modal-password">
+            <button class="close-btn" id="del-off-1" onclick="modal_off(this)">X</button>
+            <label class="label" for="input-check-pw">비밀번호</label>
                 <div class="media-content">
-                        <label class="label" for="input-check-pw">비밀번호</label>
                         <div class="pw-input">
                             <input id="delete-check-pw" class="input" type="password">
                             <button class="pw-check"  
@@ -101,6 +104,7 @@
                 </div>
         </div>
             <div class="modal-delete-check">
+                <button class="close-btn" id="del-off-1" onclick="modal_off(this)">X</button>
                     <div class="delete-content">
                             <p class="delete-check">탈퇴하시겠습니까?</p>
                             <button class="delete-btn" onclick="userdelete()">확인</button>
@@ -112,7 +116,8 @@
         <nav class="logo-nav">
             <a href="/list.html" id="logo"><img src="./image/logo.png"></a>
             <div class="search-bar">
-                <input type="text" class="search" id="search-text" placeholder="물품이나 동네를 검색해보세요">
+                <input type="text" class="search" id="search-text" 
+                placeholder="물품이나 동네를 검색해보세요" onkeyup="if(window.event.keyCode == 13){search()}">
                 <button class="search-bt" type="submit" onclick="search()"><i class="fa fa-duotone fa-magnifying-glass"></i></button>
             </div>
         </nav>            
