@@ -5,7 +5,9 @@ const token = $.cookie("mytoken")
 //파라미터 닮을 배열
 const paramArray = [];
 let id = 0;
-
+//비교할 유저 아이디
+let connet_id;
+let write_id;
 
 //각 input 값 변수 지정
 const inputInfo = [{
@@ -52,6 +54,12 @@ function post() {
             objs.file_name.textContent = post['postImgs'][0].imgUrl
             objs.file_preview.src = post['postImgs'][0].imgUrl
 
+            write_id =  post['writerNickname']
+            user_check()
+        },
+        error:() => {
+            alert('잘못된 접근입니다.')
+            window.history.back()
         }
     });
 }
@@ -120,8 +128,24 @@ function posting_update() {
     })
 }
 }
+function token_check() {
+    if(!token) {
+        alert('로그인이 필요합니다')
+        window.history.back()
+    }
+}
+
+function user_check() {
+    connet_id = document.querySelector('.logo-container #loginName-0').textContent
+    console.log(connet_id,write_id)
+    if(connet_id != write_id) {
+        alert('올바르지 않은 접근입니다.')
+        window.history.back()
+    }
+}
 
 window.addEventListener('load',() => {
+    token_check()
     parameter()
     post()
 })

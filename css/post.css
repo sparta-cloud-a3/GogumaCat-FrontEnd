@@ -207,14 +207,20 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
+}
+#mapping .roadview-warning {
+    visibility: hidden;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: red;
+    margin-top: 30px;
 }
 #map {
     border-radius: 10px;
     overflow: hidden;
     width: 400px;
     height: 350px;
-    margin: 40px auto 40px auto;
+    margin: 10px auto 40px auto;
     background-color: #888;
 }
 #roadview {
