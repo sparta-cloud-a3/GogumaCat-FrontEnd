@@ -12,7 +12,7 @@ $(document).ready(function () {
 function getDetail(postId) { 
     $.ajax({
         type: "GET",
-        url: `${domain}/post/${postId}`,
+        url: `${domain}/post/detail/${postId}`,
         data: {},
         dataType : "json",
         beforeSend: function(xhr) {
