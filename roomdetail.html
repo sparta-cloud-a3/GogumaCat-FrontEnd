@@ -22,6 +22,7 @@
             .list-group-item{
                   border-radius: 10px;
                   padding : 8px;
+                  margin-bottom: 15px;
             }
 
             .input-group {
@@ -44,6 +45,12 @@
                   background-color: #c786a4;
             }
 
+            .time-text {
+                  font-size: 3px;
+                  color: gray;
+                  margin-left: 10px;
+            }
+
       </style>
 </head>
 <body>
@@ -51,16 +58,18 @@
       <button v-if = "isSeller == true" onclick="order()" style="background-color: #c786a4">이 사람과 거래하기</button>
       <button onclick="closeChat()">닫기</button>
       <div>
-            <ul id="msg-box" class="list-group"> 
+            <ul id="msg-box"> 
             </ul>
       </div>
       <div>
-            <ul class="list-group"  v-for="message in messages.slice().reverse()">
+            <ul v-for="message in messages.slice().reverse()">
                   <li v-if = "message.sender != nickname" class="list-group-item" style="background-color: antiquewhite">
                   {{message.sender}} : {{message.message}}
+                  <span class="time-text">{{message.sendTime}}</span>
                   </li>
                   <li v-else class="list-group-item" style="text-align: right; background-color: #cba5b7">
                   {{message.sender}} : {{message.message}}
+                  <span class="time-text">{{message.sendTime}}</span>
                   </li>
             </ul>
       </div>
@@ -103,47 +112,53 @@
             roomId = idLink[1]
       }
 
-      if(roomId != undefined) {
-            $.ajax({
-                  type: "GET",
-                  url: `${domain}/chat/mypostroom/enter/${roomId}`,
-                  data: {},
-                  dataType : "json",
-                  beforeSend: function(xhr) {
-                        xhr.setRequestHeader("token", token);
-                  },
-                  success: function (response) {
-                        isSeller = response["isSeller"]
-                        nickname = response["nickname"]
-                        connect(roomId, nickname)
-                        createVue(roomId, nickname, isSeller)
-                        if(response["messages"]) {
-                              makeMessage(nickname, response["messages"])
+      function setting() {
+            if(roomId != undefined) {
+                  $.ajax({
+                        type: "GET",
+                        url: `${domain}/chat/mypostroom/enter/${roomId}`,
+                        data: {},
+                        dataType : "json",
+                        async: false,
+                        beforeSend: function(xhr) {
+                              xhr.setRequestHeader("token", token);
+                        },
+                        success: function (response) {
+                              isSeller = response["isSeller"]
+                              nickname = response["nickname"]
+                              
+                              if(response["messages"]) {
+                                    makeMessage(nickname, response["messages"])
+                              }
                         }
-                  }
-            })
-      }
+                  })
+            }
 
-      if(postId != -1) {
-            $.ajax({
-                  type: "GET",
-                  url: `${domain}/chat/room/enter/${postId}`,
-                  data: {},
-                  dataType : "json",
-                  beforeSend: function(xhr) {
-                        xhr.setRequestHeader("token", token);
-                  },
-                  success: function (response) {
-                        isSeller = response["isSeller"]
-                        nickname = response["nickname"]
-                        roomId = response["roomId"]
-                        connect(roomId, nickname)
-                        if(response["messages"]) {
-                              makeMessage(nickname, response["messages"])
+            if(postId != -1) {
+                  $.ajax({
+                        type: "GET",
+                        url: `${domain}/chat/room/enter/${postId}`,
+                        data: {},
+                        dataType : "json",
+                        async: false,
+                        beforeSend: function(xhr) {
+                              xhr.setRequestHeader("token", token);
+                        },
+                        success: function (response) {
+                              isSeller = response["isSeller"]
+                              nickname = response["nickname"]
+                              roomId = response["roomId"]
+
+                              if(response["messages"]) {
+                                    makeMessage(nickname, response["messages"])
+                              }
                         }
-                        createVue(roomId, nickname, isSeller)
-                  }
-            })
+                  })
+            }
+
+            connect(roomId)
+
+            createVue(roomId, nickname, isSeller)
       }
 
       function createVue(roomId, nickname, isSeller) {
@@ -182,25 +197,20 @@
                               window.scrollTo(0, document.body.scrollHeight);
                         },
                         recvMessage: function(recv) {
-                              console.log("!!recvMsg!!")
-
-                              this.messages.unshift({"type":recv.type,"sender":recv.type=='ENTER'?'[알림]':recv.sender,"message":recv.message})
+                              this.messages.unshift({"type":recv.type,"sender":recv.type=='ENTER'?'[알림]':recv.sender,"message":recv.message, "sendTime": recv.sendTime})
                               window.scrollTo(0,document.body.scrollHeight);
                         }
                   }
             });
       }
 
-      function connect(roomId, nickname) {
+      function connect(roomId) {
             ws.connect({}, function(frame) {
+
                   ws.subscribe("/topic/chat/room/" + roomId, function(message) {
-                        console.log("!!subscribe!!")
                         var recv = JSON.parse(message.body);
                         vm.recvMessage(recv);
                   });
-                  ws.send("/app/chat/message", {}, 
-                        JSON.stringify({type:'ENTER', roomId: roomId, sender: nickname})
-                  );
             }, function(error) {
                   if(reconnect++ <= 5) {
                   setTimeout(function() {
@@ -232,10 +242,10 @@
             for (let i = 0; i<messages.length; i++) {
                   if(nickname == messages[i]["sender"]) {
                         tempHtml += `<li class="list-group-item" style="text-align: right; background-color: #cba5b7">
-                                          ${messages[i]["sender"]} : ${messages[i]["message"]}</li>`
+                                          ${messages[i]["sender"]} : ${messages[i]["message"]}<span class="time-text">${messages[i]["sendTime"]}</span></li>`
                   } else {
                         tempHtml += `<li class="list-group-item" style="background-color: antiquewhite">
-                                          ${messages[i]["sender"]} : ${messages[i]["message"]}</li>`
+                                          ${messages[i]["sender"]} : ${messages[i]["message"]}<span class="time-text">${messages[i]["sendTime"]}</span></li>`
                   }
             }
             $("#msg-box").append(tempHtml)
@@ -245,6 +255,8 @@
             sock.close()
             window.location.href = "/list.html"
       }
+
+      window.addEventListener("load", setting)
 </script>
 </body>
 </html>
