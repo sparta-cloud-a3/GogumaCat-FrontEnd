@@ -49,6 +49,11 @@
 <body>
       <div id="app" v-cloak>
       <button v-if = "isSeller == true" onclick="order()" style="background-color: #c786a4">이 사람과 거래하기</button>
+      <button onclick="closeChat()">닫기</button>
+      <div>
+            <ul id="msg-box" class="list-group"> 
+            </ul>
+      </div>
       <div>
             <ul class="list-group"  v-for="message in messages.slice().reverse()">
                   <li v-if = "message.sender != nickname" class="list-group-item" style="background-color: antiquewhite">
@@ -74,7 +79,8 @@
       integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" 
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-      let domain = "https://www.hongseos.shop"
+      // let domain = "https://www.hongseos.shop"
+      let domain = "http://localhost:8080"
       let token = $.cookie("mytoken")
 
       var splitLink = document.location.href.split("?")
@@ -111,6 +117,9 @@
                         nickname = response["nickname"]
                         connect(roomId, nickname)
                         createVue(roomId, nickname, isSeller)
+                        if(response["messages"]) {
+                              makeMessage(nickname, response["messages"])
+                        }
                   }
             })
       }
@@ -129,6 +138,9 @@
                         nickname = response["nickname"]
                         roomId = response["roomId"]
                         connect(roomId, nickname)
+                        if(response["messages"]) {
+                              makeMessage(nickname, response["messages"])
+                        }
                         createVue(roomId, nickname, isSeller)
                   }
             })
@@ -170,6 +182,8 @@
                               window.scrollTo(0, document.body.scrollHeight);
                         },
                         recvMessage: function(recv) {
+                              console.log("!!recvMsg!!")
+
                               this.messages.unshift({"type":recv.type,"sender":recv.type=='ENTER'?'[알림]':recv.sender,"message":recv.message})
                               window.scrollTo(0,document.body.scrollHeight);
                         }
@@ -180,6 +194,7 @@
       function connect(roomId, nickname) {
             ws.connect({}, function(frame) {
                   ws.subscribe("/topic/chat/room/" + roomId, function(message) {
+                        console.log("!!subscribe!!")
                         var recv = JSON.parse(message.body);
                         vm.recvMessage(recv);
                   });
@@ -210,6 +225,25 @@
                   alert(response.data["msg"]);
                   window.location.reload("/list.html")
             })
+      }
+
+      function makeMessage(nickname, messages) {
+            let tempHtml = ""
+            for (let i = 0; i<messages.length; i++) {
+                  if(nickname == messages[i]["sender"]) {
+                        tempHtml += `<li class="list-group-item" style="text-align: right; background-color: #cba5b7">
+                                          ${messages[i]["sender"]} : ${messages[i]["message"]}</li>`
+                  } else {
+                        tempHtml += `<li class="list-group-item" style="background-color: antiquewhite">
+                                          ${messages[i]["sender"]} : ${messages[i]["message"]}</li>`
+                  }
+            }
+            $("#msg-box").append(tempHtml)
+      }
+
+      function closeChat() {
+            sock.close()
+            window.location.href = "/list.html"
       }
 </script>
 </body>
