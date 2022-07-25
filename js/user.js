@@ -443,13 +443,13 @@ function update(form_data) {
             window.location.replace(`/user.html?userId=${id}`)
         }
     })
-        
 }
+//회원 탈퇴
 function userdelete() {
     $.ajax({
         type: "DELETE",
         url: `${domain}/delete/${id}`,
-        data: {'id': id},
+        data: {},
         beforeSend: function(xhr) {
             xhr.setRequestHeader("token", token);
         },
