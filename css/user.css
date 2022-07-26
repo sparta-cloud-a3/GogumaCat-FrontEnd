@@ -134,7 +134,7 @@ body {
 .profile .delete-box {
     height: 30px;
 }
-.profile #user-delete {
+.profile #user-delete ,#update-password {
     background-color: rgb(136 136 136 / 45%);
     margin: 0 20px 0 auto;
     display: block;
