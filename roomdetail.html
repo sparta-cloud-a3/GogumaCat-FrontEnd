@@ -14,6 +14,17 @@
                   display: none;
             }
 
+            .close-btn {
+                  float: right;
+            }
+
+            body {
+                  width: 100%;
+                  max-width: 1200px;
+                  padding-top: 10px;
+                  margin: auto;
+            }
+
             .chat-group {
                   margin-bottom: 60px;
             }
@@ -32,6 +43,7 @@
             .input-group {
                   position: fixed; 
                   width: 100%;
+                  max-width: 1200px;
                   height: 30px;
                   bottom: 0;
                   margin-bottom: 20px;
@@ -60,7 +72,7 @@
 <body>
       <div id="app" v-cloak>
       <button v-if = "isSeller == true" onclick="order()" style="background-color: #c786a4">이 사람과 거래하기</button>
-      <button onclick="closeChat()">닫기</button>
+      <button onclick="closeChat()" class="close-btn">닫기</button>
       <div class="chat-group">
             <ul id="msg-box"> 
             </ul>
