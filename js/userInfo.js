@@ -14,7 +14,6 @@ function initUserInfo() {
                   $("#loginName-0").text(`${response["nickname"]}`)
                   if(response["orders"]){
                         makeOrderContent(response["orders"])
-                        console.log('유저먼저시작')
                   }
             }
       })
@@ -68,3 +67,4 @@ function openModal() {
 function closeModal() {
       document.getElementById("modal").style.display = "none"
 }
+window.addEventListener('load' , initUserInfo)

@@ -30,7 +30,6 @@ function getDetail(postId) {
 }
 
 function makeDetail(response) {
-    console.log('아니 내가 먼저시작')
     let post = response["post"]
     let userNickname = document.querySelector('#loginName #loginName-0').textContent
     //사진
@@ -78,32 +77,7 @@ function makeDetail(response) {
             )
         }
     }
-    // if(userId == post["writeUserId"]) {
-    //     $("#fix-box").append(
-    //         `<ul class="dropdown">
-    //             <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
-    //             <li class="post-fix"><a href="/posting-update.html?id=${post["postId"]}">수정하기</a></li>
-    //             <li class="post-delete" onclick="deletePost(${post["postId"]})">삭제하기</li>
-    //         </ul>`
-    //     )
-    //     $("#chat-box").append(
-    //         `<button class="chat-btn" onclick="window.location.href ='/room.html?id=${post["postId"]}'">
-    //             <span class="icon">
-    //                 <i class="fa-solid fa-message-dots"></i>
-    //             </span>
-    //             <span>채팅방</span>
-    //         </button>`
-    //     )
-    // } else {
-    //     $("#chat-box").append(
-    //         `<button class="chat-btn" onclick="window.location.href ='/roomdetail.html?id=${post["postId"]}'">
-    //             <span class="icon">
-    //                 <i class="fa-solid fa-message-dots"></i>
-    //             </span>
-    //             <span>채팅보내기</span>
-    //         </button>`
-    //     )
-    // }
+ 
     //작성자 프로필 사진
     if(post["writerProfile"] == undefined) {
         $("#profileImage").attr("src", "/image/profile_image.png")
