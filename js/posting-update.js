@@ -36,6 +36,7 @@ function parameter(){
 }
 //회원 글 채우기
 function post() {
+    console.log(id)
     $.ajax({
         type: "GET",
         url: `${domain}/post/${id}`,
@@ -59,7 +60,7 @@ function post() {
         },
         error:() => {
             alert('잘못된 접근입니다.')
-            window.history.back()
+            // window.history.back()
         }
     });
 }

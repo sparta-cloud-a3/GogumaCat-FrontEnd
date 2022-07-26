@@ -94,6 +94,14 @@ function click_sort_btn(order_type) {
         $('#address-tag').removeClass("is-dark")
     }
 }
+function posting() {
+    if (!token) {
+        alert("로그인이 필요한 서비스 입니다.")
+        window.location.href ='/login.html'
+  } else {
+  window.location.href = '/posting.html'
+  }
+}
 
 
 
