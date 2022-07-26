@@ -14,6 +14,7 @@ function initUserInfo() {
                   $("#loginName-0").text(`${response["nickname"]}`)
                   if(response["orders"]){
                         makeOrderContent(response["orders"])
+                        console.log('유저먼저시작')
                   }
             }
       })
@@ -21,8 +22,7 @@ function initUserInfo() {
 
 
 function userPage() {
-      let name = $("#loginName").text()
-      if (name == "게스트님 환영합니다") {
+      if (!token) {
             alert("로그인이 필요한 서비스 입니다.")
             window.location.href ='/login.html'
       } else {
@@ -68,5 +68,3 @@ function openModal() {
 function closeModal() {
       document.getElementById("modal").style.display = "none"
 }
-
-window.addEventListener('load', initUserInfo)

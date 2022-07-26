@@ -1,12 +1,17 @@
 const domain = "https://www.hongseos.shop"
 const token = $.cookie("mytoken")
-console.log(token)
+
 
 $(document).ready(function () {
     let splitLink = document.location.href.split("?")
     let idLink = splitLink[1].split("=")
     let postId =idLink[1]
     getDetail(postId)
+    if(!token) {
+        $("#loginName-0").text('게스트')  
+  } else{
+        initUserInfo()
+  }
 })
 
 function getDetail(postId) { 
@@ -25,7 +30,9 @@ function getDetail(postId) {
 }
 
 function makeDetail(response) {
+    console.log('아니 내가 먼저시작')
     let post = response["post"]
+    let userNickname = document.querySelector('#loginName #loginName-0').textContent
     //사진
     $("#post-img-box").empty()
     for(var i=0; i<post["postImgs"].length; i++) {
@@ -42,32 +49,61 @@ function makeDetail(response) {
     //수정, 삭제 메뉴
     $("#fix-box").empty()
     $("#chat-box").empty()
-    if(response["userId"] == post["writeUserId"]) {
-        $("#fix-box").append(
-            `<ul class="dropdown">
-                <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
-                <li class="post-fix"><a href="/posting-update.html?id=${post["postId"]}">수정하기</a></li>
-                <li class="post-delete" onclick="deletePost(${post["postId"]})">삭제하기</li>
-            </ul>`
-        )
-        $("#chat-box").append(
-            `<button class="chat-btn" onclick="window.location.href ='/room.html?id=${post["postId"]}'">
-                <span class="icon">
-                    <i class="fa-solid fa-message-dots"></i>
-                </span>
-                <span>채팅방</span>
-            </button>`
-        )
-    } else {
-        $("#chat-box").append(
-            `<button class="chat-btn" onclick="window.location.href ='/roomdetail.html?id=${post["postId"]}'">
-                <span class="icon">
-                    <i class="fa-solid fa-message-dots"></i>
-                </span>
-                <span>채팅보내기</span>
-            </button>`
-        )
+    console.log(userNickname)
+    if(token) {
+        if(userNickname === post["writerNickname"]) {
+            $("#fix-box").append(
+                `<ul class="dropdown">
+                    <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
+                    <li class="post-fix"><a href="/posting-update.html?id=${post["postId"]}">수정하기</a></li>
+                    <li class="post-delete" onclick="deletePost(${post["postId"]})">삭제하기</li>
+                </ul>`
+            )  
+            $("#chat-box").append(
+                `<button class="chat-btn" onclick="window.location.href ='/room.html?id=${post["postId"]}'">
+                    <span class="icon">
+                        <i class="fa-solid fa-message-dots"></i>
+                    </span>
+                    <span>채팅방</span>
+                </button>`
+            )
+        } else {
+            $("#chat-box").append(
+                `<button class="chat-btn" onclick="window.location.href ='/roomdetail.html?id=${post["postId"]}'">
+                    <span class="icon">
+                        <i class="fa-solid fa-message-dots"></i>
+                    </span>
+                    <span>채팅보내기</span>
+                </button>`
+            )
+        }
     }
+    // if(userId == post["writeUserId"]) {
+    //     $("#fix-box").append(
+    //         `<ul class="dropdown">
+    //             <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
+    //             <li class="post-fix"><a href="/posting-update.html?id=${post["postId"]}">수정하기</a></li>
+    //             <li class="post-delete" onclick="deletePost(${post["postId"]})">삭제하기</li>
+    //         </ul>`
+    //     )
+    //     $("#chat-box").append(
+    //         `<button class="chat-btn" onclick="window.location.href ='/room.html?id=${post["postId"]}'">
+    //             <span class="icon">
+    //                 <i class="fa-solid fa-message-dots"></i>
+    //             </span>
+    //             <span>채팅방</span>
+    //         </button>`
+    //     )
+    // } else {
+    //     $("#chat-box").append(
+    //         `<button class="chat-btn" onclick="window.location.href ='/roomdetail.html?id=${post["postId"]}'">
+    //             <span class="icon">
+    //                 <i class="fa-solid fa-message-dots"></i>
+    //             </span>
+    //             <span>채팅보내기</span>
+    //         </button>`
+    //     )
+    // }
     //작성자 프로필 사진
     if(post["writerProfile"] == undefined) {
         $("#profileImage").attr("src", "/image/profile_image.png")
@@ -100,6 +136,7 @@ function makeDetail(response) {
     $("#postContent").text(post["content"])
     map(post["address"])
 }
+
 //맵 생성하기
 function map(address) {
     var local = `${address}`

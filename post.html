@@ -47,7 +47,16 @@
 <div class="container">
     <div class="logo-container">
         <nav class="logo-nav">
-            <a href="/list.html" id="logo"><img src="./image/logo.png"></a>
+            <div class="logo-list">
+                <a href="/index.html" id="logo"><img src="./image/logo.png"></a>
+                <nav class="main-nav">
+                    <!--상단 메뉴바-->
+                    <div class="main-nav-list">
+                        <a href="/list.html" class="nav-tag" style="color: #c786a4;">중고대여</a>
+                        <!-- <a href="#" class="nav-tag">재능기부</a> -->
+                    </div>
+                </nav>
+            </div>
             <div class="search-bar">
                 <input type="text" class="search" id="search-text" placeholder="물품이나 동네를 검색해보세요" onkeyup="if(window.event.keyCode == 13){search()}">
                 <button class="search-bt" type="submit" onclick="search()"><i class="fa fa-duotone fa-magnifying-glass"></i></button>
@@ -72,11 +81,11 @@
                 <p id="postAddress"></p>
                 <p id="postPrice"></p>
                 <div class="fix-dropdown" id="fix-box">
-                    <ul class="dropdown">
+                    <!-- <ul class="dropdown">
                         <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
                         <li class="post-fix"><a href="#"></a></li>
                         <li class="post-delete"><a href="#"></a></li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="post-like" id="post-like-box">
                     <a class="heart-icon" id="heart_a" aria-label="like" onclick="toggle_like()">
@@ -134,9 +143,9 @@
     </div>
  </footer>  
 
-<script src="/js/post.js"></script>
-<script src="/js/userInfo.js"></script>
-<script src="/js/like.js"></script>
+ <script src="/js/userInfo.js"></script>
+ <script src="/js/post.js"></script>
+ <script src="/js/like.js"></script>
 <script src="/js/search.js"></script>
 
 </body>

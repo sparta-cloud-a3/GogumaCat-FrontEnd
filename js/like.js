@@ -1,33 +1,37 @@
 function toggle_like(postId) {
-    if ($("#heart").hasClass("fa-solid")) {
-        $.ajax({
-            type: "POST",
-            url: `${domain}/update_like?postId=${postId}&action=unlike`,
-            data: {},
-            dataType : "json",
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("token", token);
-            },
-            success: function (response) {
-                $("#heart").addClass("fa-regular").removeClass("fa-solid")
-                $("#heart_a").removeClass("jello-horizontal")
-            }
-        })
-    } else {
-        $.ajax({
-            type: "POST",
-            url: `${domain}/update_like?postId=${postId}&action=like`,
-            data: {},
-            dataType : "json",
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("token", token);
-            },
-            success: function (response) {
-                console.log("like")
-                $("#heart").addClass("fa-solid").removeClass("fa-regular")
-                $("#heart_a").addClass("jello-horizontal")
-            }
-        })
+    if(!token) {
+        alert('로그인이 필요한 서비스입니다')
+    } else{
+        if ($("#heart").hasClass("fa-solid")) {
+            $.ajax({
+                type: "POST",
+                url: `${domain}/update_like?postId=${postId}&action=unlike`,
+                data: {},
+                dataType : "json",
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("token", token);
+                },
+                success: function (response) {
+                    $("#heart").addClass("fa-regular").removeClass("fa-solid")
+                    $("#heart_a").removeClass("jello-horizontal")
+                }
+            })
+        } else {
+            $.ajax({
+                type: "POST",
+                url: `${domain}/update_like?postId=${postId}&action=like`,
+                data: {},
+                dataType : "json",
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("token", token);
+                },
+                success: function (response) {
+                    console.log("like")
+                    $("#heart").addClass("fa-solid").removeClass("fa-regular")
+                    $("#heart_a").addClass("jello-horizontal")
+                }
+            })
+        }
     }
 }
 
