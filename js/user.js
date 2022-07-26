@@ -11,6 +11,7 @@ const elementInfo = [{
     objs : {
         profileUpdate : document.querySelector('.profile-container #profile-update'),
         deleteUser : document.querySelector('.profile-container #user-delete'),
+        passwordUpdate : document.querySelector('.profile-container #update-password'),
         latestPost : document.querySelector('.list-container #latest-tag'),
         likePost : document.querySelector('.list-container #like-tag')
     }
@@ -24,6 +25,9 @@ const elementInfo = [{
         deleteModal : document.querySelector('#modal-delete'),
         deletePw : document.querySelector('#modal-delete .modal-password'),
         deleteWindow : document.querySelector('#modal-delete .modal-delete-check'),
+        passwordModal : document.querySelector('#modal-updatePw'),
+        passwordPw : document.querySelector('#modal-updatePw .modal-password'),
+        passwordWindow : document.querySelector('#modal-updatePw .modal-window'),
         closeBtn : document.querySelector('.close-btn')
     }
 },{//프로필
@@ -172,6 +176,8 @@ function modal_on(element) {
         modalInfo.updateModal.style.display = 'flex'
     } else if(element.id === objs.deleteUser.id) {
         modalInfo.deleteModal.style.display = 'flex'
+    } else if (element.id === objs.passwordUpdate.id){
+        modalInfo.passwordModal.style.display = 'flex'
     }
 }
 //modal 끄기(바깥쪽 클릭시)
@@ -180,6 +186,8 @@ function modal_off(element) {
         modalInfo.updateModal.style.display = 'none'
     } else if(element.id === 'del-off-0' || element.id === 'del-off-1') {
         modalInfo.deleteModal.style.display = 'none'
+    } else if(element.id === 'updatePw-off-0' || element.id === 'updatePw-off-1'){
+        modalInfo.passwordModal.style.display = 'none'
     }
 }
 //modal 끄기(esc 누를시)
@@ -190,6 +198,10 @@ window.addEventListener("keyup", e => {
     }
     if(modalInfo.deleteModal.style.display ==='flex' && e.key === 'Escape') {
         modalInfo.deleteModal.style.display = 'none'
+        return;
+    }
+    if(modalInfo.passwordModal.style.display === 'flex' && e.key === 'Escape'){
+        modalInfo.passwordModal.style.display ='none'
         return;
     }
 })
@@ -264,7 +276,7 @@ function check_pw(value){
             }),
             contentType: 'application/json',
             beforeSend: function(xhr) {
-                  xhr.setRequestHeader("token", token);
+                xhr.setRequestHeader("token", token);
             },
             success: function (result) {
                 if(result) {
@@ -273,7 +285,10 @@ function check_pw(value){
                         modalInfo.updateWindow.style.display = 'block'
                     } else if(pw_input.id === 'delete-check-pw') {
                         modalInfo.deletePw.style.display = 'none'
-                    modalInfo.deleteWindow.style.display = 'block'
+                        modalInfo.deleteWindow.style.display = 'block'
+                    } else if(pw_input.id === 'update-check-pw'){
+                        modalInfo.passwordPw.style.display = 'none'
+                        modalInfo.passwordWindow.style.display = 'block'
                     }
                 } else {
                     updatePw = ""
@@ -359,8 +374,6 @@ function update_check() {
     
     const old_nickname = profile.nickname.textContent
     const nickname = updateProfile.nameUpdate.value
-    const password = updateProfile.password.value
-    const password2 = updateProfile.password2.value
     const address = updateProfile.addressUpdate.value
     const profilePic = updateProfile.file.files[0]
     const profileInfo = updateProfile.introduce.value
@@ -376,6 +389,37 @@ function update_check() {
             return;
         }
     }
+    if(address == "") {
+        updateProfile.addressUpdate.placeholder = '주소를 입력해주세요'
+        updateProfile.addressUpdate.focus()
+        return;
+    }
+    if(profileInfo =="") {
+        updateProfile.introduce.placeholder = '짧은 소개라도 입력해주세요'
+        updateProfile.introduce.focus()
+        return
+    }
+    console.log('실행중',check_dup_result)
+    let form_data = new FormData()
+    if (profilePic == undefined) {
+        form_data.append("nickname", nickname)
+        form_data.append("address", address)
+        form_data.append("profileInfo", profileInfo)
+    }
+    else {
+        form_data.append("nickname", nickname)
+        form_data.append("address", address)
+        form_data.append("profileInfo", profileInfo)
+        form_data.append("profilePic", profilePic)
+        }
+        update(form_data)
+    }
+
+//비밀번호 수정 전 체크
+function password_check() {
+    const password = updateProfile.password.value
+    const password2 = updateProfile.password2.value
+
     if(password == "") {
         updateProfile.password.placeholder = '비밀번호를 입력해주세요'
         updateProfile.password.focus()
@@ -398,33 +442,12 @@ function update_check() {
         updateProfile.password2.focus()
         return;
     }
-    if(address == "") {
-        updateProfile.addressUpdate.placeholder = '주소를 입력해주세요'
-        updateProfile.addressUpdate.focus()
-        return;
+    let data = {
+        'password' : password2
     }
-    if(profileInfo =="") {
-        updateProfile.introduce.placeholder = '짧은 소개라도 입력해주세요'
-        updateProfile.introduce.focus()
-        return
-    }
-    console.log('실행중',check_dup_result)
-    let form_data = new FormData()
-    if (profilePic == undefined) {
-        form_data.append("nickname", nickname)
-        form_data.append("password", password2)
-        form_data.append("address", address)
-        form_data.append("profileInfo", profileInfo)
-    }
-    else {
-        form_data.append("nickname", nickname)
-        form_data.append("password", password2)
-        form_data.append("address", address)
-        form_data.append("profileInfo", profileInfo)
-        form_data.append("profilePic", profilePic)
-        }
-        update(form_data)
-    }
+    
+    update_password(data)
+}
 //업데이트 하기
 function update(form_data) {
     $.ajax({
@@ -441,6 +464,22 @@ function update(form_data) {
         enctype: "multipart/form-data",
         success: function (response) {
             alert('프로필 변경 완료되었습니다.')
+            window.location.replace(`/user.html?userId=${id}`)
+        }
+    })
+}
+//비밀번호 업데이트 하기
+function update_password(data){
+    $.ajax({
+        type: "PUT",
+        url: `${domain}/update_pw/${id}`,
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("token", token);
+        },
+        success: function (response) {
+            alert('비밀번호 변경이 완료되었습니다.')
             window.location.replace(`/user.html?userId=${id}`)
         }
     })

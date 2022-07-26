@@ -1,8 +1,10 @@
 #modal-profile input,
-#modal-delete input {
+#modal-delete input,
+#modal-updatePw input {
     outline: none;
 }
-#modal-profile.modal-overlay-0 {
+#modal-profile.modal-overlay-0 ,
+#modal-updatePw.modal-overlay-2{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -19,7 +21,8 @@
     border: 1px solid rgba(255, 255, 255, 0.18);
     display: none;
 }
-#modal-profile .modal-password {
+#modal-profile .modal-password,
+#modal-updatePw .modal-password {
     background: rgb(199 134 164 / 90%);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 13.5px );
@@ -33,44 +36,51 @@
     padding: 10px;
 }
 #modal-profile .modal-password label,
-#modal-delete .modal-password label {
+#modal-delete .modal-password label,
+#modal-updatePw .modal-password label {
     font-size: 1.3rem;
     font-weight: bold;
 }
 #modal-profile .pw-input,
-#modal-delete .pw-input {
+#modal-delete .pw-input,
+#modal-updatePw .pw-input {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
 }
 #modal-profile #input-check-pw,
-#modal-delete #delete-check-pw {
+#modal-delete #delete-check-pw,
+#modal-updatePw #update-check-pw {
     width: 520px;
     border-radius: 3px;
     letter-spacing: 0.1rem;
 }
 #modal-profile .pw-check,
-#modal-delete .pw-check {
+#modal-delete .pw-check,
+#modal-updatePw .pw-check {
     background-color: #d2d2d2;
     border-radius: 3px;
     font-size: 1.2rem;
     padding: 3px 5px;
 }
 #modal-profile .kakao_help,
-#modal-delete .kakao_help{
+#modal-delete .kakao_help,
+#modal-updatePw .kakao_help{
     font-size: 0.8rem;
     font-weight: bold;
     display: inline-block;
     cursor: pointer;
 }
 #modal-profile #help-check-password,
-#modal-delete #help-check-password {
+#modal-delete #help-check-password,
+#modal-updatePw #help-check-password {
     font-size: 0.85rem;
     margin-top: 5px;
     margin-right: 10px;
     display: inline-block;
 }
-#modal-profile .modal-window {
+#modal-profile .modal-window,
+#modal-updatePw .modal-window {
     background: rgb(199 134 164 / 90%);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 13.5px );
@@ -84,12 +94,14 @@
     padding: 10px;
     display: none;
 }
-.profile-box {
+.profile-box ,
+.updatePw-box{
     width: 100%;
     height: 100%;
     padding: 5px 5px;
 }
-.profile-box label {
+.profile-box label,
+.updatePw-box label{
     font-size: 1.2rem;
     font-weight: bold;
     display: block;
@@ -176,7 +188,7 @@
     font-size: 1.2rem;
     padding: 5px 8px;
 }
-.modal-window #profile-update {
+.modal-window #profile-update, #password-update {
     background-color: whitesmoke;
     display: block;
     margin: auto;
