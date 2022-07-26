@@ -269,11 +269,7 @@
 
       function closeChat() {
             sock.close()
-            if(postId == -1) {
-                  window.location.href = "/list.html"
-            } else {
-                  window.location.href = "/post.html?id="+postId
-            }                  
+            history.back()            
       }
 
       window.addEventListener("load", setting)
