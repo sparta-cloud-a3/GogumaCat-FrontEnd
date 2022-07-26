@@ -8,6 +8,8 @@
       <!-- JS -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+      <!-- 폰트어썸 -->
+      <script src="https://kit.fontawesome.com/ceef4dd32d.js" crossorigin="anonymous"></script>
       <style>
             @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
             [v-cloak] {
@@ -72,7 +74,7 @@
 <body>
       <div id="app" v-cloak>
       <button v-if = "isSeller == true" onclick="order()" style="background-color: #c786a4">이 사람과 거래하기</button>
-      <button onclick="closeChat()" class="close-btn">닫기</button>
+      <i onclick="closeChat()" class="fa-solid fa-xmark close-btn"></i>
       <div class="chat-group">
             <ul id="msg-box"> 
             </ul>
@@ -267,7 +269,11 @@
 
       function closeChat() {
             sock.close()
-            window.location.href = "/list.html"
+            if(postId == -1) {
+                  window.location.href = "/list.html"
+            } else {
+                  window.location.href = "/post.html?id="+postId
+            }                  
       }
 
       window.addEventListener("load", setting)
