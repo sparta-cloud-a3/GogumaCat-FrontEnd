@@ -39,14 +39,13 @@ function post() {
     console.log(id)
     $.ajax({
         type: "GET",
-        url: `${domain}/post/${id}`,
+        url: `${domain}/post/update/${id}`,
         data: {},
         dataType : "json",
         beforeSend: function(xhr) {
                 xhr.setRequestHeader("token", token);
         },
-        success: function (response) {
-            let post = response['post']
+        success: function (post) {
             objs.title.value = post['title']
             objs.date.value = post['date']
             objs.price.value = post['price']
@@ -110,7 +109,7 @@ function posting_update() {
         alert("주소를 입력해주세요")
     } else {
     //포스팅 업데이트 aJax 콜
-       $.ajax({
+    $.ajax({
         type: "POST",
         url: `${domain}/post/update/${id}`,
         data: form_data,
