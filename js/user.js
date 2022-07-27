@@ -14,7 +14,8 @@ const elementInfo = [{
         deleteUser : document.querySelector('.profile-container #user-delete'),
         passwordUpdate : document.querySelector('.profile-container #update-password'),
         latestPost : document.querySelector('.list-container #latest-tag'),
-        likePost : document.querySelector('.list-container #like-tag')
+        likePost : document.querySelector('.list-container #like-tag'),
+        orderPost : document.querySelector('.list-container #order-tag')
     }
 },{
     //모달
@@ -132,6 +133,26 @@ function get_like_posts(user_id) {
         }
     });
 }
+
+//내가 대여한 게시물 가져오기
+function get_order_posts(user_id) {
+    $.ajax({
+        type: "GET",
+        url: `${domain}/order/my/${user_id}`,
+        data: {},
+        dataType : "json",
+        beforeSend: function(xhr) {
+                xhr.setRequestHeader("token", token);
+        },
+        success: function (response) {
+            $("#post-card-box").empty();
+            let posts = response["data"]
+            for (let i = 0; i < response["count"]; i++) {
+                makePost(posts[i]);
+            }
+        }
+    });
+}
 //포스트 생성 함수
 function makePost(post) {
     let sold = post["sold"]
@@ -173,11 +194,15 @@ function click_sort_btn(order_type) {
     if (order_type == "latest") {
         objs.latestPost.classList.add("is-dark")
         objs.likePost.classList.remove("is-dark")
-        // $('#address-tag').removeClass("is-dark")
-    } else {
+        objs.orderPost.classList.remove("is-dark")
+    } else if(order_type == "like"){
         objs.likePost.classList.add("is-dark")
         objs.latestPost.classList.remove("is-dark")
-        // $('#address-tag').removeClass("is-dark")
+        objs.orderPost.classList.remove("is-dark")
+    } else {
+        objs.orderPost.classList.add("is-dark")
+        objs.latestPost.classList.remove("is-dark")
+        objs.likePost.classList.remove("is-dark")
     }
 }
 
@@ -187,6 +212,9 @@ objs.likePost.addEventListener('click', ()=>{
 })
 objs.latestPost.addEventListener('click',()=>{
     get_write_posts(id)
+})
+objs.orderPost.addEventListener('click',()=>{
+    get_order_posts(id)
 })
 //modal 반응
 //modal 켜기
