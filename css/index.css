@@ -338,6 +338,12 @@
     font-size: medium;
     color: gray;
 }
+#section-4 .card-sold{
+    font-size : 1.1rem;
+    font-weight: bold;
+    color:gray;
+}
+
 .footer {
     background-color: whitesmoke;
 }
