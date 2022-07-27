@@ -242,9 +242,10 @@
         if(height >= scene_info[nowSection].scrollHeight) {
             height=0;
         }
+        
         switch(nowSection) {
             case 1 :
-                if(ratio<=1 && ratio>=0.9) {
+                if(ratio<=1) {
                     if(objs.desc.classList.contains('play-none')) {
                         objs.desc.className = 'desc-0'
                         objs.descImg_0.className = 'desc-img'
@@ -252,19 +253,19 @@
                 }
                 break;
             case 2 :
-                if(ratio>=0.1 && ratio<=0.5) {
+                if(ratio>=0.1) {
                     if(objs.desc.classList.contains('play-none')) {
                         objs.desc.className = 'desc-0'
                         objs.descImg_0.className = 'desc-img'
                     }
                 }
-                if(ratio >= 0.45 && ratio <= 0.7) {
+                if(ratio >= 0.45) {
                     if(objs.descImg_1.classList.contains('play-none')) {
                         objs.descImg_1.className = 'desc-img-2'
                         objs.descA.className = 'desc-0-a'
                     }
                 }
-                if(ratio >= 0.9 && ratio <= 1) {
+                if(ratio >= 0.9) {
                     if(objs2.descA.classList.contains('play-none')) {
                         objs2.descA.className = 'desc-1'
                         objs2.descImg_0.className = 'desc-1-img'
@@ -272,19 +273,19 @@
                 }
                 break;
             case 3 :
-                if(ratio >= 0.1 && ratio <= 0.7) {
+                if(ratio >= 0.1 ) {
                     if(objs2.descA.classList.contains('play-none')) {
                         objs2.descA.className = 'desc-1'
                         objs2.descImg_0.className = 'desc-1-img'
                     }
                 }
-                if(ratio >= 0.2 && ratio <=0.8) {
+                if(ratio >= 0.2) {
                     if(objs2.descB.classList.contains('play-none')){
                         objs2.descB.className = 'desc-2'
                         objs2.descImg_1.className = 'desc-2-img'
                     }
                 }
-                if(ratio >= 0.45 && ratio <=0.9) {
+                if(ratio >= 0.45) {
                     if(objs2.descC.classList.contains('play-none')){
                         objs2.descC.className = 'desc-3'
                         objs2.descImg_2.className = 'desc-3-img'
@@ -344,7 +345,7 @@ const token = $.cookie("mytoken")
 function listing() {
     $.ajax({
         type: "GET",
-        url: `${domain}/post/top4`,
+        url: `${domain}/post/top8`,
         data: {},
         dataType : "json",
         beforeSend: function(xhr) {
