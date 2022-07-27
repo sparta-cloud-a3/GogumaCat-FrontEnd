@@ -242,7 +242,7 @@ function user_profile() {
             profile_nickname = response['nickname']
         },
         error:() => {
-            alert('잘못된 접근입니다.')
+            // alert('잘못된 접근입니다.')
             window.history.back()
         }
   })

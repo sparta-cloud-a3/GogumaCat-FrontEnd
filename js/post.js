@@ -124,7 +124,11 @@ function makeDetail(response) {
 
 //글 작성자 프로필 들어가기
 function wirte_profile() {
-    window.location.href = `/user.html?id=${write_user}`
+    if(!token) {
+        alert('로그인이 필요한 서비스입니다')
+    } else {
+        window.location.href = `/user.html?id=${write_user}`
+    }
 }
 
 //맵 생성하기
