@@ -378,19 +378,10 @@ function makeCard(post) {
 }
 function token_check(id) {
     console.log(id)
-    if(!token) {
-        alert('로그인이 필요합니다')
-        window.location.href = '/login.html'
-    } else {
-        window.location.href = `/post.html?id=${id}`
-    }
+    window.location.href = `/post.html?id=${id}`
+
 }
 function start_check() {
-    if(!token) {
-        alert('로그인이 필요합니다')
-        window.location.href = '/login.html'
-    } else {
-        window.location.href = `/list.html`
-    }
+    window.location.href = `/list.html`
 }
 window.addEventListener('load', listing)
