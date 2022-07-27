@@ -5,6 +5,7 @@ const paramArray = [];
 let profile_nickname ;
 let id = 0;
 let check_dup_result;
+let userId;
 
 const elementInfo = [{
     type : 'button',
@@ -508,10 +509,39 @@ function sign_out() {
     window.location.href = "/index.html"
 }
 
+//페이지 로드시 토큰 체크
+function token_check() {
+    if(!token) {
+        alert('로그인이 필요합니다')
+    } else {
+        $.ajax({
+            type: "GET",
+            url: `${domain}/`,
+            data: {},
+            dataType: "json",
+            beforeSend: function(xhr) {
+                  xhr.setRequestHeader("token", token);
+            },
+            success: function (response) {
+                  userId = response["id"]
+                  id_check()
+            }
+      })
+    }
+}
+function id_check() {
+    if(userId != id) {
+        document.querySelector('.profile-container .btn-container').remove()
+        document.querySelector('.profile-container .delete-box').remove()
+        document.querySelector('#user-delete').remove()
+    }
+}
+
 //로드시 시작 함수
 window.addEventListener('load',() => {
     parameter()
     get_write_posts(id)
     user_profile()
     fileupload()
+    token_check()
 })

@@ -24,6 +24,7 @@ function getDetail(postId) {
             xhr.setRequestHeader("token", token);
         },
         success: function (response) {
+            console.log(response)
             makeDetail(response)
         }
     });
@@ -48,7 +49,6 @@ function makeDetail(response) {
     //수정, 삭제 메뉴
     $("#fix-box").empty()
     $("#chat-box").empty()
-    console.log(userNickname)
     if(token) {
         if(userNickname === post["writerNickname"]) {
             $("#fix-box").append(

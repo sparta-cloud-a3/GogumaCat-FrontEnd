@@ -59,7 +59,7 @@ function post() {
         },
         error:() => {
             alert('잘못된 접근입니다.')
-            // window.history.back()
+            window.history.back()
         }
     });
 }
