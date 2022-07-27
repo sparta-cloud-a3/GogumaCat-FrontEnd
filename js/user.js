@@ -134,20 +134,38 @@ function get_like_posts(user_id) {
 }
 //포스트 생성 함수
 function makePost(post) {
-    let tempHtml =  `<article class="card">
-                        <a href="/post.html?id=${post["postId"]}" class="crad-link">
-                            <div class="card-img">
-                                <img src='${post["postImgs"][0]["imgUrl"]}' alt="title">
-                            </div>
-                            <div class="card-desc">
-                                <p class="card-title">${post["title"]}</p>
-                                <p class="card-price">${post["price"]}원</p>
-                                <p class="card-address">${post["address"]}</p>
-                                <p class="card-like">관심 ${post["likeCount"]}</p>
-                            </div>
-                        </a>
-                    </article>`
-    $("#post-card-box").append(tempHtml)
+    let sold = post["sold"]
+    if(sold == true) {
+        let tempHtml =  `<article class="card">
+                            <a href="/post.html?id=${post["postId"]}" class="crad-link">
+                                <div class="card-img">
+                                    <img src='${post["postImgs"][0]["imgUrl"]}' alt="title">
+                                </div>
+                                <div class="card-desc">
+                                    <p class="card-title">${post["title"]}</p>
+                                    <p class="card-sold">대여완료</p>
+                                    <p class="card-address">${post["address"]}</p>
+                                    <p class="card-like">관심 ${post["likeCount"]}</p>
+                                </div>
+                            </a>
+                        </article>`
+        $("#post-card-box").append(tempHtml)
+    } else {
+        let tempHtml =  `<article class="card">
+                            <a href="/post.html?id=${post["postId"]}" class="crad-link">
+                                <div class="card-img">
+                                    <img src='${post["postImgs"][0]["imgUrl"]}' alt="title">
+                                </div>
+                                <div class="card-desc">
+                                    <p class="card-title">${post["title"]}</p>
+                                    <p class="card-price">${post["price"]}원</p>
+                                    <p class="card-address">${post["address"]}</p>
+                                    <p class="card-like">관심 ${post["likeCount"]}</p>
+                                </div>
+                            </a>
+                        </article>`
+        $("#post-card-box").append(tempHtml)
+    }
 }
 
 //최신순, 관심글 버튼 색상 변경
