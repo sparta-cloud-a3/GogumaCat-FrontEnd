@@ -51,6 +51,12 @@ function makeDetail(response) {
     $("#postAddress").text(post["address"])
     //가격
     $("#postPrice").text(post["price"]+"원")
+    //판매완료
+    let sold = post["sold"]
+    if(sold == true) {
+        $("#postSold").text("대여완료")
+        $("#postPrice").empty()
+    }
     //수정, 삭제 메뉴
     $("#fix-box").empty()
     $("#chat-box").empty()

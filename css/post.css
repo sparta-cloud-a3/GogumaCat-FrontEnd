@@ -131,6 +131,11 @@
     font-size: 1.1rem;
     font-size: 600;
 }
+.post-title #postSold{
+    font-size: 1.7rem;
+    font-weight: 600;
+    color : gray;
+}
 .fix-dropdown {
     cursor: pointer;
     position: absolute;
