@@ -5,7 +5,7 @@ const paramArray = [];
 let profile_nickname ;
 let id = 0;
 let check_dup_result;
-let userId;
+let connetUser;
 
 const elementInfo = [{
     type : 'button',
@@ -222,6 +222,10 @@ function user_profile() {
             profile_make(response)
             update_make(response)
             profile_nickname = response['nickname']
+        },
+        error:() => {
+            alert('잘못된 접근입니다.')
+            window.history.back()
         }
   })
 }
@@ -523,17 +527,18 @@ function token_check() {
                   xhr.setRequestHeader("token", token);
             },
             success: function (response) {
-                  userId = response["id"]
+                  connetUser = response["id"]
                   id_check()
             }
       })
     }
 }
 function id_check() {
-    if(userId != id) {
+    if(connetUser != id) {
         document.querySelector('.profile-container .btn-container').remove()
         document.querySelector('.profile-container .delete-box').remove()
         document.querySelector('#user-delete').remove()
+        document.querySelector('.list-container .posting-btn').remove()
     }
 }
 

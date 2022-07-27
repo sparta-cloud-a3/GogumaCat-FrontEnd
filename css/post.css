@@ -2,6 +2,7 @@
     height: auto;
     min-height: 100vh;
     padding-bottom: 156px;
+    background-color: whitesmoke;
 }
 .logo-container {
     position: fixed;
@@ -82,9 +83,7 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
-.container {
-    background-color: whitesmoke;
-}
+
 .post-container {
     width: 100%;
     max-width: 1200px;
@@ -170,6 +169,11 @@
     margin: auto;
     display: flex;
     align-items: center;
+}
+.profile-container .profile_btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 .profile #profileImage {
     width: 40px;

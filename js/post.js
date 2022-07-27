@@ -1,6 +1,6 @@
 const domain = "https://www.hongseos.shop"
 const token = $.cookie("mytoken")
-
+let write_user;
 
 $(document).ready(function () {
     let splitLink = document.location.href.split("?")
@@ -24,8 +24,13 @@ function getDetail(postId) {
             xhr.setRequestHeader("token", token);
         },
         success: function (response) {
-            console.log(response)
+            write_user = response['post']['writeUserId']
+            console.log(write_user)
             makeDetail(response)
+        },
+        error:() => {
+            alert('잘못된 접근입니다.')
+            window.history.back()
         }
     });
 }
@@ -109,6 +114,11 @@ function makeDetail(response) {
     }
     $("#postContent").text(post["content"])
     map(post["address"])
+}
+
+//글 작성자 프로필 들어가기
+function wirte_profile() {
+    window.location.href = `/user.html?id=${write_user}`
 }
 
 //맵 생성하기

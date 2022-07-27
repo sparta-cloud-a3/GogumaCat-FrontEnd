@@ -52,9 +52,10 @@ body {
     display: flex;
     align-items: center;
 }
-.main-nav-list .nav-tag {
-    font-size: 1.6rem;
+.main-nav-list a {
+    font-size: 1.5rem;
     font-weight: bold;
+    margin-right: 1rem;
 }
 .search-bar{
     display: flex;
@@ -65,7 +66,7 @@ body {
 }
 .search-bar .search {
     font-size: 1.2rem;
-    width: 400px;
+    width: 500px;
     outline: none;
     height: 24px;
     padding-left: 4px;
@@ -75,6 +76,17 @@ body {
     width: 40px;
     height: 28px;
     background-color: #c786a4;
+}
+.login-btn {
+    cursor: pointer;
+    width: 200px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+.login-btn p {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 .profile-container {
     width: 300px;
