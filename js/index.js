@@ -273,19 +273,20 @@
                 }
                 break;
             case 3 :
-                if(ratio >= 0.1 ) {
+                console.log(ratio)
+                if(ratio >= 0.1 && ratio <= 0.4 ) {
                     if(objs2.descA.classList.contains('play-none')) {
                         objs2.descA.className = 'desc-1'
                         objs2.descImg_0.className = 'desc-1-img'
                     }
                 }
-                if(ratio >= 0.2) {
+                if(ratio >= 0.25 && ratio <= 0.55) {
                     if(objs2.descB.classList.contains('play-none')){
                         objs2.descB.className = 'desc-2'
                         objs2.descImg_1.className = 'desc-2-img'
                     }
                 }
-                if(ratio >= 0.45) {
+                if(ratio >= 0.45 && ratio <= 0.8) {
                     if(objs2.descC.classList.contains('play-none')){
                         objs2.descC.className = 'desc-3'
                         objs2.descImg_2.className = 'desc-3-img'
