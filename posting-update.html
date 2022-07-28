@@ -50,6 +50,7 @@
     <!-- css 분리-->
     <link rel="stylesheet" href="/css/default.css"/>
     <link rel="stylesheet" href="/css/posting.css"/>
+    <link rel="stylesheet" href="/css/order_modal.css">
 
 </head>
 <body>
@@ -61,12 +62,26 @@
                 <input type="text" class="search" placeholder="물품이나 동네를 검색해보세요">
                 <button class="search-bt" type="submit" ><i class="fa fa-duotone fa-magnifying-glass"></i></button>
             </div> -->
-            <div class=" login-btn" onclick="userPage()">
-                <i class="fa-solid fa-cat fa-lg"></i>
-                <p id="loginName"><span id="loginName-0"></span></p>
+            <div class="nav-profile-box">
+                <div class="login-btn" onclick="userPage()">
+                    <i class="fa-solid fa-cat fa-lg"></i>
+                    <p id="loginName"><span id="loginName-0"></span></p>
+                </div>
+                <div id="alarm-box" style="margin-left: 10px;cursor: pointer;"></div>
             </div>
         </nav>
     </div>
+       <!-- Modal start -->
+       <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="title">
+                <h2>주문 알림</h2>
+            </div>
+            <div class="close-area" onclick="closeModal()">X</div>
+            <div class="content" id="order-content"></div>
+        </div>
+    </div>
+    <!-- Modal end -->
     <div class="posting-container">
         <div class="title">
             <h1>대여 등록하기</h1>

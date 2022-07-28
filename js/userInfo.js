@@ -33,6 +33,7 @@ function userPage() {
 
 function makeOrderContent(orders) {
       //알림을 볼 수 있는 버튼 생성
+      console.log(orders)
       $("#alarm-box").append(`<i id="alarm-btn" class="fa-solid fa-bell" onclick="openModal()"></i>`)
       let tempHtml=""
       for(let i =0; i < orders.length; i++) {

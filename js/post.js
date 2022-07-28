@@ -9,11 +9,6 @@ $(document).ready(function () {
     let idLink = splitLink[1].split("=")
     let postId =idLink[1]
     getDetail(postId)
-    if(!token) {
-        $("#loginName-0").text('게스트')  
-  } else{
-        initUserInfo()
-  }
 })
 
 function getDetail(postId) { 
@@ -27,7 +22,6 @@ function getDetail(postId) {
         },
         success: function (response) {
             write_user = response['post']['writeUserId']
-            console.log(write_user)
             makeDetail(response)
         },
         error:() => {
@@ -222,8 +216,9 @@ function deletePost(postId) {
                 xhr.setRequestHeader("token", token);
             },
             success: function (response) {
+                console.log(response)
                 alert('삭제에 성공하였습니다.');
-                window.location.replace("/list.html")
+                window.location.href = '/list.html'
             }
         })
     }
