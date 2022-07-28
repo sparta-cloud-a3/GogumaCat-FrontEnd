@@ -1,5 +1,6 @@
 const domain = "http://www.hongseos.shop"
 // let domain = "http://localhost:8080"
+
 const token = $.cookie("mytoken")
 
 $(document).ready(function () {

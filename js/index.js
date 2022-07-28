@@ -338,7 +338,7 @@
 }) ();
 
 //토큰 및 리스팅 등 api 함수
-const domain = "https://www.hongseos.shop"
+const domain = "http://www.hongseos.shop"
 const token = $.cookie("mytoken")
 
 

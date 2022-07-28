@@ -2,7 +2,7 @@ window.onload = function(){
     code();
 };
 function code(){
-    let doamin = "https://www.hongseos.shop"
+    let doamin = "http://www.hongseos.shop"
     let code = new URL(window.location.href).searchParams.get('code')
 
     $.ajax({

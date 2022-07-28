@@ -11,18 +11,20 @@ function initUserInfo() {
             },
             success: function (response) {
                   userId = response["id"]
-                  $("#loginName-0").text(`${response["nickname"]}`)
+                  $("#loginName-0").html(`<span id="loginName-0">${response["nickname"]}</span>님 환영합니다`)
                   if(response["orders"]){
                         makeOrderContent(response["orders"])
                   }
-            }
+            },
+            error:() => {
+                  $('#loginName').text('로그인하기')
+              }
       })
 }
 
 
 function userPage() {
       if (!token) {
-            alert("로그인이 필요한 서비스 입니다.")
             window.location.href ='/login.html'
       } else {
       window.location.href = `/user.html?userId=${userId}`
