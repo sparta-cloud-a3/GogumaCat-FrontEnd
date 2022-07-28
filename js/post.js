@@ -39,8 +39,9 @@ function getDetail(postId) {
 
 function makeDetail(response) {
     let post = response["post"]
+    let userNickname
     if(token){
-        let userNickname = document.querySelector('#loginName #loginName-0').textContent
+        userNickname = document.querySelector('#loginName #loginName-0').textContent
     }
     //사진
     $("#post-img-box").empty()
