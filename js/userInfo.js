@@ -11,7 +11,7 @@ function initUserInfo() {
             },
             success: function (response) {
                   userId = response["id"]
-                  $("#loginName-0").html(`<span id="loginName-0">${response["nickname"]}</span>님 환영합니다`)
+                  $("#loginName").html(`<span id="loginName-0">${response["nickname"]}</span>님 환영합니다`)
                   if(response["orders"]){
                         makeOrderContent(response["orders"])
                   }

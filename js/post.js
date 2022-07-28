@@ -2,8 +2,8 @@ const domain = "http://www.hongseos.shop"
 // let domain = "http://localhost:8080"
 
 const token = $.cookie("mytoken")
-let write_user;
-
+let write_user;//글을 쓴 유저
+let userNickname;//접속한 유저
 $(document).ready(function () {
     let splitLink = document.location.href.split("?")
     let idLink = splitLink[1].split("=")
@@ -39,7 +39,7 @@ function getDetail(postId) {
 
 function makeDetail(response) {
     let post = response["post"]
-    let userNickname
+    
     if(token){
         userNickname = document.querySelector('#loginName #loginName-0').textContent
     }
@@ -65,8 +65,9 @@ function makeDetail(response) {
     //수정, 삭제 메뉴
     $("#fix-box").empty()
     $("#chat-box").empty()
+    console.log(userNickname)
     if(token) {
-        if(userNickname === post["writerNickname"]) {
+        if(`${userNickname}` === post["writerNickname"]) {
             $("#fix-box").append(
                 `<ul class="dropdown">
                     <i class="fa-solid fa-ellipsis-vertical fa-2x dropbtn"></i>
