@@ -1,4 +1,4 @@
-const domain = "https://www.hongseos.shop"
+const domain = "http://www.hongseos.shop"
 const token = $.cookie("mytoken")
 let write_user;
 

@@ -1,5 +1,5 @@
 //도메인과 토큰
-const domain = "https://www.hongseos.shop"
+const domain = "http://www.hongseos.shop"
 const token = $.cookie("mytoken")
 
 //파라미터 닮을 배열
