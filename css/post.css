@@ -98,7 +98,7 @@
     width: 100%;
     max-width: 650px;
     height: auto;
-    max-height: 1000px;
+    max-height: 700px;
     margin: auto;
     border-radius: 10px;
     overflow: hidden;
@@ -298,15 +298,8 @@
     margin: auto;
 }
 
-.chat-btn {
-    width: 180px;
-    font-size: 1.2rem;
-    color: rgb(29 29 31 / 80%);
-    background-color: #c786a4;
-    border-radius: 3px;
-    padding: 3px 5px 3px 5px;
-    display: block;
-    margin: auto;
+#chat-box {
+    margin-bottom: 20px;
 }
 .is-hidden {
     visibility: hidden;
