@@ -216,6 +216,7 @@ function deletePost(postId) {
                 xhr.setRequestHeader("token", token);
             },
             success: function (response) {
+                console.log(response)
                 alert('삭제에 성공하였습니다.');
                 window.location.href = '/list.html'
             }

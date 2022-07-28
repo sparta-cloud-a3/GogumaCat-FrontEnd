@@ -50,6 +50,7 @@
     <!-- css 분리-->
     <link rel="stylesheet" href="/css/default.css"/>
     <link rel="stylesheet" href="/css/posting.css"/>
+    <link rel="stylesheet" href="/css/order_modal.css">
 
 </head>
 <body>
@@ -70,6 +71,17 @@
             </div>
         </nav>
     </div>
+       <!-- Modal start -->
+       <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="title">
+                <h2>주문 알림</h2>
+            </div>
+            <div class="close-area" onclick="closeModal()">X</div>
+            <div class="content" id="order-content"></div>
+        </div>
+    </div>
+    <!-- Modal end -->
     <div class="posting-container">
         <div class="title">
             <h1>대여 등록하기</h1>
