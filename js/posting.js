@@ -1,5 +1,6 @@
 //도메인과 토큰
-const domain = "https://www.hongseos.shop"
+const domain = "http://www.hongseos.shop"
+// let domain = "http://localhost:8080"
 const token = $.cookie("mytoken")
 
     
