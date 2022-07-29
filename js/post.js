@@ -211,7 +211,6 @@ function deletePost(postId) {
             type: "DELETE",
             url: `${domain}/post/delete/${postId}`,
             data: {},
-            dataType : "json",
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("token", token);
             },
